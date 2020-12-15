@@ -17,7 +17,7 @@
   <meta name="description" content="RockChe 的个人博客，记录生活、学习">
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
-  <title>第一篇测试文章 - RockChe&#39;s Blog</title>
+  <title>python学习1-冒泡排序 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/nnfx-dark.min.css" />
     
   
 
@@ -174,7 +174,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="第一篇测试文章">
+            <span class="h2" id="subtitle" title="python学习1-冒泡排序">
               
             </span>
 
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      37 字
+      509 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      6
        分钟
     </span>
   
@@ -236,14 +236,52 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">第一篇测试文章</h1>
+            <h1 style="display: none">python学习1-冒泡排序</h1>
             
             <div class="markdown-body">
-              <h1 id="这里是文章的标题"><a href="#这里是文章的标题" class="headerlink" title="这里是文章的标题"></a>这里是文章的标题</h1><h2 id="第一个小标题"><a href="#第一个小标题" class="headerlink" title="第一个小标题"></a>第一个小标题</h2><ul>
-<li>第一行内容</li>
-<li>第二行内容<pre><code class="hljs python">print(<span class="hljs-string">&#x27;this is python code!&#x27;</span>)</code></pre>
-<h2 id="第二个小标题"><a href="#第二个小标题" class="headerlink" title="第二个小标题"></a>第二个小标题</h2></li>
+              <h1 id="Python学习1-冒泡排序"><a href="#Python学习1-冒泡排序" class="headerlink" title="Python学习1-冒泡排序"></a>Python学习1-冒泡排序</h1><h2 id="为啥要写冒泡排序"><a href="#为啥要写冒泡排序" class="headerlink" title="为啥要写冒泡排序"></a>为啥要写冒泡排序</h2><p>说到冒泡排序，很多人应该听说过面试手写冒泡的段子吧，面试官仿佛都喜欢问如何进行冒泡排序，好记性不如烂笔头，今天就来说说如何用python进行冒泡排序</p>
+<a id="more"></a>
+<h2 id="冒泡排序的概念"><a href="#冒泡排序的概念" class="headerlink" title="冒泡排序的概念"></a>冒泡排序的概念</h2><p>冒泡排序（Bubble Sort），是一种计算机领域的较简单的排序算法。</p>
+<p>它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。</p>
+<p>这个算法的名字由来是因为越大的元素会经由交换慢慢“浮”到数列的顶端，所以叫做“冒泡排序”</p>
+<h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><p>冒泡排序算法的运作如下：</p>
+<ul>
+<li><p>比较相邻的元素。<strong>如果第一个比第二个大，就交换他们两个</strong>。</p>
+</li>
+<li><p>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</p>
+</li>
+<li><p>针对所有的元素重复以上的步骤，除了最后一个。</p>
+</li>
+<li><p>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</p>
+</li>
 </ul>
+<h2 id="用python如何实现"><a href="#用python如何实现" class="headerlink" title="用python如何实现"></a>用python如何实现</h2><p>假设现在有一组数</p>
+<p>[64, 34, 25, 12, 22, 11, 90]</p>
+<p>对这组数进行排序</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bubbleSort</span>(<span class="hljs-params">arr</span>):</span>
+    n = <span class="hljs-built_in">len</span>(arr)
+ 
+    <span class="hljs-comment"># 遍历所有数组元素</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+ 
+        <span class="hljs-comment"># Last i elements are already in place</span>
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, n-i-<span class="hljs-number">1</span>):
+ 
+            <span class="hljs-keyword">if</span> arr[j] &gt; arr[j+<span class="hljs-number">1</span>] :
+                arr[j], arr[j+<span class="hljs-number">1</span>] = arr[j+<span class="hljs-number">1</span>], arr[j]
+ 
+arr = [<span class="hljs-number">64</span>, <span class="hljs-number">34</span>, <span class="hljs-number">25</span>, <span class="hljs-number">12</span>, <span class="hljs-number">22</span>, <span class="hljs-number">11</span>, <span class="hljs-number">90</span>]
+ 
+bubbleSort(arr)
+ 
+<span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;排序后的数组:&quot;</span>,arr)</code></pre></div>
+
+<p>排序后的数组: [11, 12, 22, 25, 34, 64, 90]</p>
+<h2 id="sort-排序"><a href="#sort-排序" class="headerlink" title="sort() 排序"></a>sort() 排序</h2><p>但是讲真，python里面排序不用这么麻烦，一个函数搞定：sort()</p>
+<div class="hljs"><pre><code class="hljs python">arr = [<span class="hljs-number">64</span>, <span class="hljs-number">34</span>, <span class="hljs-number">25</span>, <span class="hljs-number">12</span>, <span class="hljs-number">22</span>, <span class="hljs-number">11</span>, <span class="hljs-number">90</span>]
+arr.sort()
+print(arr)</code></pre></div>
+
 
             </div>
             <hr>
@@ -253,7 +291,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+                      <a class="hover-with-bg" href="/categories/Python%E5%AD%A6%E4%B9%A0/">Python学习</a>
                     
                   </div>
                 
@@ -261,7 +299,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">测试技术分享</a>
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
                     
                   </div>
                 
