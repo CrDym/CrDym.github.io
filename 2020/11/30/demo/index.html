@@ -29,7 +29,17 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/nnfx-dark.min.css" />
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -55,7 +65,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -196,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      509 字
+      506 字
     </span>
   
 
@@ -206,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      5
        分钟
     </span>
   
@@ -266,29 +276,29 @@
 <h2 id="用python如何实现"><a href="#用python如何实现" class="headerlink" title="用python如何实现"></a>用python如何实现</h2><p>假设现在有一组数</p>
 <p>[64, 34, 25, 12, 22, 11, 90]</p>
 <p>对这组数进行排序</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bubbleSort</span>(<span class="hljs-params">arr</span>):</span>
-    n = <span class="hljs-built_in">len</span>(arr)
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">bubbleSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
  
-    <span class="hljs-comment"># 遍历所有数组元素</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+    <span class="token comment"># 遍历所有数组元素</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
  
-        <span class="hljs-comment"># Last i elements are already in place</span>
-        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, n-i-<span class="hljs-number">1</span>):
+        <span class="token comment"># Last i elements are already in place</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> n<span class="token operator">-</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
  
-            <span class="hljs-keyword">if</span> arr[j] &gt; arr[j+<span class="hljs-number">1</span>] :
-                arr[j], arr[j+<span class="hljs-number">1</span>] = arr[j+<span class="hljs-number">1</span>], arr[j]
+            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">:</span>
+                arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
  
-arr = [<span class="hljs-number">64</span>, <span class="hljs-number">34</span>, <span class="hljs-number">25</span>, <span class="hljs-number">12</span>, <span class="hljs-number">22</span>, <span class="hljs-number">11</span>, <span class="hljs-number">90</span>]
+arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">]</span>
  
-bubbleSort(arr)
+bubbleSort<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
  
-<span class="hljs-built_in">print</span> (<span class="hljs-string">&quot;排序后的数组:&quot;</span>,arr)</code></pre></div>
+<span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"排序后的数组:"</span><span class="token punctuation">,</span>arr<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p>排序后的数组: [11, 12, 22, 25, 34, 64, 90]</p>
 <h2 id="sort-排序"><a href="#sort-排序" class="headerlink" title="sort() 排序"></a>sort() 排序</h2><p>但是讲真，python里面排序不用这么麻烦，一个函数搞定：sort()</p>
-<div class="hljs"><pre><code class="hljs python">arr = [<span class="hljs-number">64</span>, <span class="hljs-number">34</span>, <span class="hljs-number">25</span>, <span class="hljs-number">12</span>, <span class="hljs-number">22</span>, <span class="hljs-number">11</span>, <span class="hljs-number">90</span>]
-arr.sort()
-print(arr)</code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">]</span>
+arr<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 
 
             </div>
@@ -452,6 +462,8 @@ print(arr)</code></pre></div>
 
 
   
+    
+  
 
 
 
@@ -472,6 +484,7 @@ print(arr)</code></pre></div>
 
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 
