@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>python学习2-函数</title>
+    <link href="/2020/12/18/python3/"/>
+    <url>/2020/12/18/python3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="函数是什么"><a href="#函数是什么" class="headerlink" title="函数是什么"></a>函数是什么</h1><p>函数是组织好的，可以被重复使用，用来实现单一，或者相关联功能的代码，函数的使用可以提高应用的模块性，和代码的复用性<br>python提供了很多内建函数，比如print(),input()等。我们也可以自己创建函数</p><a id="more"></a><h2 id="定义一个函数"><a href="#定义一个函数" class="headerlink" title="定义一个函数"></a>定义一个函数</h2><p>我们可以定义一个自己想要功能的函数，以下是简单的规则：</p><ul><li>函数代码块以def关键词开头，后接函数标识符名称和（）</li><li>任何传入参数和自变量必须放在圆括号中间，圆括号之间可以用于定义参数</li><li>函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明</li><li>函数内容以冒号 : 起始，并且缩进</li><li>return [表达式] 结束函数，选择性地返回一个值给调用方，不带表达式的 return 相当于返回 None</li></ul><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我们用函数来输出“hello world！”</p><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world!"</span><span class="token punctuation">)</span>hello<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>函数中带上参数变量：</p><ul><li>比较两个数的大小，返回较大的数</li></ul><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token builtin">max</span>（a<span class="token punctuation">,</span> b）<span class="token punctuation">:</span>    <span class="token keyword">if</span> a <span class="token operator">></span> b<span class="token punctuation">:</span>        <span class="token keyword">return</span> a    <span class="token keyword">else</span><span class="token punctuation">:</span>        <span class="token keyword">return</span> b        a <span class="token operator">=</span> <span class="token number">1</span>b <span class="token operator">=</span> <span class="token number">4</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>输出结果为：</p><blockquote><p>4</p></blockquote><ul><li>计算面积：</li></ul><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">area</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">return</span> width<span class="token operator">*</span>heightw <span class="token operator">=</span> <span class="token number">4</span>h <span class="token operator">=</span> <span class="token number">5</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"width ="</span><span class="token punctuation">,</span> w<span class="token punctuation">,</span> <span class="token string">" height ="</span><span class="token punctuation">,</span> h<span class="token punctuation">,</span> <span class="token string">" area ="</span><span class="token punctuation">,</span> area<span class="token punctuation">(</span>w<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>输出结果：</p><blockquote><p>width = 4  height = 5  area = 20</p></blockquote><h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>定义一个函数：给了函数一个名称，指定了函数里包含的参数，和代码块结构。</p><p>这个函数的基本结构完成以后，你可以通过另一个函数调用执行，也可以直接执行</p><h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>在python中，类型属于对象，变量是没有类型的：</p><pre class="line-numbers language-pytohn" data-language="pytohn"><code class="language-pytohn">a &#x3D; [1 ,2 ,3]a &#x3D; &quot;Python&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>以上代码中,[1,2,3]是List类型，“Python”是String类型，而变量a是没有类型的<br>它只是一个对象的引用（一个指针），以是指向 List 类型对象，也可以是指向 String 类型对象</p><h3 id="可更改-mutable-与不可更改-immutable-对象"><a href="#可更改-mutable-与不可更改-immutable-对象" class="headerlink" title="可更改(mutable)与不可更改(immutable)对象"></a>可更改(mutable)与不可更改(immutable)对象</h3><p>在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。</p><ul><li>不可变类型：变量赋值 a=5 后再赋值 a=10，这里实际是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，不是改变 a 的值，相当于新生成了 a</li><li>可变类型：变量赋值 la=[1,2,3,4] 后再赋值 la[2]=5 则是将 list la 的第三个元素值更改，本身la没有动，只是其内部的一部分值被修改了<br>python 函数的参数传递：</li><li>不可变类型：类似 C++ 的值传递，如 整数、字符串、元组。如 fun(a)，传递的只是 a 的值，没有影响 a 对象本身。如果在 fun(a)）内部修改 a 的值，则是新生成来一个 a。</li><li>可变类型：类似 C++ 的引用传递，如 列表，字典。如 fun(la)，则是将 la 真正的传过去，修改后 fun 外部的 la 也会受影响<br>python中一切皆是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象。<h3 id="传不可变对象实例"><a href="#传不可变对象实例" class="headerlink" title="传不可变对象实例"></a>传不可变对象实例</h3>未完待续——</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>python学习2-迭代器与生成器</title>
     <link href="/2020/12/17/python2/"/>
     <url>/2020/12/17/python2/</url>
