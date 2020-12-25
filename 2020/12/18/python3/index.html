@@ -67,7 +67,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -180,7 +180,7 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
+    <div class="banner" id="banner" parallax=true
          style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
@@ -248,11 +248,11 @@
     
       
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
     <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
@@ -271,14 +271,14 @@
 <li>return [表达式] 结束函数，选择性地返回一个值给调用方，不带表达式的 return 相当于返回 None</li>
 </ul>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>我们用函数来输出“hello world！”</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world!"</span><span class="token punctuation">)</span>
-hello<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+hello<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>函数中带上参数变量：</p>
 <ul>
 <li>比较两个数的大小，返回较大的数</li>
 </ul>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token builtin">max</span>（a<span class="token punctuation">,</span> b）<span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token builtin">max</span>（a<span class="token punctuation">,</span> b）<span class="token punctuation">:</span>
     <span class="token keyword">if</span> a <span class="token operator">></span> b<span class="token punctuation">:</span>
         <span class="token keyword">return</span> a
     <span class="token keyword">else</span><span class="token punctuation">:</span>
@@ -287,7 +287,7 @@ hello<span class="token punctuation">(</span><span class="token punctuation">)</
 a <span class="token operator">=</span> <span class="token number">1</span>
 b <span class="token operator">=</span> <span class="token number">4</span>
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出结果为：</p>
 <blockquote>
 <p>4</p>
@@ -295,11 +295,11 @@ b <span class="token operator">=</span> <span class="token number">4</span>
 <ul>
 <li>计算面积：</li>
 </ul>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">area</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">area</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">return</span> width<span class="token operator">*</span>height
 w <span class="token operator">=</span> <span class="token number">4</span>
 h <span class="token operator">=</span> <span class="token number">5</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"width ="</span><span class="token punctuation">,</span> w<span class="token punctuation">,</span> <span class="token string">" height ="</span><span class="token punctuation">,</span> h<span class="token punctuation">,</span> <span class="token string">" area ="</span><span class="token punctuation">,</span> area<span class="token punctuation">(</span>w<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"width ="</span><span class="token punctuation">,</span> w<span class="token punctuation">,</span> <span class="token string">" height ="</span><span class="token punctuation">,</span> h<span class="token punctuation">,</span> <span class="token string">" area ="</span><span class="token punctuation">,</span> area<span class="token punctuation">(</span>w<span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出结果：</p>
 <blockquote>
 <p>width = 4  height = 5  area = 20</p>
@@ -307,8 +307,8 @@ h <span class="token operator">=</span> <span class="token number">5</span>
 <h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>定义一个函数：给了函数一个名称，指定了函数里包含的参数，和代码块结构。</p>
 <p>这个函数的基本结构完成以后，你可以通过另一个函数调用执行，也可以直接执行</p>
 <h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><p>在python中，类型属于对象，变量是没有类型的：</p>
-<div class="code-wrapper"><pre class="line-numbers language-pytohn" data-language="pytohn"><code class="language-pytohn">a &#x3D; [1 ,2 ,3]
-a &#x3D; &quot;Python&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<pre class="line-numbers language-pytohn" data-language="pytohn"><code class="language-pytohn">a &#x3D; [1 ,2 ,3]
+a &#x3D; &quot;Python&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>以上代码中,[1,2,3]是List类型，“Python”是String类型，而变量a是没有类型的<br>它只是一个对象的引用（一个指针），以是指向 List 类型对象，也可以是指向 String 类型对象</p>
 <h3 id="可更改-mutable-与不可更改-immutable-对象"><a href="#可更改-mutable-与不可更改-immutable-对象" class="headerlink" title="可更改(mutable)与不可更改(immutable)对象"></a>可更改(mutable)与不可更改(immutable)对象</h3><p>在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。</p>
 <ul>
@@ -318,28 +318,28 @@ a &#x3D; &quot;Python&quot;<span aria-hidden="true" class="line-numbers-rows"><s
 <li>可变类型：类似 C++ 的引用传递，如 列表，字典。如 fun(la)，则是将 la 真正的传过去，修改后 fun 外部的 la 也会受影响<br>python中一切皆是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象。</li>
 </ul>
 <h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="必须参数"><a href="#必须参数" class="headerlink" title="必须参数"></a>必须参数</h3><p>必需参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样<br>例如：调用printme()函数时，你必须传入一个参数，不然会出现语法错误</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printme</span><span class="token punctuation">(</span> <span class="token builtin">str</span> <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printme</span><span class="token punctuation">(</span> <span class="token builtin">str</span> <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的字符串"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span>
    <span class="token keyword">return</span>
  
 <span class="token comment"># 调用 printme 函数，不加参数会报错</span>
-printme<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+printme<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上代码的输出结果：</p>
 <blockquote>
 <p>Traceback (most recent call last):<br>  File “test.py”, line 10, in <module><br>    printme()<br>TypeError: printme() missing 1 required positional argument: ‘str’</p>
 </blockquote>
 <h3 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h3><p>关键字参数和函数调用关系紧密，函数调用使用关键字参数来确定传入的参数值。</p>
 <p>使用关键字参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值。<br>以下实例在函数 printme() 调用时使用参数名：</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printme</span><span class="token punctuation">(</span> <span class="token builtin">str</span> <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printme</span><span class="token punctuation">(</span> <span class="token builtin">str</span> <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的字符串"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span>
    <span class="token keyword">return</span>
  
 <span class="token comment">#调用printme函数</span>
-printme<span class="token punctuation">(</span> <span class="token builtin">str</span> <span class="token operator">=</span> <span class="token string">"python"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+printme<span class="token punctuation">(</span> <span class="token builtin">str</span> <span class="token operator">=</span> <span class="token string">"python"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以下实例中演示了函数参数的使用不需要使用指定顺序：</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> name<span class="token punctuation">,</span> age <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> name<span class="token punctuation">,</span> age <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的字符串"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"名字: "</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"年龄: "</span><span class="token punctuation">,</span> age<span class="token punctuation">)</span>
@@ -347,13 +347,13 @@ printme<span class="token punctuation">(</span> <span class="token builtin">str<
  
 <span class="token comment">#调用printinfo函数</span>
 printinfo<span class="token punctuation">(</span> age<span class="token operator">=</span><span class="token number">28</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"python"</span> <span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上代码输出结果：</p>
 <blockquote>
 <p>名字： python<br>年龄： 25</p>
 </blockquote>
 <h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>调用函数时，如果没有传递参数，则会使用默认参数。以下实例中如果没有传入 age 参数，则使用默认值：</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> name<span class="token punctuation">,</span> age <span class="token operator">=</span> <span class="token number">35</span> <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> name<span class="token punctuation">,</span> age <span class="token operator">=</span> <span class="token number">35</span> <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的字符串"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"名字: "</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"年龄: "</span><span class="token punctuation">,</span> age<span class="token punctuation">)</span>
@@ -362,21 +362,21 @@ printinfo<span class="token punctuation">(</span> age<span class="token operator
 <span class="token comment">#调用printinfo函数</span>
 printinfo<span class="token punctuation">(</span> age<span class="token operator">=</span><span class="token number">28</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"python"</span> <span class="token punctuation">)</span>
 <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"------------------------"</span><span class="token punctuation">)</span>
-printinfo<span class="token punctuation">(</span> name<span class="token operator">=</span><span class="token string">"python"</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+printinfo<span class="token punctuation">(</span> name<span class="token operator">=</span><span class="token string">"python"</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="不定长参数"><a href="#不定长参数" class="headerlink" title="不定长参数"></a>不定长参数</h3><p>你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述 2 种参数不同，声明时不会命名。<br>加了星号 * 的参数会以元组(tuple)的形式导入，存放所有未命名的变量参数。</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> arg1<span class="token punctuation">,</span> <span class="token operator">*</span>vartuple <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> arg1<span class="token punctuation">,</span> <span class="token operator">*</span>vartuple <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的参数"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"输出: "</span><span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span>arg1<span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span>vartuple<span class="token punctuation">)</span>
  
 <span class="token comment"># 调用printinfo 函数</span>
-printinfo<span class="token punctuation">(</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+printinfo<span class="token punctuation">(</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>输出：<br>70<br>（60，50）</p>
 </blockquote>
 <p>如果在函数调用时没有指定参数，它就是一个空元组。我们也可以不向函数传递未命名的变量。如下实例：</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> arg1<span class="token punctuation">,</span> <span class="token operator">*</span>vartuple <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> arg1<span class="token punctuation">,</span> <span class="token operator">*</span>vartuple <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的参数"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"输出: "</span><span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span>arg1<span class="token punctuation">)</span>
@@ -386,19 +386,19 @@ printinfo<span class="token punctuation">(</span> <span class="token number">70<
  
 <span class="token comment"># 调用printinfo 函数</span>
 printinfo<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span>
-printinfo<span class="token punctuation">(</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+printinfo<span class="token punctuation">(</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>输出:<br>10<br>输出:<br>70<br>60<br>50</p>
 </blockquote>
 <p>还有一种就是参数带两个星号<br>加了两个星号**的参数会以字典的形式导入</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> arg1<span class="token punctuation">,</span> <span class="token operator">**</span>vardict <span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">printinfo</span><span class="token punctuation">(</span> arg1<span class="token punctuation">,</span> <span class="token operator">**</span>vardict <span class="token punctuation">)</span><span class="token punctuation">:</span>
    <span class="token string">"打印任何传入的参数"</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"输出: "</span><span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span>arg1<span class="token punctuation">)</span>
    <span class="token keyword">print</span> <span class="token punctuation">(</span>vardict<span class="token punctuation">)</span>
  
 <span class="token comment"># 调用printinfo 函数</span>
-printinfo<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> a<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>b<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+printinfo<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> a<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>b<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出结果：</p>
 <blockquote>
 <p>1<br>{‘a’: 2, ‘b’: 3}</p>
@@ -429,7 +429,7 @@ printinfo<span class="token punctuation">(</span><span class="token number">1</s
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
               
-                <div class="post-prevnext row">
+                <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
                     
@@ -532,9 +532,6 @@ printinfo<span class="token punctuation">(</span><span class="token number">1</s
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":200})
     NProgress.start()
-    document.addEventListener('DOMContentLoaded', function() {
-      window.NProgress && window.NProgress.inc();
-    })
     window.addEventListener('load', function() {
       NProgress.done();
     })
