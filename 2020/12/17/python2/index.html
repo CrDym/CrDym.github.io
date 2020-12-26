@@ -269,16 +269,16 @@
 </ul>
 <p>字符串、列表、元祖对象都可用于创建迭代器</p>
 <p>迭代器对象可以使用for语句进行遍历：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">list</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token builtin">list</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span>
 it <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
 <span class="token keyword">for</span> i <span class="token keyword">in</span> it<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>执行以上代码，输出结果如下：</p>
 <blockquote>
 <p>1 2 3 4</p>
 </blockquote>
 <p>也可以使用next()函数</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys         <span class="token comment"># 引入sys模块</span>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys         <span class="token comment"># 引入sys模块</span>
 
 <span class="token builtin">list</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span>
 it <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
@@ -287,7 +287,7 @@ it <span class="token operator">=</span> <span class="token builtin">iter</span>
     <span class="token keyword">try</span><span class="token punctuation">:</span>
         <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token keyword">except</span> StopUteration<span class="token punctuation">:</span>
-    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>执行以上代码，输出结果如下：</p>
 <blockquote>
 <p>1<br>2<br>3<br>4</p>
@@ -295,7 +295,7 @@ it <span class="token operator">=</span> <span class="token builtin">iter</span>
 <h2 id="创建一个迭代器"><a href="#创建一个迭代器" class="headerlink" title="创建一个迭代器"></a>创建一个迭代器</h2><p>把一个类作为一个迭代器使用需要在类中实现两个方法 <strong>iter</strong>() 与 <strong>next</strong>() </p>
 <p>如果你了解过面向对象编程，就知道类都有一个构造函数，Python的构造函数为<strong>init</strong>(),它会在对象初始化的时候执行，<strong>iter</strong>() 方法返回一个特殊的迭代器对象， 这个迭代器对象实现了 <strong>next</strong>() 方法并通过 StopIteration 异常标识迭代的完成<br><strong>next</strong>() 方法会返回下一个迭代器对象。</p>
 <p>通过一个例子来看一看：<br>创建一个返回数字的迭代器，初始值为 1，逐步递增 1</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyNumbers</span><span class="token punctuation">:</span>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyNumbers</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
         self<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span>
         <span class="token keyword">return</span> self
@@ -310,14 +310,14 @@ myiter <span class="token operator">=</span> <span class="token builtin">iter</s
 
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>myiter<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>myiter<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>myiter<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>myiter<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>执行输出结果为：</p>
 <blockquote>
 <p>1<br>2<br>3</p>
 </blockquote>
 <h2 id="StopIteration"><a href="#StopIteration" class="headerlink" title="StopIteration"></a>StopIteration</h2><p>StopIteration 异常用于标识迭代的完成，防止出现无限循环的情况，在 <strong>next</strong>() 方法中我们可以设置在完成指定循环次数后触发 StopIteration 异常来结束迭代。</p>
 <p>在 5 次迭代后停止执行：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyNumbers</span><span class="token punctuation">:</span>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyNumbers</span><span class="token punctuation">:</span>
   <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
     self<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span>
     <span class="token keyword">return</span> self
@@ -334,7 +334,7 @@ myclass <span class="token operator">=</span> MyNumbers<span class="token punctu
 myiter <span class="token operator">=</span> <span class="token builtin">iter</span><span class="token punctuation">(</span>myclass<span class="token punctuation">)</span>
  
 <span class="token keyword">for</span> x <span class="token keyword">in</span> myiter<span class="token punctuation">:</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>执行结果为：</p>
 <blockquote>
 <p>1<br>2<br>3<br>4<br>5</p>
@@ -344,7 +344,7 @@ myiter <span class="token operator">=</span> <span class="token builtin">iter</s
 <p>在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值, 并在下一次执行 next() 方法时从当前位置继续运行。</p>
 <p>调用一个生成器函数，返回的是一个迭代器对象。</p>
 <p>以下实例使用 yield 实现斐波那契数列：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
  
 <span class="token keyword">def</span> <span class="token function">fibonacci</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># 生成器函数 - 斐波那契</span>
     a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span>
@@ -360,7 +360,7 @@ f <span class="token operator">=</span> fibonacci<span class="token punctuation"
     <span class="token keyword">try</span><span class="token punctuation">:</span>
         <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span>
     <span class="token keyword">except</span> StopIteration<span class="token punctuation">:</span>
-        sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>执行结果如下：</p>
 <blockquote>
 <p>0 1 1 2 3 5 8 13 21 34 55</p>
