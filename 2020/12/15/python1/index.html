@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
-  <link rel="icon" type="image/png" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,12 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="RockChe 的个人博客，记录生活、学习">
+  
+    <meta name="description" content="为啥要写冒泡排序说到冒泡排序，很多人应该听说过面试手写冒泡的段子吧，面试官仿佛都喜欢问如何进行冒泡排序，好记性不如烂笔头，今天就来说说如何用python进行冒泡排序">
+  
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
+  
   <title>python学习1-冒泡排序 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
@@ -67,11 +70,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -252,7 +255,7 @@
             
             <div class="markdown-body">
               <h2 id="为啥要写冒泡排序"><a href="#为啥要写冒泡排序" class="headerlink" title="为啥要写冒泡排序"></a>为啥要写冒泡排序</h2><p>说到冒泡排序，很多人应该听说过面试手写冒泡的段子吧，面试官仿佛都喜欢问如何进行冒泡排序，好记性不如烂笔头，今天就来说说如何用python进行冒泡排序</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="冒泡排序的概念"><a href="#冒泡排序的概念" class="headerlink" title="冒泡排序的概念"></a>冒泡排序的概念</h2><p>冒泡排序（Bubble Sort），是一种计算机领域的较简单的排序算法。</p>
 <p>它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。</p>
 <p>这个算法的名字由来是因为越大的元素会经由交换慢慢“浮”到数列的顶端，所以叫做“冒泡排序”</p>
@@ -287,11 +290,13 @@ arr <span class="token operator">=</span> <span class="token punctuation">[</spa
 bubbleSort<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
  
 <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"排序后的数组:"</span><span class="token punctuation">,</span>arr<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
 <p>排序后的数组: [11, 12, 22, 25, 34, 64, 90]</p>
 <h2 id="sort-排序"><a href="#sort-排序" class="headerlink" title="sort() 排序"></a>sort() 排序</h2><p>但是讲真，python里面排序不用这么麻烦，一个函数搞定：sort()</p>
 <div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">]</span>
 arr<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
 
             </div>
             <hr>
@@ -315,7 +320,11 @@ arr<span class="token punctuation">.</span>sort<span class="token punctuation">(
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -484,11 +493,12 @@ arr<span class="token punctuation">.</span>sort<span class="token punctuation">(
   <script>
     (function () {
       var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
+      $('#local-search-input').on('click', function() {
         searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
     })()
   </script>
 

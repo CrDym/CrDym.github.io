@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
-  <link rel="icon" type="image/png" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,12 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="RockChe 的个人博客，记录生活、学习">
+  
+    <meta name="description" content="函数是什么函数是组织好的，可以被重复使用，用来实现单一，或者相关联功能的代码，函数的使用可以提高应用的模块性，和代码的复用性python提供了很多内建函数，比如print(),input()等。我们也可以自己创建函数">
+  
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
+  
   <title>python学习3-函数 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
@@ -67,11 +70,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -252,7 +255,7 @@
             
             <div class="markdown-body">
               <h1 id="函数是什么"><a href="#函数是什么" class="headerlink" title="函数是什么"></a>函数是什么</h1><p>函数是组织好的，可以被重复使用，用来实现单一，或者相关联功能的代码，函数的使用可以提高应用的模块性，和代码的复用性<br>python提供了很多内建函数，比如print(),input()等。我们也可以自己创建函数</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="定义一个函数"><a href="#定义一个函数" class="headerlink" title="定义一个函数"></a>定义一个函数</h2><p>我们可以定义一个自己想要功能的函数，以下是简单的规则：</p>
 <ul>
@@ -266,6 +269,7 @@
 <div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world!"</span><span class="token punctuation">)</span>
 hello<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
 <p>函数中带上参数变量：</p>
 <ul>
 <li>比较两个数的大小，返回较大的数</li>
@@ -317,6 +321,7 @@ a &#x3D; &quot;Python&quot;<span aria-hidden="true" class="line-numbers-rows"><s
  
 <span class="token comment"># 调用 printme 函数，不加参数会报错</span>
 printme<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
 <p>以上代码的输出结果：</p>
 <blockquote>
 <p>Traceback (most recent call last):<br>  File “test.py”, line 10, in <module><br>    printme()<br>TypeError: printme() missing 1 required positional argument: ‘str’</p>
@@ -340,6 +345,7 @@ printme<span class="token punctuation">(</span> <span class="token builtin">str<
 <span class="token comment">#调用printinfo函数</span>
 printinfo<span class="token punctuation">(</span> age<span class="token operator">=</span><span class="token number">28</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">"python"</span> <span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
 <p>以上代码输出结果：</p>
 <blockquote>
 <p>名字： python<br>年龄： 25</p>
@@ -364,6 +370,7 @@ printinfo<span class="token punctuation">(</span> name<span class="token operato
  
 <span class="token comment"># 调用printinfo 函数</span>
 printinfo<span class="token punctuation">(</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
 <blockquote>
 <p>输出：<br>70<br>（60，50）</p>
 </blockquote>
@@ -379,6 +386,7 @@ printinfo<span class="token punctuation">(</span> <span class="token number">70<
 <span class="token comment"># 调用printinfo 函数</span>
 printinfo<span class="token punctuation">(</span> <span class="token number">10</span> <span class="token punctuation">)</span>
 printinfo<span class="token punctuation">(</span> <span class="token number">70</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span> <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
 <blockquote>
 <p>输出:<br>10<br>输出:<br>70<br>60<br>50</p>
 </blockquote>
@@ -391,6 +399,7 @@ printinfo<span class="token punctuation">(</span> <span class="token number">70<
  
 <span class="token comment"># 调用printinfo 函数</span>
 printinfo<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> a<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>b<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
 <p>输出结果：</p>
 <blockquote>
 <p>1<br>{‘a’: 2, ‘b’: 3}</p>
@@ -418,7 +427,11 @@ printinfo<span class="token punctuation">(</span><span class="token number">1</s
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -593,11 +606,12 @@ printinfo<span class="token punctuation">(</span><span class="token number">1</s
   <script>
     (function () {
       var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
+      $('#local-search-input').on('click', function() {
         searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
     })()
   </script>
 
