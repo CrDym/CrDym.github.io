@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>UI自动化学习笔记（二）</title>
+    <link href="/2021/05/01/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B02/"/>
+    <url>/2021/05/01/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B02/</url>
+    
+    <content type="html"><![CDATA[<h1 id="元素操作"><a href="#元素操作" class="headerlink" title="元素操作"></a>元素操作</h1><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul><li>send_keys() # 输入方法</li><li>click() # 点击方法</li><li>clear() # 清空</li></ul><h1 id="浏览器常用操作API"><a href="#浏览器常用操作API" class="headerlink" title="浏览器常用操作API"></a>浏览器常用操作API</h1><h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><ul><li><p>driver.maximize_window() # 最大化浏览器</p></li><li><p>driver.set_window_size(w, h) # 设置浏览器大小 单位像素</p></li><li><p>driver.set_window_position(x, y) # 设置浏览器位置</p></li><li><p>driver.back() # 后退操作</p></li><li><p>driver.forward() # 前进操作</p></li><li><p>driver.refresh() # 刷新操作</p></li><li><p>driver.close() # 关闭当前主窗口(主窗口：默认启动哪个界面，就是主窗口)</p></li><li><p>driver.quit() # 关闭由driver对象启动的所有窗口</p></li><li><p>driver.title # 获取当前页面title信息</p></li><li><p>drive.current_url # 获取当前页面url信息</p></li></ul><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul><li><p>driver.title 和 driver.current_url 没有括号，应用场景：一般为判断上步操作是否执行成功。</p><span id="more"></span></li><li><p>driver.maximize_window() # 一般为我的前置代码，在获取driver后，直接编写最大化浏览器</p></li><li><p>driver.refresh() 应用场景，在后面的cookie章节会使用到。</p></li><li><p>driver.close()与driver.quit()区别：</p><ul><li><div class="code-wrapper"><pre><code>close():关闭当前主窗口</code></pre></div></li><li><div class="code-wrapper"><pre><code>quit():关闭由driver对象启动的所有窗口</code></pre></div></li></ul></li><li><p>提示：如果当前只有1个窗口，close与quit没有任何区别。</p></li></ul><h1 id="元素信息操作API"><a href="#元素信息操作API" class="headerlink" title="元素信息操作API"></a>元素信息操作API</h1><h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><ul><li>text 获取元素文本  如：driver.text</li><li>size 获取元素大小  如：driver.size </li><li>get_attribute 获取元素属性值 如：driver.get_attribute(“id”)</li><li>is_displayed 判断元素是否可见 如：element.is_displayed()</li><li>is_enabled 判断元素是否可用 如: element.is_enabled()</li><li>is_selected 判断元素是否被选中 如：element.is_selected()        </li></ul><h2 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h2><ul><li>text和size调用时 无括号</li><li>get_attribute一般应用场景：判断一组元素是否为想要的元素或者判断元素属性值是否</li><li>is_displayed、is_enabled、is_selected，在特殊应用场景中使用。</li></ul><h1 id="鼠标操作"><a href="#鼠标操作" class="headerlink" title="鼠标操作"></a>鼠标操作</h1><h2 id="为什么使用鼠标操作"><a href="#为什么使用鼠标操作" class="headerlink" title="为什么使用鼠标操作"></a>为什么使用鼠标操作</h2><p>为了满足丰富的html鼠标效果，必须使用对于的方法</p><h2 id="鼠标事件对应的方法在哪个类中"><a href="#鼠标事件对应的方法在哪个类中" class="headerlink" title="鼠标事件对应的方法在哪个类中"></a>鼠标事件对应的方法在哪个类中</h2><p>from selenium.webdirver.common.action_chains import ActionChains</p><h2 id="鼠标时间常用的方法"><a href="#鼠标时间常用的方法" class="headerlink" title="鼠标时间常用的方法"></a>鼠标时间常用的方法</h2><ul><li>context_click() #右击<ul><li>应用：context_click(element).perform()</li></ul></li><li>double_click() #双击<ul><li>应用：double_click(element).perform()</li></ul></li><li>drag_and_drop() # 拖拽<ul><li>应用：drag_and_drop(source, target).perform</li></ul></li><li>move_to_element() #悬停</li><li>move_to_element(element).perform()</li><li>perform() # 执行以上事件方法</li></ul><h1 id="键盘操作"><a href="#键盘操作" class="headerlink" title="键盘操作"></a>键盘操作</h1><h2 id="键盘对应的方法在Keys类中"><a href="#键盘对应的方法在Keys类中" class="headerlink" title="键盘对应的方法在Keys类中"></a>键盘对应的方法在Keys类中</h2><p>包：from selenium.webdriver.common.keys import Keys</p><h2 id="常用的快捷键："><a href="#常用的快捷键：" class="headerlink" title="常用的快捷键："></a>常用的快捷键：</h2><p>CONTROL：Ctrl键<br>其他，请参考Keys底层定义的常量</p><h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>组合键：element.send_keys(Keys.XXX, ‘a’)<br>单键：element.send_keys(Keys.XXX)</p><h1 id="元素等待"><a href="#元素等待" class="headerlink" title="元素等待"></a>元素等待</h1><h2 id="为什么要设置元素等待"><a href="#为什么要设置元素等待" class="headerlink" title="为什么要设置元素等待"></a>为什么要设置元素等待</h2><p>由于电脑配置或网络原因，在查找元素时，元素代码未在第一时间内被加载出来，而抛出未找到元素异常。</p><h2 id="什么是元素等待"><a href="#什么是元素等待" class="headerlink" title="什么是元素等待"></a>什么是元素等待</h2><p>元素在第一次未找到时，元素等待设置的时长被激活，如果在设置的有效时长内找到元素，继续执行代码，如果超出设置的时长未找打元素，抛出未找到元素异常。</p><h2 id="元素等待分类"><a href="#元素等待分类" class="headerlink" title="元素等待分类"></a>元素等待分类</h2><ul><li><p>隐式等待</p><ul><li>方法：driver.implicitly_wait(30) # 一般情况下设置30秒<br>特色：<ul><li>针对所有元素生效</li><li>一般情况下为前置必写代码(1.获取浏览器驱动对象；2. 最大化浏览器；3. 设置隐式等待)</li></ul></li></ul></li><li><p>显示等待</p><ul><li><p>导包</p><ul><li><div class="code-wrapper"><pre><code class="python">from selenium.webdirver.support.wait import WebDriverWait</code></pre></div></li></ul></li><li><p>WebDriverWait(driver,timout,poll_frequency=0.5)</p><ul><li>driver: 浏览器驱动对象</li><li>timeout：超时的时长。单位：秒</li><li>poll_frequency：检测间隔时间，默认0.5秒</li></ul></li><li><p>调用方法 untili(method): 直到…时</p><ul><li>method：函数名称，该函数用来实现对元素的定位</li><li>一般使用匿名函数：lambda x:x.find_element_by_id(“xxxxx”)</li></ul></li></ul></li><li><p>显示等待与隐式等待区别：</p><ul><li>显示等待：针对单个元素生效</li><li>隐式等待：针对全局元素生效</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>自动化测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>UI自动化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>性能测试笔记（一）</title>
     <link href="/2021/04/19/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B01/"/>
     <url>/2021/04/19/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B01/</url>
