@@ -16,23 +16,26 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="元素操作方法
-send_keys() # 输入方法
-click() # 点击方法
-clear() # 清空
+  <meta name="description" content="下拉选择框
+为什么单独使用下拉框？
+如果option选项没有value值的化，css定位或其他定位就不太方便。
 
-浏览器常用操作API方法
-driver.maximize_window() # 最大化浏览器
 
-driver.set_window_size(w, h) # 设置浏览器大小 单位像素
+如何使用Select类
+操作：
+导包：from  selenium.webdriver.support.select improt Select
+ 实例化：s = Select(element)
+调用方法：s.select_by_index()
 
-driver.set_window_position(x, y) # 设置浏览器位置
 
-driver.b">
+
+
+提供哪些方法
+select_b">
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>UI自动化学习笔记（二） - RockChe&#39;s Blog</title>
+  <title>UI自动化学习笔记（三） - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -199,7 +202,7 @@ driver.b">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="UI自动化学习笔记（二）">
+            <span class="h2" id="subtitle" title="UI自动化学习笔记（三）">
               
             </span>
 
@@ -209,8 +212,8 @@ driver.b">
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-01 23:12" pubdate>
-        2021年5月1日 晚上
+      <time datetime="2021-05-12 16:12" pubdate>
+        2021年5月12日 下午
       </time>
     </span>
   
@@ -221,7 +224,7 @@ driver.b">
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      886 字
+      1.1k 字
     </span>
   
 
@@ -231,7 +234,7 @@ driver.b">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      12
        分钟
     </span>
   
@@ -261,131 +264,173 @@ driver.b">
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">UI自动化学习笔记（二）</h1>
+            <h1 style="display: none">UI自动化学习笔记（三）</h1>
             
             <div class="markdown-body">
-              <h1 id="元素操作"><a href="#元素操作" class="headerlink" title="元素操作"></a>元素操作</h1><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
-<li>send_keys() # 输入方法</li>
-<li>click() # 点击方法</li>
-<li>clear() # 清空</li>
+              <h1 id="下拉选择框"><a href="#下拉选择框" class="headerlink" title="下拉选择框"></a>下拉选择框</h1><ul>
+<li>为什么单独使用下拉框？<ul>
+<li>如果option选项没有value值的化，css定位或其他定位就不太方便。</li>
 </ul>
-<h1 id="浏览器常用操作API"><a href="#浏览器常用操作API" class="headerlink" title="浏览器常用操作API"></a>浏览器常用操作API</h1><h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><ul>
-<li><p>driver.maximize_window() # 最大化浏览器</p>
 </li>
-<li><p>driver.set_window_size(w, h) # 设置浏览器大小 单位像素</p>
-</li>
-<li><p>driver.set_window_position(x, y) # 设置浏览器位置</p>
-</li>
-<li><p>driver.back() # 后退操作</p>
-</li>
-<li><p>driver.forward() # 前进操作</p>
-</li>
-<li><p>driver.refresh() # 刷新操作</p>
-</li>
-<li><p>driver.close() # 关闭当前主窗口(主窗口：默认启动哪个界面，就是主窗口)</p>
-</li>
-<li><p>driver.quit() # 关闭由driver对象启动的所有窗口</p>
-</li>
-<li><p>driver.title # 获取当前页面title信息</p>
-</li>
-<li><p>drive.current_url # 获取当前页面url信息</p>
+<li>如何使用Select类<ul>
+<li>操作：<ul>
+<li>导包：from  selenium.webdriver.support.select improt Select</li>
+<li> 实例化：s = Select(element)</li>
+<li>调用方法：s.select_by_index()</li>
+</ul>
 </li>
 </ul>
-<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul>
-<li><p>driver.title 和 driver.current_url 没有括号，应用场景：一般为判断上步操作是否执行成功。</p>
-<span id="more"></span></li>
-<li><p>driver.maximize_window() # 一般为我的前置代码，在获取driver后，直接编写最大化浏览器</p>
 </li>
-<li><p>driver.refresh() 应用场景，在后面的cookie章节会使用到。</p>
+<li>提供哪些方法<ul>
+<li>select_by_index() # 通过下标定位</li>
+<li>select_by_value() # 通过value值</li>
+<li>select_by_visible_text() #显示文本</li>
+</ul>
 </li>
-<li><p>driver.close()与driver.quit()区别：</p>
+<li>注意事项<ul>
+<li>实例化select时，需要的参数为 select标签元素</li>
+<li>调用Select类下面的方法，是通过索引、value属性值、显示文本去控制，而不需要click事件<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h1 id="对话框处理"><a href="#对话框处理" class="headerlink" title="对话框处理"></a>对话框处理</h1><h2 id="为什么要处理对话框"><a href="#为什么要处理对话框" class="headerlink" title="为什么要处理对话框"></a>为什么要处理对话框</h2><p>如果页面有弹出框，不做处理，接下来的元素获取将不生效。</p>
+<h2 id="对话框类型"><a href="#对话框类型" class="headerlink" title="对话框类型"></a>对话框类型</h2><ul>
+<li>alert # 警告框</li>
+<li>confirm # 确认框</li>
+<li>prompt # 提示框</li>
+</ul>
+<h2 id="如何处理"><a href="#如何处理" class="headerlink" title="如何处理"></a>如何处理</h2><p>以上三种对话框，处理方法都一样。<br>步骤：</p>
 <ul>
-<li><div class="code-wrapper"><pre><code>close():关闭当前主窗口
+<li>切换到对话框<ul>
+<li>方法：driver.switch_to.alert</li>
+</ul>
+</li>
+<li>处理对话框<ul>
+<li>alert.text # 获取文本</li>
+<li>alert.accept() # 同意</li>
+<li>alert.dismiss() # 取消</li>
+</ul>
+</li>
+<li>提示<ul>
+<li>无论以上哪个对话框，都可以使用取消、同意，因为调用的是后台的事件，根页面显示的按钮数量无关</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>driver.switch_to.alert 方法适合以上三种类型对话框，调用时没有括号</li>
+<li>获取文本的方法，调用时没有括号 如：alert.text</li>
+<li>在项目中不是所有的小窗口都是以上三种对话框。</li>
+</ul>
+<h1 id="滚动条处理"><a href="#滚动条处理" class="headerlink" title="滚动条处理"></a>滚动条处理</h1><h2 id="为什么要操作滚动条"><a href="#为什么要操作滚动条" class="headerlink" title="为什么要操作滚动条"></a>为什么要操作滚动条</h2><p>在web自动化中有些特殊场景，如：滚动条拉倒最底层，指定按钮才可用。</p>
+<ul>
+<li><p>如何操作 </p>
+<ul>
+<li><p>设置操作滚动条操作语句</p>
+<p>如：js = “window.scrollTo(0,10000)”</p>
+<ul>
+<li>0: 左边距 –&gt;水平滚动条</li>
+<li>10000：上边距 –&gt;垂直滚动条</li>
+</ul>
+</li>
+<li><p>调用执行js方法，将设置js语句传入方法中</p>
+<ul>
+<li>方法：driver.execute_script(js)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>说明</p>
+<ul>
+<li>在selenium中没有直接提供定位滚动条组件方法，但是它提供了执行js语句方法，可以通过js语句来控制滚动条操作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="切换frame表单"><a href="#切换frame表单" class="headerlink" title="切换frame表单"></a>切换frame表单</h1><p>常用的frame表单有两种：frame、iframe</p>
+<h2 id="为什么要切换"><a href="#为什么要切换" class="headerlink" title="为什么要切换"></a>为什么要切换</h2><p>当前目录内没有iframe表单页面元素信息，不切换的话无法找到元素</p>
+<h2 id="如何切换"><a href="#如何切换" class="headerlink" title="如何切换"></a>如何切换</h2><p>方法：driver.switch_to.frame(“id\name\element”)</p>
+<h2 id="为什么切换完之后要回到主目录"><a href="#为什么切换完之后要回到主目录" class="headerlink" title="为什么切换完之后要回到主目录"></a>为什么切换完之后要回到主目录</h2><p>ifame或frame只有在主目录才有相关元素信息，不会到主目录，切换语句会报错</p>
+<h2 id="如何回到主目录"><a href="#如何回到主目录" class="headerlink" title="如何回到主目录"></a>如何回到主目录</h2><p>方法：driver.switch_to.default_content()</p>
+<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>切换frame时，可以使用name、id、iframe元素</p>
+<h1 id="多窗口切换"><a href="#多窗口切换" class="headerlink" title="多窗口切换"></a>多窗口切换</h1><h2 id="为什么要切换多窗口"><a href="#为什么要切换多窗口" class="headerlink" title="为什么要切换多窗口"></a>为什么要切换多窗口</h2><p>页面存在多个窗口时，selenium默认焦点只会在主窗口上的所有元素，不切换窗口，无法操作主窗口以外的窗口内元素</p>
+<h2 id="如何切换-1"><a href="#如何切换-1" class="headerlink" title="如何切换"></a>如何切换</h2><ul>
+<li><p>思路</p>
+<ul>
+<li>获取要切换的窗口句柄，调用切换方法进行切换。</li>
+</ul>
+</li>
+<li><p>方法 </p>
+<ul>
+<li>driver.current_window_handle # 获取当前主窗口句柄</li>
+<li> driver.window_handles # 获取当前由driver启动所有窗口句柄</li>
+<li>driver.switch_to.window(handle) # 切换窗口</li>
+</ul>
+</li>
+<li><p>步骤： </p>
+<ul>
+<li>获取当前窗口句柄 </li>
+<li>点击链接 启动另一个窗口</li>
+<li>获取当前所有窗口句柄</li>
+<li>遍历所有窗口句柄</li>
+<li>判断当前遍历的窗口句柄不等于当前窗口句柄</li>
+<li>切换窗口操作</li>
+</ul>
+</li>
+</ul>
+<h1 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h1><ul>
+<li><p>应用场景</p>
+<ul>
+<li>失败截图，让错误看的更直观</li>
+</ul>
+</li>
+<li><p>方法</p>
+<ul>
+<li>driver.get_screenshot_as_file(imgepath)</li>
+</ul>
+</li>
+<li><p>参数</p>
+<ul>
+<li>imagepath：为图片要保存的目录地址及文件名称<br>如： 当前目录 ./test.png<div class="code-wrapper"><pre><code>    上一级目录 ../test.png
 </code></pre></div>
 </li>
-<li><div class="code-wrapper"><pre><code>quit():关闭由driver对象启动的所有窗口
-</code></pre></div>
-</li>
 </ul>
 </li>
-<li><p>提示：如果当前只有1个窗口，close与quit没有任何区别。</p>
-</li>
-</ul>
-<h1 id="元素信息操作API"><a href="#元素信息操作API" class="headerlink" title="元素信息操作API"></a>元素信息操作API</h1><h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><ul>
-<li>text 获取元素文本  如：driver.text</li>
-<li>size 获取元素大小  如：driver.size </li>
-<li>get_attribute 获取元素属性值 如：driver.get_attribute(“id”)</li>
-<li>is_displayed 判断元素是否可见 如：element.is_displayed()</li>
-<li>is_enabled 判断元素是否可用 如: element.is_enabled()</li>
-<li>is_selected 判断元素是否被选中 如：element.is_selected()        </li>
-</ul>
-<h2 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h2><ul>
-<li>text和size调用时 无括号</li>
-<li>get_attribute一般应用场景：判断一组元素是否为想要的元素或者判断元素属性值是否</li>
-<li>is_displayed、is_enabled、is_selected，在特殊应用场景中使用。</li>
-</ul>
-<h1 id="鼠标操作"><a href="#鼠标操作" class="headerlink" title="鼠标操作"></a>鼠标操作</h1><h2 id="为什么使用鼠标操作"><a href="#为什么使用鼠标操作" class="headerlink" title="为什么使用鼠标操作"></a>为什么使用鼠标操作</h2><p>为了满足丰富的html鼠标效果，必须使用对于的方法</p>
-<h2 id="鼠标事件对应的方法在哪个类中"><a href="#鼠标事件对应的方法在哪个类中" class="headerlink" title="鼠标事件对应的方法在哪个类中"></a>鼠标事件对应的方法在哪个类中</h2><p>from selenium.webdirver.common.action_chains import ActionChains</p>
-<h2 id="鼠标时间常用的方法"><a href="#鼠标时间常用的方法" class="headerlink" title="鼠标时间常用的方法"></a>鼠标时间常用的方法</h2><ul>
-<li>context_click() #右击<ul>
-<li>应用：context_click(element).perform()</li>
-</ul>
-</li>
-<li>double_click() #双击<ul>
-<li>应用：double_click(element).perform()</li>
-</ul>
-</li>
-<li>drag_and_drop() # 拖拽<ul>
-<li>应用：drag_and_drop(source, target).perform</li>
-</ul>
-</li>
-<li>move_to_element() #悬停</li>
-<li>move_to_element(element).perform()</li>
-<li>perform() # 执行以上事件方法</li>
-</ul>
-<h1 id="键盘操作"><a href="#键盘操作" class="headerlink" title="键盘操作"></a>键盘操作</h1><h2 id="键盘对应的方法在Keys类中"><a href="#键盘对应的方法在Keys类中" class="headerlink" title="键盘对应的方法在Keys类中"></a>键盘对应的方法在Keys类中</h2><p>包：from selenium.webdriver.common.keys import Keys</p>
-<h2 id="常用的快捷键："><a href="#常用的快捷键：" class="headerlink" title="常用的快捷键："></a>常用的快捷键：</h2><p>CONTROL：Ctrl键<br>其他，请参考Keys底层定义的常量</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>组合键：element.send_keys(Keys.XXX, ‘a’)<br>单键：element.send_keys(Keys.XXX)</p>
-<h1 id="元素等待"><a href="#元素等待" class="headerlink" title="元素等待"></a>元素等待</h1><h2 id="为什么要设置元素等待"><a href="#为什么要设置元素等待" class="headerlink" title="为什么要设置元素等待"></a>为什么要设置元素等待</h2><p>由于电脑配置或网络原因，在查找元素时，元素代码未在第一时间内被加载出来，而抛出未找到元素异常。</p>
-<h2 id="什么是元素等待"><a href="#什么是元素等待" class="headerlink" title="什么是元素等待"></a>什么是元素等待</h2><p>元素在第一次未找到时，元素等待设置的时长被激活，如果在设置的有效时长内找到元素，继续执行代码，如果超出设置的时长未找打元素，抛出未找到元素异常。</p>
-<h2 id="元素等待分类"><a href="#元素等待分类" class="headerlink" title="元素等待分类"></a>元素等待分类</h2><ul>
-<li><p>隐式等待</p>
+<li><p>扩展</p>
 <ul>
-<li>方法：driver.implicitly_wait(30) # 一般情况下设置30秒<br>特色：<ul>
-<li>针对所有元素生效</li>
-<li>一般情况下为前置必写代码(1.获取浏览器驱动对象；2. 最大化浏览器；3. 设置隐式等待)</li>
+<li>多条用例执行失败，会产生多张图片，可以采用时间戳的形式，进去区分。</li>
+<li>操作<ul>
+<li>driver.get_screenshot_as_file(“../image/%s.png”%(time.strftime(“%Y_%m_%d %H_%M_%S”)))<br>strftime:将时间转为字符串函数</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>%Y_%m_%d %H_%M_%S：代表，年 月 日 时 分 秒</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>显示等待</p>
+</ul>
+<h1 id="验证码处理"><a href="#验证码处理" class="headerlink" title="验证码处理"></a>验证码处理</h1><p>验证码处理方式</p>
 <ul>
-<li><p>导包</p>
-<ul>
-<li><div class="code-wrapper"><pre><code class="python">from selenium.webdirver.support.wait import WebDriverWait
-</code></pre></div>
-</li>
+<li>去掉验证码(项目在测试环境、公司自己的项目)</li>
+<li>设置万能验证码(测试环境或线上环境，公司自己项目)</li>
+<li>使用验证码识别技术 (由于现在的验证码千奇百怪，导致识别率太低)</li>
+<li> 使用cookie解决(推荐)</li>
+</ul>
+<h1 id="Cookie处理"><a href="#Cookie处理" class="headerlink" title="Cookie处理"></a>Cookie处理</h1><ul>
+<li>方法 <ul>
+<li>driver.get_cookies() # 获取所有的cookie</li>
+<li>driver.add_cookies({字典}) # 设置cookie</li>
 </ul>
 </li>
-<li><p>WebDriverWait(driver,timout,poll_frequency=0.5)</p>
-<ul>
-<li>driver: 浏览器驱动对象</li>
-<li>timeout：超时的时长。单位：秒</li>
-<li>poll_frequency：检测间隔时间，默认0.5秒</li>
+<li>步骤<ul>
+<li>打开百度url driver.get(“<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;/">http://www.baidu.com&quot;</a>)</li>
+<li>设置cookie信息： driver.add_cookie({“name”:”BDUSS”,”value”:”根据实际情况编写”})</li>
+<li>暂停2秒以上</li>
+<li>刷新操作 </li>
 </ul>
 </li>
-<li><p>调用方法 untili(method): 直到…时</p>
-<ul>
-<li>method：函数名称，该函数用来实现对元素的定位</li>
-<li>一般使用匿名函数：lambda x:x.find_element_by_id(“xxxxx”)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>显示等待与隐式等待区别：</p>
-<ul>
-<li>显示等待：针对单个元素生效</li>
-<li>隐式等待：针对全局元素生效</li>
+<li>注意 <ul>
+<li>以上百度BDUSS所需格式为百度网站特有，别的网站请自行测试</li>
+<li>必须进行刷新操作</li>
 </ul>
 </li>
 </ul>
@@ -423,18 +468,12 @@ driver.b">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">UI自动化学习笔记（三）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/19/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B01/">
-                        <span class="hidden-mobile">性能测试笔记（一）</span>
+                      <a href="/2021/05/01/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B02/">
+                        <span class="hidden-mobile">UI自动化学习笔记（二）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
