@@ -27,7 +27,7 @@ Pytest的特点有：
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>Pytest学习笔记 - RockChe&#39;s Blog</title>
+  <title>Pytest笔记1-快速入门 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -194,7 +194,7 @@ Pytest的特点有：
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Pytest学习笔记">
+            <span class="h2" id="subtitle" title="Pytest笔记1-快速入门">
               
             </span>
 
@@ -216,7 +216,7 @@ Pytest的特点有：
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.4k 字
     </span>
   
 
@@ -226,7 +226,7 @@ Pytest的特点有：
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      28
        分钟
     </span>
   
@@ -256,7 +256,7 @@ Pytest的特点有：
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Pytest学习笔记</h1>
+            <h1 style="display: none">Pytest笔记1-快速入门</h1>
             
             <div class="markdown-body">
               <h1 id="Pytest特点"><a href="#Pytest特点" class="headerlink" title="Pytest特点"></a>Pytest特点</h1><p>Pytest是Python的一个第三方单元测试库。它的目的是让单元测试变得更容易，并且也能扩展到支持应用层面复杂的功能测试。</p>
@@ -397,8 +397,15 @@ Pytest的特点有：
 <p>最后我们使用命令<code>pytest --ff</code>，先执行失败的用例，再执行成功的用例，结果如下：</p>
 <p><img src="https://img.rockche.cn/mweb/image-20210617152006219.png" srcset="/img/loading.gif" lazyload alt="image-20210617152006219"></p>
 <p>可以看到先执行了2条失败的用例，然后执行了2条成功的用例</p>
+<h3 id="9-x"><a href="#9-x" class="headerlink" title="9.-x"></a>9.-x</h3><p>遇到错误时停止测试</p>
+<p><img src="https://img.rockche.cn//image-20210619154608871.png" srcset="/img/loading.gif" lazyload alt="image-20210619154608871"></p>
+<p>可以看到，本来有4条用例，但是在第2条用例失败后，就没有继续往下执行了</p>
+<h3 id="10-–maxfail-num"><a href="#10-–maxfail-num" class="headerlink" title="10.–maxfail=num"></a>10.–maxfail=num</h3><p>当用例错误个数达到指定数量时，停止测试</p>
+<p>我们执行命令 <code>pytest --maxfail=1</code> </p>
+<p><img src="https://img.rockche.cn//image-20210619155039322.png" srcset="/img/loading.gif" lazyload alt="image-20210619155039322"></p>
+<p>可以看到，本来有4条用例，但是在第2条用例失败后，就没有继续往下执行了</p>
 <p>以上就是命令行运行测试用例时经常使用到的参数，这些参数不仅可以单独使用，也可以组合一起使用，可以使用<code>--help</code>来查看更多命令的帮助信息</p>
-<h2 id="Pytest收集测试用例的规则"><a href="#Pytest收集测试用例的规则" class="headerlink" title="Pytest收集测试用例的规则"></a>Pytest收集测试用例的规则</h2><ul>
+<h2 id="Pytest收集用例规则"><a href="#Pytest收集用例规则" class="headerlink" title="Pytest收集用例规则"></a>Pytest收集用例规则</h2><ul>
 <li>从一个或者多个目录开始查找，你可以在命令行指定文件或者目录，如果未指定那么从当前目录开始收集用例</li>
 <li>在该目录和所有子目录下递归查找测试模块</li>
 <li>测试模块是指文件名为test_*.py或者*_test.py的文件</li>
@@ -467,7 +474,124 @@ Pytest的特点有：
 <p>可以看到，只有2条有效的测试用例</p>
 <p>使用<code>pytest -v</code>命令执行用例，结果如下：</p>
 <p><img src="https://img.rockche.cn/mweb/image-20210617160637211.png" srcset="/img/loading.gif" lazyload alt="image-20210617160637211"></p>
-<p>只有test_01.py被识别为测试模块</p>
+<p>可以看到，只有test_01.py被识别为测试模块</p>
+<h2 id="pytest执行用例规则"><a href="#pytest执行用例规则" class="headerlink" title="pytest执行用例规则"></a>pytest执行用例规则</h2><h3 id="规则验证-1"><a href="#规则验证-1" class="headerlink" title="规则验证"></a>规则验证</h3><p>按照如下目录结构新建项目</p>
+<p><img src="https://img.rockche.cn//image-20210619151855179.png" srcset="/img/loading.gif" lazyload alt="image-20210619151855179"></p>
+<p>代码如下：</p>
+<p>test_01.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 测试函数</span>
+<span class="token keyword">def</span> <span class="token function">test_func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+<span class="token comment"># 普通函数</span>
+<span class="token keyword">def</span> <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>test_02.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 测试类</span>
+<span class="token keyword">class</span> <span class="token class-name">TestClass1</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 测试函数</span>
+    <span class="token keyword">def</span> <span class="token function">test_func2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+    <span class="token comment"># 普通函数</span>
+    <span class="token keyword">def</span> <span class="token function">func2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>case01.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 测试函数</span>
+<span class="token keyword">def</span> <span class="token function">test_func5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+<span class="token comment"># 普通函数</span>
+<span class="token keyword">def</span> <span class="token function">func5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>test_03.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 测试类</span>
+<span class="token keyword">class</span> <span class="token class-name">TestClass2</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token comment"># 测试函数</span>
+    <span class="token keyword">def</span> <span class="token function">test_func3</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+    <span class="token comment"># 普通函数</span>
+    <span class="token keyword">def</span> <span class="token function">func3</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+
+<span class="token comment"># 测试函数</span>
+<span class="token keyword">def</span> <span class="token function">test_func4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+
+<span class="token comment"># 普通函数</span>
+<span class="token keyword">def</span> <span class="token function">func4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>case_02.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 测试方法</span>
+<span class="token keyword">def</span> <span class="token function">test_func8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+
+<span class="token comment"># 普通方法</span>
+<span class="token keyword">def</span> <span class="token function">func8</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>04_test.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 测试方法</span>
+<span class="token keyword">def</span> <span class="token function">test_func6</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+
+<span class="token comment"># 普通方法</span>
+<span class="token keyword">def</span> <span class="token function">func6</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+
+<span class="token comment"># 测试类</span>
+<span class="token keyword">class</span> <span class="token class-name">TestClass</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 测试方法</span>
+    <span class="token keyword">def</span> <span class="token function">test_func7</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+    <span class="token comment"># 普通方法</span>
+    <span class="token keyword">def</span> <span class="token function">func7</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>在项目根目录下执行<code>pytest -v</code>,结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210619151727755.png" srcset="/img/loading.gif" lazyload alt="image-20210619151727755"></p>
+<p>可以看到一共有执行了6条用例，但是我们实际上写了不止6条用例，通过观察，会发现这样一个规律：</p>
+<p><em>Pytest会从我们当前的目录开始遍历查找所有目录，查找以test_开头或_test结尾的文件，在这些文件中找到以test开头的函数和以Test开头的类和类里面以test开头的函数做为测试用例</em></p>
+<h2 id="Pytest运行指定测试用例"><a href="#Pytest运行指定测试用例" class="headerlink" title="Pytest运行指定测试用例"></a>Pytest运行指定测试用例</h2><h3 id="运行指定目录下的所有用例"><a href="#运行指定目录下的所有用例" class="headerlink" title="运行指定目录下的所有用例"></a>运行指定目录下的所有用例</h3><p>使用命令 <code>pytest -v Case01</code>运行 Case01目录下的用例, 结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210619152748193.png" srcset="/img/loading.gif" lazyload alt="image-20210619152748193"></p>
+<h3 id="运行指定文件中的所有用例"><a href="#运行指定文件中的所有用例" class="headerlink" title="运行指定文件中的所有用例"></a>运行指定文件中的所有用例</h3><p>使用命令 <code>pytest -v Case01/test_01.py </code>运行Case01中的test_01.py文件中的测试用例，结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210619152959577.png" srcset="/img/loading.gif" lazyload alt="image-20210619152959577"></p>
+<h3 id="运行指定文件中的测试类"><a href="#运行指定文件中的测试类" class="headerlink" title="运行指定文件中的测试类"></a>运行指定文件中的测试类</h3><p>使用命令 <code>pytest -v Case02/test_03.py::TestClass2 </code>运行Case02中的test_03.py文件中的测试类Testclass2，结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210619153221417.png" srcset="/img/loading.gif" lazyload alt="image-20210619153221417"></p>
+<h3 id="运行指定的测试用例函数"><a href="#运行指定的测试用例函数" class="headerlink" title="运行指定的测试用例函数"></a>运行指定的测试用例函数</h3><p>使用命令 <code>pytest -v Case02/test_03.py::test_func4</code>运行Case02中的test_03.py文件中的test_func4函数，结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210619153522347.png" srcset="/img/loading.gif" lazyload alt="image-20210619153522347"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="收集用例规则"><a href="#收集用例规则" class="headerlink" title="收集用例规则"></a>收集用例规则</h3><p>搜索所有以test_开头的测试文件，以Test开头的测试类，以test_开头的测试函数</p>
+<h3 id="执行用例规则"><a href="#执行用例规则" class="headerlink" title="执行用例规则"></a>执行用例规则</h3><ul>
+<li><p>运行指定的目录下用例</p>
+<ul>
+<li> 使用命令 <code>pytest 目录/目录</code></li>
+</ul>
+</li>
+<li><p>运行指定文件</p>
+<ul>
+<li>使用命令  <code>pytest 目录/文件</code></li>
+</ul>
+</li>
+<li><p>运行指定类或者函数 </p>
+<ul>
+<li>使用命令  <code>pytest 目录/文件::类名::函数名 或者 pytest 目录/文件::函数名</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxchao/">linux超</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yoyoketang">上海悠悠</a></p>
 
             </div>
             <hr>
