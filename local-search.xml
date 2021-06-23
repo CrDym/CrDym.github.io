@@ -79,31 +79,6 @@
   
   
   <entry>
-    <title>UI自动化学习笔记（三）</title>
-    <link href="/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/"/>
-    <url>/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/</url>
-    
-    <content type="html"><![CDATA[<h1 id="下拉选择框"><a href="#下拉选择框" class="headerlink" title="下拉选择框"></a>下拉选择框</h1><ul><li>为什么单独使用下拉框？<ul><li>如果option选项没有value值的化，css定位或其他定位就不太方便。</li></ul></li><li>如何使用Select类<ul><li>操作：<ul><li>导包：from  selenium.webdriver.support.select improt Select</li><li> 实例化：s = Select(element)</li><li>调用方法：s.select_by_index()</li></ul></li></ul></li><li>提供哪些方法<ul><li>select_by_index() # 通过下标定位</li><li>select_by_value() # 通过value值</li><li>select_by_visible_text() #显示文本</li></ul></li><li>注意事项<ul><li>实例化select时，需要的参数为 select标签元素</li><li>调用Select类下面的方法，是通过索引、value属性值、显示文本去控制，而不需要click事件<span id="more"></span></li></ul></li></ul><h1 id="对话框处理"><a href="#对话框处理" class="headerlink" title="对话框处理"></a>对话框处理</h1><h2 id="为什么要处理对话框"><a href="#为什么要处理对话框" class="headerlink" title="为什么要处理对话框"></a>为什么要处理对话框</h2><p>如果页面有弹出框，不做处理，接下来的元素获取将不生效。</p><h2 id="对话框类型"><a href="#对话框类型" class="headerlink" title="对话框类型"></a>对话框类型</h2><ul><li>alert # 警告框</li><li>confirm # 确认框</li><li>prompt # 提示框</li></ul><h2 id="如何处理"><a href="#如何处理" class="headerlink" title="如何处理"></a>如何处理</h2><p>以上三种对话框，处理方法都一样。<br>步骤：</p><ul><li>切换到对话框<ul><li>方法：driver.switch_to.alert</li></ul></li><li>处理对话框<ul><li>alert.text # 获取文本</li><li>alert.accept() # 同意</li><li>alert.dismiss() # 取消</li></ul></li><li>提示<ul><li>无论以上哪个对话框，都可以使用取消、同意，因为调用的是后台的事件，根页面显示的按钮数量无关</li></ul></li></ul><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul><li>driver.switch_to.alert 方法适合以上三种类型对话框，调用时没有括号</li><li>获取文本的方法，调用时没有括号 如：alert.text</li><li>在项目中不是所有的小窗口都是以上三种对话框。</li></ul><h1 id="滚动条处理"><a href="#滚动条处理" class="headerlink" title="滚动条处理"></a>滚动条处理</h1><h2 id="为什么要操作滚动条"><a href="#为什么要操作滚动条" class="headerlink" title="为什么要操作滚动条"></a>为什么要操作滚动条</h2><p>在web自动化中有些特殊场景，如：滚动条拉倒最底层，指定按钮才可用。</p><ul><li><p>如何操作 </p><ul><li><p>设置操作滚动条操作语句</p><p>如：js = “window.scrollTo(0,10000)”</p><ul><li>0: 左边距 –&gt;水平滚动条</li><li>10000：上边距 –&gt;垂直滚动条</li></ul></li><li><p>调用执行js方法，将设置js语句传入方法中</p><ul><li>方法：driver.execute_script(js)</li></ul></li></ul></li><li><p>说明</p><ul><li>在selenium中没有直接提供定位滚动条组件方法，但是它提供了执行js语句方法，可以通过js语句来控制滚动条操作。</li></ul></li></ul><h1 id="切换frame表单"><a href="#切换frame表单" class="headerlink" title="切换frame表单"></a>切换frame表单</h1><p>常用的frame表单有两种：frame、iframe</p><h2 id="为什么要切换"><a href="#为什么要切换" class="headerlink" title="为什么要切换"></a>为什么要切换</h2><p>当前目录内没有iframe表单页面元素信息，不切换的话无法找到元素</p><h2 id="如何切换"><a href="#如何切换" class="headerlink" title="如何切换"></a>如何切换</h2><p>方法：driver.switch_to.frame(“id\name\element”)</p><h2 id="为什么切换完之后要回到主目录"><a href="#为什么切换完之后要回到主目录" class="headerlink" title="为什么切换完之后要回到主目录"></a>为什么切换完之后要回到主目录</h2><p>ifame或frame只有在主目录才有相关元素信息，不会到主目录，切换语句会报错</p><h2 id="如何回到主目录"><a href="#如何回到主目录" class="headerlink" title="如何回到主目录"></a>如何回到主目录</h2><p>方法：driver.switch_to.default_content()</p><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>切换frame时，可以使用name、id、iframe元素</p><h1 id="多窗口切换"><a href="#多窗口切换" class="headerlink" title="多窗口切换"></a>多窗口切换</h1><h2 id="为什么要切换多窗口"><a href="#为什么要切换多窗口" class="headerlink" title="为什么要切换多窗口"></a>为什么要切换多窗口</h2><p>页面存在多个窗口时，selenium默认焦点只会在主窗口上的所有元素，不切换窗口，无法操作主窗口以外的窗口内元素</p><h2 id="如何切换-1"><a href="#如何切换-1" class="headerlink" title="如何切换"></a>如何切换</h2><ul><li><p>思路</p><ul><li>获取要切换的窗口句柄，调用切换方法进行切换。</li></ul></li><li><p>方法 </p><ul><li>driver.current_window_handle # 获取当前主窗口句柄</li><li> driver.window_handles # 获取当前由driver启动所有窗口句柄</li><li>driver.switch_to.window(handle) # 切换窗口</li></ul></li><li><p>步骤： </p><ul><li>获取当前窗口句柄 </li><li>点击链接 启动另一个窗口</li><li>获取当前所有窗口句柄</li><li>遍历所有窗口句柄</li><li>判断当前遍历的窗口句柄不等于当前窗口句柄</li><li>切换窗口操作</li></ul></li></ul><h1 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h1><ul><li><p>应用场景</p><ul><li>失败截图，让错误看的更直观</li></ul></li><li><p>方法</p><ul><li>driver.get_screenshot_as_file(imgepath)</li></ul></li><li><p>参数</p><ul><li>imagepath：为图片要保存的目录地址及文件名称<br>当前目录 ./test.png<br>上一级目录 ../test.png</li></ul></li><li><p>扩展</p><ul><li>多条用例执行失败，会产生多张图片，可以采用时间戳的形式，进去区分。</li><li>操作<ul><li>driver.get_screenshot_as_file(“../image/%s.png”%(time.strftime(“%Y_%m_%d %H_%M_%S”)))<br>strftime:将时间转为字符串函数</li></ul></li><li>注意<ul><li>%Y_%m_%d %H_%M_%S：代表，年 月 日 时 分 秒</li></ul></li></ul></li></ul><h1 id="验证码处理"><a href="#验证码处理" class="headerlink" title="验证码处理"></a>验证码处理</h1><p>验证码处理方式</p><ul><li>去掉验证码(项目在测试环境、公司自己的项目)</li><li>设置万能验证码(测试环境或线上环境，公司自己项目)</li><li>使用验证码识别技术 (由于现在的验证码千奇百怪，导致识别率太低)</li><li> 使用cookie解决(推荐)</li></ul><h1 id="Cookie处理"><a href="#Cookie处理" class="headerlink" title="Cookie处理"></a>Cookie处理</h1><ul><li>方法 <ul><li>driver.get_cookies() # 获取所有的cookie</li><li>driver.add_cookies({字典}) # 设置cookie</li></ul></li><li>步骤<ul><li>打开百度url driver.get(“<a href="http://www.baidu.com&quot;/">http://www.baidu.com&quot;</a>)</li><li>设置cookie信息： driver.add_cookie({“name”:”BDUSS”,”value”:”根据实际情况编写”})</li><li>暂停2秒以上</li><li>刷新操作 </li></ul></li><li>注意 <ul><li>以上百度BDUSS所需格式为百度网站特有，别的网站请自行测试</li><li>必须进行刷新操作</li></ul></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>自动化测试</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>UI自动化</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Pipenv虚拟环境</title>
     <link href="/2021/05/12/Pipenv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"/>
     <url>/2021/05/12/Pipenv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
@@ -121,6 +96,31 @@
     <tags>
       
       <tag>Python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>UI自动化学习笔记（三）</title>
+    <link href="/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/"/>
+    <url>/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/</url>
+    
+    <content type="html"><![CDATA[<h1 id="下拉选择框"><a href="#下拉选择框" class="headerlink" title="下拉选择框"></a>下拉选择框</h1><ul><li>为什么单独使用下拉框？<ul><li>如果option选项没有value值的化，css定位或其他定位就不太方便。</li></ul></li><li>如何使用Select类<ul><li>操作：<ul><li>导包：from  selenium.webdriver.support.select improt Select</li><li> 实例化：s = Select(element)</li><li>调用方法：s.select_by_index()</li></ul></li></ul></li><li>提供哪些方法<ul><li>select_by_index() # 通过下标定位</li><li>select_by_value() # 通过value值</li><li>select_by_visible_text() #显示文本</li></ul></li><li>注意事项<ul><li>实例化select时，需要的参数为 select标签元素</li><li>调用Select类下面的方法，是通过索引、value属性值、显示文本去控制，而不需要click事件<span id="more"></span></li></ul></li></ul><h1 id="对话框处理"><a href="#对话框处理" class="headerlink" title="对话框处理"></a>对话框处理</h1><h2 id="为什么要处理对话框"><a href="#为什么要处理对话框" class="headerlink" title="为什么要处理对话框"></a>为什么要处理对话框</h2><p>如果页面有弹出框，不做处理，接下来的元素获取将不生效。</p><h2 id="对话框类型"><a href="#对话框类型" class="headerlink" title="对话框类型"></a>对话框类型</h2><ul><li>alert # 警告框</li><li>confirm # 确认框</li><li>prompt # 提示框</li></ul><h2 id="如何处理"><a href="#如何处理" class="headerlink" title="如何处理"></a>如何处理</h2><p>以上三种对话框，处理方法都一样。<br>步骤：</p><ul><li>切换到对话框<ul><li>方法：driver.switch_to.alert</li></ul></li><li>处理对话框<ul><li>alert.text # 获取文本</li><li>alert.accept() # 同意</li><li>alert.dismiss() # 取消</li></ul></li><li>提示<ul><li>无论以上哪个对话框，都可以使用取消、同意，因为调用的是后台的事件，根页面显示的按钮数量无关</li></ul></li></ul><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul><li>driver.switch_to.alert 方法适合以上三种类型对话框，调用时没有括号</li><li>获取文本的方法，调用时没有括号 如：alert.text</li><li>在项目中不是所有的小窗口都是以上三种对话框。</li></ul><h1 id="滚动条处理"><a href="#滚动条处理" class="headerlink" title="滚动条处理"></a>滚动条处理</h1><h2 id="为什么要操作滚动条"><a href="#为什么要操作滚动条" class="headerlink" title="为什么要操作滚动条"></a>为什么要操作滚动条</h2><p>在web自动化中有些特殊场景，如：滚动条拉倒最底层，指定按钮才可用。</p><ul><li><p>如何操作 </p><ul><li><p>设置操作滚动条操作语句</p><p>如：js = “window.scrollTo(0,10000)”</p><ul><li>0: 左边距 –&gt;水平滚动条</li><li>10000：上边距 –&gt;垂直滚动条</li></ul></li><li><p>调用执行js方法，将设置js语句传入方法中</p><ul><li>方法：driver.execute_script(js)</li></ul></li></ul></li><li><p>说明</p><ul><li>在selenium中没有直接提供定位滚动条组件方法，但是它提供了执行js语句方法，可以通过js语句来控制滚动条操作。</li></ul></li></ul><h1 id="切换frame表单"><a href="#切换frame表单" class="headerlink" title="切换frame表单"></a>切换frame表单</h1><p>常用的frame表单有两种：frame、iframe</p><h2 id="为什么要切换"><a href="#为什么要切换" class="headerlink" title="为什么要切换"></a>为什么要切换</h2><p>当前目录内没有iframe表单页面元素信息，不切换的话无法找到元素</p><h2 id="如何切换"><a href="#如何切换" class="headerlink" title="如何切换"></a>如何切换</h2><p>方法：driver.switch_to.frame(“id\name\element”)</p><h2 id="为什么切换完之后要回到主目录"><a href="#为什么切换完之后要回到主目录" class="headerlink" title="为什么切换完之后要回到主目录"></a>为什么切换完之后要回到主目录</h2><p>ifame或frame只有在主目录才有相关元素信息，不会到主目录，切换语句会报错</p><h2 id="如何回到主目录"><a href="#如何回到主目录" class="headerlink" title="如何回到主目录"></a>如何回到主目录</h2><p>方法：driver.switch_to.default_content()</p><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>切换frame时，可以使用name、id、iframe元素</p><h1 id="多窗口切换"><a href="#多窗口切换" class="headerlink" title="多窗口切换"></a>多窗口切换</h1><h2 id="为什么要切换多窗口"><a href="#为什么要切换多窗口" class="headerlink" title="为什么要切换多窗口"></a>为什么要切换多窗口</h2><p>页面存在多个窗口时，selenium默认焦点只会在主窗口上的所有元素，不切换窗口，无法操作主窗口以外的窗口内元素</p><h2 id="如何切换-1"><a href="#如何切换-1" class="headerlink" title="如何切换"></a>如何切换</h2><ul><li><p>思路</p><ul><li>获取要切换的窗口句柄，调用切换方法进行切换。</li></ul></li><li><p>方法 </p><ul><li>driver.current_window_handle # 获取当前主窗口句柄</li><li> driver.window_handles # 获取当前由driver启动所有窗口句柄</li><li>driver.switch_to.window(handle) # 切换窗口</li></ul></li><li><p>步骤： </p><ul><li>获取当前窗口句柄 </li><li>点击链接 启动另一个窗口</li><li>获取当前所有窗口句柄</li><li>遍历所有窗口句柄</li><li>判断当前遍历的窗口句柄不等于当前窗口句柄</li><li>切换窗口操作</li></ul></li></ul><h1 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h1><ul><li><p>应用场景</p><ul><li>失败截图，让错误看的更直观</li></ul></li><li><p>方法</p><ul><li>driver.get_screenshot_as_file(imgepath)</li></ul></li><li><p>参数</p><ul><li>imagepath：为图片要保存的目录地址及文件名称<br>当前目录 ./test.png<br>上一级目录 ../test.png</li></ul></li><li><p>扩展</p><ul><li>多条用例执行失败，会产生多张图片，可以采用时间戳的形式，进去区分。</li><li>操作<ul><li>driver.get_screenshot_as_file(“../image/%s.png”%(time.strftime(“%Y_%m_%d %H_%M_%S”)))<br>strftime:将时间转为字符串函数</li></ul></li><li>注意<ul><li>%Y_%m_%d %H_%M_%S：代表，年 月 日 时 分 秒</li></ul></li></ul></li></ul><h1 id="验证码处理"><a href="#验证码处理" class="headerlink" title="验证码处理"></a>验证码处理</h1><p>验证码处理方式</p><ul><li>去掉验证码(项目在测试环境、公司自己的项目)</li><li>设置万能验证码(测试环境或线上环境，公司自己项目)</li><li>使用验证码识别技术 (由于现在的验证码千奇百怪，导致识别率太低)</li><li> 使用cookie解决(推荐)</li></ul><h1 id="Cookie处理"><a href="#Cookie处理" class="headerlink" title="Cookie处理"></a>Cookie处理</h1><ul><li>方法 <ul><li>driver.get_cookies() # 获取所有的cookie</li><li>driver.add_cookies({字典}) # 设置cookie</li></ul></li><li>步骤<ul><li>打开百度url driver.get(“<a href="http://www.baidu.com&quot;/">http://www.baidu.com&quot;</a>)</li><li>设置cookie信息： driver.add_cookie({“name”:”BDUSS”,”value”:”根据实际情况编写”})</li><li>暂停2秒以上</li><li>刷新操作 </li></ul></li><li>注意 <ul><li>以上百度BDUSS所需格式为百度网站特有，别的网站请自行测试</li><li>必须进行刷新操作</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>自动化测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>UI自动化</tag>
       
     </tags>
     
