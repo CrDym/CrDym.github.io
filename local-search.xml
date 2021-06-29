@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Pytest6-自定义标记mark</title>
+    <link href="/2021/06/29/Pytest6-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E8%AE%B0mark/"/>
+    <url>/2021/06/29/Pytest6-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E8%AE%B0mark/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在pytest中，我们可以使用mark进行用例的自定义标记，通过不同的标记实现不同的运行策略</p><p>比如我们可以标记哪些用例是生产环境执行的，哪些用例是测试环境执行的，在运行代码的时候指定对应的mark即可</p><span id="more"></span><h2 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h2><p>举个🌰</p><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># test_demo.py</span><span class="token keyword">import</span> pytest<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>production</span><span class="token keyword">def</span> <span class="token function">test_production</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"生产环境测试用例"</span><span class="token punctuation">)</span><span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>dev</span><span class="token keyword">def</span> <span class="token function">test_dev1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试环境测试用例1"</span><span class="token punctuation">)</span><span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>dev</span><span class="token keyword">def</span> <span class="token function">test_dev2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试环境测试用例2"</span><span class="token punctuation">)</span><span class="token keyword">def</span> <span class="token function">testnoMark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"没有标记测试"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>使用命令<code>pytest -s -m dev test_demo.py</code>执行</p><p>结果如下</p><p><img src="https://img.rockche.cn//image-20210629224049942.png" alt="image-20210629224049942"></p><p>可以看到，只执行了两条标记了dev的用例</p><h3 id="处理warnings信息"><a href="#处理warnings信息" class="headerlink" title="处理warnings信息"></a>处理warnings信息</h3><ul><li><p>创建一个pytest.ini文件</p></li><li><p>然后在 pytest.ini 文件的 markers 中写入你的 mark 标记， 冒号 “:” 前面是标记名称，后面是 mark 标记的说明，可以是空字符串</p></li><li><p><strong>注意：</strong>pytest.ini需要和运行的测试用例同一个目录，或在根目录下作用于全局</p><p><img src="https://img.rockche.cn//image-20210629224639064.png" alt="image-20210629224639064"></p></li></ul><h3 id="规范使用mark标记"><a href="#规范使用mark标记" class="headerlink" title="规范使用mark标记"></a>规范使用mark标记</h3><p>添加了pytest.ini文件之后 pytest 便不会再告警，但是如果我们在运行用例的时候写错了 mark 名，会导致 pytest 找不到用例，所以我们需要在 pytest.ini 文件中添加参数 <code>“addopts = --strict-markers”</code>来严格规范 mark 标记的使用</p><p><img src="https://img.rockche.cn//image-20210629232426057.png" alt="image-20210629232426057"></p><p>添加该参数后，当使用未注册的 mark 标记时，pytest会直接报错：“ <code>&#39;xxx&#39; not found in markers configuration option</code> ”，不执行测试任务</p><p><img src="https://img.rockche.cn//image-20210629232320091.png" alt="image-20210629232320091"></p><h3 id="执行标记以外的用例"><a href="#执行标记以外的用例" class="headerlink" title="执行标记以外的用例"></a>执行标记以外的用例</h3><blockquote><p><code>pytest -s -m &quot;not dev&quot; test_demo.py</code></p></blockquote><p>结果如下</p><p><img src="https://img.rockche.cn//image-20210629225046830.png" alt="image-20210629225046830"></p><h3 id="执行多个自定义标记的用例"><a href="#执行多个自定义标记的用例" class="headerlink" title="执行多个自定义标记的用例"></a>执行多个自定义标记的用例</h3><blockquote><p><code>pytest -s -m &quot;dev or production&quot; test_demo.py</code></p></blockquote><p>结果如下</p><p><img src="https://img.rockche.cn//image-20210629225222295.png" alt="image-20210629225222295"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Pytest</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Pytest5-conftest.py的用法</title>
     <link href="/2021/06/26/Pytest5-conftest.py%E7%9A%84%E7%94%A8%E6%B3%95/"/>
     <url>/2021/06/26/Pytest5-conftest.py%E7%9A%84%E7%94%A8%E6%B3%95/</url>
