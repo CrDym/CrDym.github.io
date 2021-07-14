@@ -255,7 +255,7 @@
               <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行自动化测试的过程中，我们一定会有这样的需求：希望失败的用例可以自动重跑</p>
 <p>在pytest中，提供了pytest-rerunfailures插件可以实现自动重跑的效果</p>
 <h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><p>pip命令安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip install pytest-rerunfailures<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> pytest-rerunfailures<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
 <h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><h3 id="重新运行所有失败的用例"><a href="#重新运行所有失败的用例" class="headerlink" title="重新运行所有失败的用例"></a>重新运行所有失败的用例</h3><p>如果需要把所有失败的用例都重新运行，使用 –reruns 命令，并且制定要运行的最大次数</p>
 <p>举个🌰：</p>

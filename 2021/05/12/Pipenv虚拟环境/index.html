@@ -212,7 +212,7 @@ pipenv 主要解决了以下问题：
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      1.9k 字
     </span>
   
 
@@ -222,7 +222,7 @@ pipenv 主要解决了以下问题：
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25
+      23
        分钟
     </span>
   
@@ -266,11 +266,11 @@ pipenv 主要解决了以下问题：
 <li>随时查看图形化的依赖关系。</li>
 <li>可通过自动加载 .env 读取环境变量，简化开发流程。<span id="more"></span></li>
 </ul>
-<h1 id="安装-pipenv"><a href="#安装-pipenv" class="headerlink" title="安装 pipenv"></a>安装 pipenv</h1><h2 id="MacOS下使用pip安装"><a href="#MacOS下使用pip安装" class="headerlink" title="MacOS下使用pip安装"></a>MacOS下使用pip安装</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ pip install --user pipenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h1 id="安装-pipenv"><a href="#安装-pipenv" class="headerlink" title="安装 pipenv"></a>安装 pipenv</h1><h2 id="MacOS下使用pip安装"><a href="#MacOS下使用pip安装" class="headerlink" title="MacOS下使用pip安装"></a>MacOS下使用pip安装</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ pip <span class="token function">install</span> --user pipenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p>这个命令在用户级别（非系统全局）下安装 pipenv。如果安装后 shell 提示找不到 pipenv 命令，你需要添加当前 Python 用户主目录的 bin 目录到 PATH 环境变量。如果你不知道 Python 用户主目录在哪里，用下面的命令来查看：</p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python -m site --user-base<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <p>输出如下<br><img src="https://img.rockche.cn/mweb/16216670258674.jpg" srcset="/img/loading.gif" lazyload></p>
-<h2 id="MacOS下使用brew安装"><a href="#MacOS下使用brew安装" class="headerlink" title="MacOS下使用brew安装"></a>MacOS下使用brew安装</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ brew install pipenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="MacOS下使用brew安装"><a href="#MacOS下使用brew安装" class="headerlink" title="MacOS下使用brew安装"></a>MacOS下使用brew安装</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ brew <span class="token function">install</span> pipenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <h1 id="Pipenv常用命令"><a href="#Pipenv常用命令" class="headerlink" title="Pipenv常用命令"></a>Pipenv常用命令</h1><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">$ pipenv
 Usage: pipenv [OPTIONS] COMMAND [ARGS]...
 
@@ -316,62 +316,62 @@ $ pipenv install --python 2.7.14<span aria-hidden="true" class="line-numbers-row
 <p><code>pipenv install selenium</code></p>
 <p>此时，Pipfile 里有最新安装的包文件的信息，如名称、版本等。用来在重新安装项目依赖或与他人共享项目时，你可以用 Pipfile 来跟踪项目依赖。</p>
 <p>Pipfile 是用来替代原来的 requirements.txt 的，内容类似下面这样。source 部分用来设置仓库地址，packages 部分用来指定项目依赖的包，dev-packages 部分用来指定开发环境需要的包，这样分开便于管理。</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ cat Pipfile
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">cat</span> Pipfile
 
-[[source]]
-name &#x3D; &quot;pypi&quot;
-url &#x3D; &quot;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;&quot;
-verify_ssl &#x3D; true
+<span class="token punctuation">[</span><span class="token punctuation">[</span>source<span class="token punctuation">]</span><span class="token punctuation">]</span>
+name <span class="token operator">=</span> <span class="token string">"pypi"</span>
+url <span class="token operator">=</span> <span class="token string">"https://pypi.tuna.tsinghua.edu.cn/simple/"</span>
+verify_ssl <span class="token operator">=</span> <span class="token boolean">true</span>
 
 
-[packages]
-urllib3 &#x3D; &quot;*&quot;
-selenium &#x3D; &quot;*&quot;
+<span class="token punctuation">[</span>packages<span class="token punctuation">]</span>
+urllib3 <span class="token operator">=</span> <span class="token string">"*"</span>
+selenium <span class="token operator">=</span> <span class="token string">"*"</span>
 
-[dev-packages]
+<span class="token punctuation">[</span>dev-packages<span class="token punctuation">]</span>
 
-[requires]
-python_version &#x3D; &quot;3.8&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token punctuation">[</span>requires<span class="token punctuation">]</span>
+python_version <span class="token operator">=</span> <span class="token string">"3.8"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 <p>Pipfile.lock 则包含你的系统信息，所有已安装包的依赖包及其版本信息，以及所有安装包及其依赖包的 Hash 校验信息。</p>
 <div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ Pipfile.lock
-&#123;
-    &quot;_meta&quot;: &#123;
-        &quot;hash&quot;: &#123;
-            &quot;sha256&quot;: &quot;b02856f549692af24a14f79bfe022df973a9ea09ddfb4cbf7c7ecab5248ac322&quot;
-        &#125;,
-        &quot;pipfile-spec&quot;: 6,
-        &quot;requires&quot;: &#123;
-            &quot;python_version&quot;: &quot;3.8&quot;
-        &#125;,
-        &quot;sources&quot;: [
-            &#123;
-                &quot;name&quot;: &quot;pypi&quot;,
-                &quot;url&quot;: &quot;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;&quot;,
-                &quot;verify_ssl&quot;: true
-            &#125;
-        ]
-    &#125;,
-    &quot;default&quot;: &#123;
-        &quot;selenium&quot;: &#123;
-            &quot;hashes&quot;: [
-                &quot;sha256:2d7131d7bc5a5b99a2d9b04aaf2612c411b03b8ca1b1ee8d3de5845a9be2cb3c&quot;,
-                &quot;sha256:deaf32b60ad91a4611b98d8002757f29e6f2c2d5fcaf202e1c9ad06d6772300d&quot;
-            ],
-            &quot;index&quot;: &quot;pypi&quot;,
-            &quot;version&quot;: &quot;&#x3D;&#x3D;3.141.0&quot;
-        &#125;,
-        &quot;urllib3&quot;: &#123;
-            &quot;hashes&quot;: [
-                &quot;sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df&quot;,
-                &quot;sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937&quot;
-            ],
-            &quot;index&quot;: &quot;pypi&quot;,
-            &quot;version&quot;: &quot;&#x3D;&#x3D;1.26.4&quot;
-        &#125;
-    &#125;,
-    &quot;develop&quot;: &#123;&#125;
-&#125;
+<span class="token punctuation">&#123;</span>
+    <span class="token string">"_meta"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"hash"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"sha256"</span><span class="token builtin class-name">:</span> <span class="token string">"b02856f549692af24a14f79bfe022df973a9ea09ddfb4cbf7c7ecab5248ac322"</span>
+        <span class="token punctuation">&#125;</span>,
+        <span class="token string">"pipfile-spec"</span><span class="token builtin class-name">:</span> <span class="token number">6</span>,
+        <span class="token string">"requires"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"python_version"</span><span class="token builtin class-name">:</span> <span class="token string">"3.8"</span>
+        <span class="token punctuation">&#125;</span>,
+        <span class="token string">"sources"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token string">"name"</span><span class="token builtin class-name">:</span> <span class="token string">"pypi"</span>,
+                <span class="token string">"url"</span><span class="token builtin class-name">:</span> <span class="token string">"https://pypi.tuna.tsinghua.edu.cn/simple/"</span>,
+                <span class="token string">"verify_ssl"</span><span class="token builtin class-name">:</span> <span class="token boolean">true</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token string">"default"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"selenium"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"hashes"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"sha256:2d7131d7bc5a5b99a2d9b04aaf2612c411b03b8ca1b1ee8d3de5845a9be2cb3c"</span>,
+                <span class="token string">"sha256:deaf32b60ad91a4611b98d8002757f29e6f2c2d5fcaf202e1c9ad06d6772300d"</span>
+            <span class="token punctuation">]</span>,
+            <span class="token string">"index"</span><span class="token builtin class-name">:</span> <span class="token string">"pypi"</span>,
+            <span class="token string">"version"</span><span class="token builtin class-name">:</span> <span class="token string">"==3.141.0"</span>
+        <span class="token punctuation">&#125;</span>,
+        <span class="token string">"urllib3"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token string">"hashes"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+                <span class="token string">"sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df"</span>,
+                <span class="token string">"sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"</span>
+            <span class="token punctuation">]</span>,
+            <span class="token string">"index"</span><span class="token builtin class-name">:</span> <span class="token string">"pypi"</span>,
+            <span class="token string">"version"</span><span class="token builtin class-name">:</span> <span class="token string">"==1.26.4"</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token string">"develop"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>那么Pipfile 和 Pipfile.lock 有什么用呢？<br>Pipfile 其实一个 TOML 格式的文件，标识了该项目依赖包的基本信息，还区分了生产环境和开发环境的包标识，作用上类似 requirements.txt 文件，但是功能更为强大。<br>Pipfile.lock 详细标识了该项目的安装的包的精确版本信息、最新可用版本信息和当前库文件的 hash 值，顾明思义，它起了版本锁的作用。<br>可以注意到当前 Pipfile.lock 文件中的 Selenium 版本标识为 ==3.141.0，意思是当前我们开发时使用的就是 3.141.0版本，它可以起到版本锁定的功能。</p>
 <p>举个例子，刚才我们安装了 Selenium 3.141.0 的版本，即目前（2021.5.22）的最新版本。但可能 Selenium 以后还会有更新，比如某一天 Selenium 更新到了 3.2 版本，这时如果我们想要重新部署本项目到另一台机器上，假如此时不存在 Pipfile.lock 文件，只存在 Pipfile文件，由于 Pipfile 文件中标识的 Selenium 依赖为 selenium= “*”，即没有版本限制，它会默认安装最新版本的 Selenium，即 3.2，但由于 Pipfile.lock 文件的存在，它会根据 Pipfile.lock 来安装，还是会安装 Selenium 3.141.0，这样就会避免一些库版本更新导致不兼容的问题。</p>
@@ -383,7 +383,7 @@ python_version &#x3D; &quot;3.8&quot;<span aria-hidden="true" class="line-number
 <p>这不会安装unittest包。<br>但是，如果有一个开发人员将你的项目克隆到自己的开发环境中，他们可以使用–dev标志，将django也安装：</p>
 <p><code>pipenv install –dev</code></p>
 <p>也就是说一个–dev参数，帮你在同一个虚拟环境中又区分出了开发和非开发环境</p>
-<h2 id="卸载第三方包"><a href="#卸载第三方包" class="headerlink" title="卸载第三方包"></a>卸载第三方包</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pipenv uninstall selenium &#x2F;&#x2F;或者 pipenv uninstall --all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="卸载第三方包"><a href="#卸载第三方包" class="headerlink" title="卸载第三方包"></a>卸载第三方包</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pipenv uninstall selenium //或者 pipenv uninstall --all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 <h2 id="更新安装包"><a href="#更新安装包" class="headerlink" title="更新安装包"></a>更新安装包</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">pipenv update selenium 
 pipenv update # 更新所有安装包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
 
@@ -392,20 +392,20 @@ pipenv update # 更新所有安装包<span aria-hidden="true" class="line-number
 <h2 id="检查软件包的完整性"><a href="#检查软件包的完整性" class="headerlink" title="检查软件包的完整性"></a>检查软件包的完整性</h2><p><code>$  pipenv check</code></p>
 <h2 id="生成Pipfile-lock"><a href="#生成Pipfile-lock" class="headerlink" title="生成Pipfile.lock"></a>生成Pipfile.lock</h2><p>有时候可能 Pipfile.lock 文件不存在或被删除了，可以使用如下命令生成：<br><code>$ pipenv lock</code></p>
 <h2 id="修改Pipenv下载源"><a href="#修改Pipenv下载源" class="headerlink" title="修改Pipenv下载源"></a>修改Pipenv下载源</h2><p>在使用pipenv install安装的过程中如果下载比较慢可以在pipfile文件中指定下载源：</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[[source]]
-name &#x3D; &quot;pypi&quot;
-url &#x3D; &quot;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;&quot;
-verify_ssl &#x3D; true
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span><span class="token punctuation">[</span>source<span class="token punctuation">]</span><span class="token punctuation">]</span>
+name <span class="token operator">=</span> <span class="token string">"pypi"</span>
+url <span class="token operator">=</span> <span class="token string">"https://pypi.tuna.tsinghua.edu.cn/simple/"</span>
+verify_ssl <span class="token operator">=</span> <span class="token boolean">true</span>
 
 
-[packages]
-urllib3 &#x3D; &quot;*&quot;
-selenium &#x3D; &quot;*&quot;
+<span class="token punctuation">[</span>packages<span class="token punctuation">]</span>
+urllib3 <span class="token operator">=</span> <span class="token string">"*"</span>
+selenium <span class="token operator">=</span> <span class="token string">"*"</span>
 
-[dev-packages]
+<span class="token punctuation">[</span>dev-packages<span class="token punctuation">]</span>
 
-[requires]
-python_version &#x3D; &quot;3.8&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token punctuation">[</span>requires<span class="token punctuation">]</span>
+python_version <span class="token operator">=</span> <span class="token string">"3.8"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <p>Pip下载源</p>
 <ul>
 <li>阿里: <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a></li>

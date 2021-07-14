@@ -20,7 +20,7 @@
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>Pytest10-生成html报告 - RockChe&#39;s Blog</title>
+  <title>Pytest11-重复执行用例插件pytest-repeat - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -187,7 +187,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Pytest10-生成html报告">
+            <span class="h2" id="subtitle" title="Pytest11-重复执行用例插件pytest-repeat">
               
             </span>
 
@@ -197,8 +197,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-03 23:45" pubdate>
-        2021年7月3日 晚上
+      <time datetime="2021-07-13 23:45" pubdate>
+        2021年7月13日 晚上
       </time>
     </span>
   
@@ -209,7 +209,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      556 字
+      715 字
     </span>
   
 
@@ -219,7 +219,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        分钟
     </span>
   
@@ -249,45 +249,100 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Pytest10-生成html报告</h1>
+            <h1 style="display: none">Pytest11-重复执行用例插件pytest-repeat</h1>
             
             <div class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在pytest中，如何生成html测试报告呢，pytest提供了pytest-html插件，可以帮助我们生成测试报告，当然，如果希望生成更加精美的测试报告，我们还可以使用allure生成报告，下面我们就来详细看看如何实现吧</p>
-<h2 id="pytest-html插件"><a href="#pytest-html插件" class="headerlink" title="pytest-html插件"></a>pytest-html插件</h2><h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>pip命令安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> pytest-html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在平时做测试的时候，经常会遇到一些偶现的bug，通常我们会多次执行来复现此类bug，那么在自动化测试的时候，如何多次运行某个或某些用例呢，我们可以使用pytest-repeat这个插件来帮助我们重复的去执行用例</p>
+<h2 id="pytest-repeat插件"><a href="#pytest-repeat插件" class="headerlink" title="pytest-repeat插件"></a>pytest-repeat插件</h2><h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>pip命令安装</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> pytest-repeat<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
-<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p>使用方法很简单，在测试用例的目录下执行命令 <code>pytest --html=reportname.html</code> 即可</p>
-<p>生成的报告效果如下：</p>
-<p><img src="https://img.rockche.cn//image-20210705141619343.png" srcset="/img/loading.gif" lazyload alt="image-20210705141619343"></p>
-<h4 id="合并css"><a href="#合并css" class="headerlink" title="合并css"></a>合并css</h4><p>使用上面的命令生成报告后，css是独立的，分享报告出去的时候样式会丢失，我们可以使用如下命令把css样式合并到html里</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pytest --html<span class="token operator">=</span>report.html --self-contained-html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p>上代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_demo1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"执行测试用例1"</span><span class="token punctuation">)</span>
 
-<h2 id="allure生成报告"><a href="#allure生成报告" class="headerlink" title="allure生成报告"></a>allure生成报告</h2><h3 id="allure介绍"><a href="#allure介绍" class="headerlink" title="allure介绍"></a>allure介绍</h3><p>Allure 是一款轻量级的开源自动化测试报告生成框架。它支持绝大部分测试框架，比如 TestNG、Junit 、Pytest、unittest 等</p>
-<h3 id="安装allure"><a href="#安装allure" class="headerlink" title="安装allure"></a>安装allure</h3><h4 id="Windows下安装"><a href="#Windows下安装" class="headerlink" title="Windows下安装"></a>Windows下安装</h4><p>1.因为allure依赖于java环境，所以必须先安装java环境并设置环境变量，此处略过</p>
-<p>2.在github上下载最新版本：<a target="_blank" rel="noopener" href="https://github.com/allure-framework/allure2/releases">https://github.com/allure-framework/allure2/releases</a></p>
-<p><img src="https://img.rockche.cn//image-20210705150235745.png" srcset="/img/loading.gif" lazyload alt="image-20210705150235745"></p>
-<p>3.解压后，打开<code>\bin</code>文件夹，会看到<code>allure.bat</code>文件，将此路径添加到环境变量<br>4.cmd输入<code>allure</code>出现帮助信息，表示安装成功</p>
-<h4 id="Mac-OS-X下安装"><a href="#Mac-OS-X下安装" class="headerlink" title="Mac OS X下安装"></a>Mac OS X下安装</h4><p>使用命令<code>brew install allure</code>安装</p>
-<h3 id="安装pytest-allure-adaptor插件"><a href="#安装pytest-allure-adaptor插件" class="headerlink" title="安装pytest-allure-adaptor插件"></a>安装pytest-allure-adaptor插件</h3><p>使用命令<code>pip install allure-pytest</code></p>
-<h3 id="生成xml格式报告"><a href="#生成xml格式报告" class="headerlink" title="生成xml格式报告"></a>生成xml格式报告</h3><p>在运行用例的目录下执行 <code>pytest -s -q --alluredir ./report/xml</code></p>
-<blockquote>
-<ol>
-<li>‘-s’:指的是快速执行</li>
-<li>‘-q’:静默执行，删除多余的执行内容信息</li>
-<li>‘–alluredir’:用例执行的目录</li>
-<li>‘./report/xml’:报告xml的存放地址，不指定默认在当前目录自动生成</li>
-</ol>
+
+<span class="token keyword">def</span> <span class="token function">test_demo2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"执行测试用例2"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>使用命令  <code>pytest -s --count 5  test_demo.py</code>执行</p>
+<p>运行结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210708175609335.png" srcset="/img/loading.gif" lazyload alt="image-20210708175609335"></p>
+<p>可以看到，用例被重复执行了5次</p>
+<h3 id="重复测试直到失败"><a href="#重复测试直到失败" class="headerlink" title="重复测试直到失败"></a>重复测试直到失败</h3><blockquote>
+<p>当我们验证偶现的问题时，需要不停的重复执行用例，直到用例失败</p>
+<p>可以将pytest的 -x 选项与pytest-repeat结合使用，以强制测试运行程序在第一次失败时停</p>
 </blockquote>
-<h3 id="生成html格式报告"><a href="#生成html格式报告" class="headerlink" title="生成html格式报告"></a>生成html格式报告</h3><p> 使用命令<code>allure generate report/xml -o report/html</code></p>
+<p>上代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_example</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">import</span> random
+    flag <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> flag <span class="token operator">!=</span> <span class="token number">8</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>使用命令  <code>pytest --count 5 -x  test_demo.py</code>执行</p>
+<p>运行结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210714173546412.png" srcset="/img/loading.gif" lazyload alt="image-20210714173546412"></p>
+<p>可以看到，在运行了55次后，用例执行失败</p>
+<h3 id="标记要重复多次的测试"><a href="#标记要重复多次的测试" class="headerlink" title="标记要重复多次的测试"></a>标记要重复多次的测试</h3><p>如果要在代码中将某些测试用例标记为执行重复多次，可以使用 <code>@pytest.mark.repeat(count)</code> </p>
+<p>上代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token keyword">def</span> <span class="token function">test_repeat1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例1执行"</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>repeat</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">test_repeat2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例2执行"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_repeat3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例3执行"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>使用命令  <code>pytest -s test_demo.py</code>执行</p>
+<p>运行结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210714174143630.png" srcset="/img/loading.gif" lazyload alt="image-20210714174143630"></p>
+<p>可以看到，用例2被执行了5次</p>
+<h3 id="–repeat-scope"><a href="#–repeat-scope" class="headerlink" title="–repeat-scope"></a>–repeat-scope</h3><p>作用：类似于pytest fixture的scope参数，–repeat-scope也可以设置参数： <code>session</code> ， <code>module</code>，<code>class</code>或者<code>function</code>（默认值）</p>
 <blockquote>
-<ol>
-<li><code>report/xml</code> 指的是xml文件的目录</li>
-<li><code>report/html</code> 指的是html文件的目录</li>
-</ol>
+<ul>
+<li>function：默认，范围针对每个用例重复执行，再执行下一个用例</li>
+<li>class：以class为用例集合单位，重复执行class里面的用例，再执行下一个</li>
+<li>module：以模块为单位，重复执行模块里面的用例，再执行下一个</li>
+<li>session：重复整个测试会话，即所有测试用例的执行一次，然后再执行第二次</li>
+</ul>
 </blockquote>
-<p>注意：xml文件目录与html文件目录不能相同，必须指定一个空的目录生成最后的html报告</p>
-<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="https://img.rockche.cn//image-20210705153835953.png" srcset="/img/loading.gif" lazyload alt="image-20210705153835953"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上便是pytest生成测试报告的两种方法了，关于allure的详细内容，将在后续的文章中介绍</p>
+<h4 id="重复执行class中的用例"><a href="#重复执行class中的用例" class="headerlink" title="重复执行class中的用例"></a>重复执行class中的用例</h4><p>上代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test1</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_repeat1</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行1"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Test2</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_repeat2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行2"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>使用命令  <code> pytest -s --count=2 --repeat-scope=class test_demo.py</code>执行</p>
+<p>运行结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210714174917068.png" srcset="/img/loading.gif" lazyload alt="image-20210714174917068"></p>
+<p>可以看到，两个测试类都执行了2次</p>
+<h4 id="重复执行module中的用例"><a href="#重复执行module中的用例" class="headerlink" title="重复执行module中的用例"></a>重复执行module中的用例</h4><p>上代码</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test1</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_repeat1</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行1"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Test2</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_repeat2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行2"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">test_repeat3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行3"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>使用命令  <code> pytest -s --count=2 --repeat-scope=module test_demo.py</code>执行</p>
+<p>运行结果如下</p>
+<p><img src="https://img.rockche.cn//image-20210714175321251.png" srcset="/img/loading.gif" lazyload alt="image-20210714175321251"></p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>pytest-repeat不能与unittest.TestCase测试类一起使用。无论–count设置多少，这些测试始终仅运行一次，并显示警告</p>
+<h3 id="整理参考"><a href="#整理参考" class="headerlink" title="整理参考"></a>整理参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/poloyy/p/12691240.html">小菠萝测试笔记</a></p>
 
             </div>
             <hr>
@@ -322,18 +377,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/05/Linux1-Linux%E4%B8%8EShell%E4%BB%8B%E7%BB%8D/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux1-Linux与Shell介绍</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/03/Pytest9-%E5%A4%B1%E8%B4%A5%E9%87%8D%E8%B7%91/">
-                        <span class="hidden-mobile">Pytest9-失败重跑</span>
+                      <a href="/2021/07/05/Linux1-Linux%E4%B8%8EShell%E4%BB%8B%E7%BB%8D/">
+                        <span class="hidden-mobile">Linux1-Linux与Shell介绍</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

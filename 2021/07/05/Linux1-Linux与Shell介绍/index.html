@@ -20,7 +20,7 @@
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>Pytest10-生成html报告 - RockChe&#39;s Blog</title>
+  <title>Linux1-Linux与Shell介绍 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -187,7 +187,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Pytest10-生成html报告">
+            <span class="h2" id="subtitle" title="Linux1-Linux与Shell介绍">
               
             </span>
 
@@ -197,8 +197,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-03 23:45" pubdate>
-        2021年7月3日 晚上
+      <time datetime="2021-07-05 22:12" pubdate>
+        2021年7月5日 晚上
       </time>
     </span>
   
@@ -209,7 +209,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      556 字
+      1.3k 字
     </span>
   
 
@@ -219,7 +219,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      14
        分钟
     </span>
   
@@ -249,45 +249,45 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Pytest10-生成html报告</h1>
+            <h1 style="display: none">Linux1-Linux与Shell介绍</h1>
             
             <div class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在pytest中，如何生成html测试报告呢，pytest提供了pytest-html插件，可以帮助我们生成测试报告，当然，如果希望生成更加精美的测试报告，我们还可以使用allure生成报告，下面我们就来详细看看如何实现吧</p>
-<h2 id="pytest-html插件"><a href="#pytest-html插件" class="headerlink" title="pytest-html插件"></a>pytest-html插件</h2><h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>pip命令安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> pytest-html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+              <h2 id="操作系统发展史"><a href="#操作系统发展史" class="headerlink" title="操作系统发展史"></a>操作系统发展史</h2><p>回顾一下操作系统的发展史，可以分为四大时代</p>
+<ul>
+<li><p>第一个是OS时代，这个时候操作系统才刚刚成型，1973 年由贝尔实验室开发的UNIX 系统，以及 1982 年与 1991年在 UNIX 系统基础上进行扩展定制的若干变种</p>
+</li>
+<li><p>第二个时代是 PC 时代，PC 时代崛起于 1975 年，当年乔布斯开发了 Apple 系统，随后 1980 年，比尔盖茨开发了 DOS 系统，从这时起更多的人开始接触操作系统，个人计算机得以普及</p>
+</li>
+<li><p>第三个时代是 GUI 时代，GUI 时代的代表作是 1979 年乔布斯开发的 Mac 系统与 1990 年比尔盖茨开发的 Windows 系统，以及 1994 年的 Linux 系统，这三个系统影响了整个时代，一直到现在仍被广泛使用</p>
+</li>
+<li><p>第四个时代是移动 OS 时代，随着移动互联网的发展，移动 OS 也变得越来越重要，在移动 OS 时代，最知名的是 Google 的 Android 系统，以及乔布斯的 iOS 系统</p>
+</li>
+</ul>
+<h2 id="Bash介绍"><a href="#Bash介绍" class="headerlink" title="Bash介绍"></a>Bash介绍</h2><p>Bash 是 Unix 系统和 Linux 系统的一种 Shell（命令行环境），是目前绝大多数 Linux 发行版的默认 Shell。</p>
+<h3 id="Shell的含义"><a href="#Shell的含义" class="headerlink" title="Shell的含义"></a>Shell的含义</h3><p>学习 Bash，首先需要理解 Shell 是什么。Shell 这个单词的原意是“外壳”，跟 kernel（内核）相对应，比喻内核外面的一层，即用户跟内核交互的对话界面。</p>
+<p>具体来说，Shell 这个词有多种含义。</p>
+<p>首先，Shell 是一个程序，提供一个与用户对话的环境。这个环境只有一个命令提示符，让用户从键盘输入命令，所以又称为命令行环境（command line interface，简写为 CLI）。Shell 接收到用户输入的命令，将命令送入操作系统执行，并将结果返回给用户。本书中，除非特别指明，Shell 指的就是命令行环境。</p>
+<p>其次，Shell 是一个命令解释器，解释用户输入的命令。它支持变量、条件判断、循环操作等语法，所以用户可以用 Shell 命令写出各种小程序，又称为脚本（script）。这些脚本都通过 Shell 的解释执行，而不通过编译。</p>
+<p>最后，Shell 是一个工具箱，提供了各种小工具，供用户方便地使用操作系统的功能。</p>
+<h3 id="Shell的种类"><a href="#Shell的种类" class="headerlink" title="Shell的种类"></a>Shell的种类</h3><p>在 Linux 系统中你可以通过 cat 指令来查看 etc/ 下的 shells，可以看到本地支持的 Shell 种类非常多，常见的有 bash、csh、ksh、sh，等等。其中，sh 是 Bash 的早期形态，因为 sh 不是 GNU 项目，所以后期又开发了 Bash。</p>
+<p>在 Windows 系统中，是没有 Shell 环境的，Windows 下的 Shell 其实叫作 command，现在升级为 PowerShell，但是 Windows 指令与 Linux 系统并不兼容，因为它本身不是从 Linux/Unix 系统衍生出来的，所以导致 Windows 与目前的OS，如：Mac、Linux、Android、iOS 的命令不兼容。为了解决这个问题，在 Windows 中你可以使用 Git bash，以及 Cygwin 来模拟 Shell 环境。</p>
+<p>如果你的系统是 Mac，那么恭喜你，Mac 系统自带了 Terminal，你还可以安装  iTerm2，它们都是标准的 Shell 环境。在 Linux 环境下，建议你使用 Bash，Bash 是目前行业内使用最广泛的 Shell 环境，在 Windows 环境下，建议你使用 Git bash，它几乎包含了 Linux 常用的全部指令。</p>
+<h3 id="命令行环境"><a href="#命令行环境" class="headerlink" title="命令行环境"></a>命令行环境</h3><h4 id="终端模拟器"><a href="#终端模拟器" class="headerlink" title="终端模拟器"></a>终端模拟器</h4><p>如果是不带有图形环境的 Linux 系统（比如专用于服务器的系统），启动后就直接是命令行环境。</p>
+<p>不过，现在大部分的 Linux 发行版，尤其是针对普通用户的发行版，都是图形环境。用户登录系统后，自动进入图形环境，需要自己启动终端模拟器，才能进入命令行环境。</p>
+<p>所谓“终端模拟器”（terminal emulator）就是一个模拟命令行窗口的程序，让用户在一个窗口中使用命令行环境，并且提供各种附加功能，比如调整颜色、字体大小、行距等等。</p>
+<p>不同 Linux 发行版（准确地说是不同的桌面环境）带有的终端程序是不一样的，比如 KDE 桌面环境的终端程序是 konsole，Gnome 桌面环境的终端程序是 gnome-terminal，用户也可以安装第三方的终端程序。所有终端程序，尽管名字不同，基本功能都是一样的，就是让用户可以进入命令行环境，使用 Shell。</p>
+<h4 id="命令行提示符"><a href="#命令行提示符" class="headerlink" title="命令行提示符"></a>命令行提示符</h4><p>进入命令行环境以后，用户会看到 Shell 的提示符。提示符往往是一串前缀，最后以一个美元符号<code>$</code>结尾，用户可以在这个符号后面输入各种命令</p>
+<p><img src="https://img.rockche.cn//image-20210705164233888.png" srcset="/img/loading.gif" lazyload alt="image-20210705164233888"></p>
+<h4 id="进入和退出方法"><a href="#进入和退出方法" class="headerlink" title="进入和退出方法"></a>进入和退出方法</h4><p>进入命令行环境以后，一般就已经打开 Bash 了。如果你的 Shell 不是 Bash，可以输入<code>bash</code>命令启动 Bash。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
-<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p>使用方法很简单，在测试用例的目录下执行命令 <code>pytest --html=reportname.html</code> 即可</p>
-<p>生成的报告效果如下：</p>
-<p><img src="https://img.rockche.cn//image-20210705141619343.png" srcset="/img/loading.gif" lazyload alt="image-20210705141619343"></p>
-<h4 id="合并css"><a href="#合并css" class="headerlink" title="合并css"></a>合并css</h4><p>使用上面的命令生成报告后，css是独立的，分享报告出去的时候样式会丢失，我们可以使用如下命令把css样式合并到html里</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pytest --html<span class="token operator">=</span>report.html --self-contained-html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>退出 Bash 环境，可以使用<code>exit</code>命令，也可以同时按下<code>Ctrl + d</code>。</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">exit</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
 
-<h2 id="allure生成报告"><a href="#allure生成报告" class="headerlink" title="allure生成报告"></a>allure生成报告</h2><h3 id="allure介绍"><a href="#allure介绍" class="headerlink" title="allure介绍"></a>allure介绍</h3><p>Allure 是一款轻量级的开源自动化测试报告生成框架。它支持绝大部分测试框架，比如 TestNG、Junit 、Pytest、unittest 等</p>
-<h3 id="安装allure"><a href="#安装allure" class="headerlink" title="安装allure"></a>安装allure</h3><h4 id="Windows下安装"><a href="#Windows下安装" class="headerlink" title="Windows下安装"></a>Windows下安装</h4><p>1.因为allure依赖于java环境，所以必须先安装java环境并设置环境变量，此处略过</p>
-<p>2.在github上下载最新版本：<a target="_blank" rel="noopener" href="https://github.com/allure-framework/allure2/releases">https://github.com/allure-framework/allure2/releases</a></p>
-<p><img src="https://img.rockche.cn//image-20210705150235745.png" srcset="/img/loading.gif" lazyload alt="image-20210705150235745"></p>
-<p>3.解压后，打开<code>\bin</code>文件夹，会看到<code>allure.bat</code>文件，将此路径添加到环境变量<br>4.cmd输入<code>allure</code>出现帮助信息，表示安装成功</p>
-<h4 id="Mac-OS-X下安装"><a href="#Mac-OS-X下安装" class="headerlink" title="Mac OS X下安装"></a>Mac OS X下安装</h4><p>使用命令<code>brew install allure</code>安装</p>
-<h3 id="安装pytest-allure-adaptor插件"><a href="#安装pytest-allure-adaptor插件" class="headerlink" title="安装pytest-allure-adaptor插件"></a>安装pytest-allure-adaptor插件</h3><p>使用命令<code>pip install allure-pytest</code></p>
-<h3 id="生成xml格式报告"><a href="#生成xml格式报告" class="headerlink" title="生成xml格式报告"></a>生成xml格式报告</h3><p>在运行用例的目录下执行 <code>pytest -s -q --alluredir ./report/xml</code></p>
-<blockquote>
-<ol>
-<li>‘-s’:指的是快速执行</li>
-<li>‘-q’:静默执行，删除多余的执行内容信息</li>
-<li>‘–alluredir’:用例执行的目录</li>
-<li>‘./report/xml’:报告xml的存放地址，不指定默认在当前目录自动生成</li>
-</ol>
-</blockquote>
-<h3 id="生成html格式报告"><a href="#生成html格式报告" class="headerlink" title="生成html格式报告"></a>生成html格式报告</h3><p> 使用命令<code>allure generate report/xml -o report/html</code></p>
-<blockquote>
-<ol>
-<li><code>report/xml</code> 指的是xml文件的目录</li>
-<li><code>report/html</code> 指的是html文件的目录</li>
-</ol>
-</blockquote>
-<p>注意：xml文件目录与html文件目录不能相同，必须指定一个空的目录生成最后的html报告</p>
-<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p><img src="https://img.rockche.cn//image-20210705153835953.png" srcset="/img/loading.gif" lazyload alt="image-20210705153835953"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上便是pytest生成测试报告的两种方法了，关于allure的详细内容，将在后续的文章中介绍</p>
+<h3 id="第一行命令"><a href="#第一行命令" class="headerlink" title="第一行命令"></a>第一行命令</h3><p>我自己的电脑是Mac系统，并且安装了iTeam，输入<code>echo hello shell</code> ，显示如下</p>
+<p><img src="https://img.rockche.cn//image-20210705165000639.png" srcset="/img/loading.gif" lazyload alt="image-20210705165000639"></p>
+<h2 id="整理参考"><a href="#整理参考" class="headerlink" title="整理参考"></a>整理参考</h2><p><a target="_blank" rel="noopener" href="https://wangdoc.com/bash/intro.html">网道（WangDoc.com）</a></p>
+<p><a target="_blank" rel="noopener" href="https://kaiwu.lagou.com/course/courseInfo.htm?courseId=17#/detail/pc?id=319">测试开发核心技术 46 讲</a></p>
 
             </div>
             <hr>
@@ -297,7 +297,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Python%E5%AD%A6%E4%B9%A0/">Python学习</a>
+                      <a class="hover-with-bg" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
                     
                   </div>
                 
@@ -305,7 +305,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Pytest/">Pytest</a>
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
                     
                   </div>
                 
@@ -322,9 +322,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/05/Linux1-Linux%E4%B8%8EShell%E4%BB%8B%E7%BB%8D/">
+                      <a href="/2021/07/13/Pytest11-%E9%87%8D%E5%A4%8D%E6%89%A7%E8%A1%8C%E7%94%A8%E4%BE%8B%E6%8F%92%E4%BB%B6pytest-repeat/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux1-Linux与Shell介绍</span>
+                        <span class="hidden-mobile">Pytest11-重复执行用例插件pytest-repeat</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -332,8 +332,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/03/Pytest9-%E5%A4%B1%E8%B4%A5%E9%87%8D%E8%B7%91/">
-                        <span class="hidden-mobile">Pytest9-失败重跑</span>
+                      <a href="/2021/07/03/Pytest10-%E7%94%9F%E6%88%90html%E6%8A%A5%E5%91%8A/">
+                        <span class="hidden-mobile">Pytest10-生成html报告</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
