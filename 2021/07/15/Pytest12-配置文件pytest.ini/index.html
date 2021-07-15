@@ -20,7 +20,7 @@
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>Pytest11-重复执行用例插件pytest-repeat - RockChe&#39;s Blog</title>
+  <title>Pytest12-配置文件pytest.ini - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -187,7 +187,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Pytest11-重复执行用例插件pytest-repeat">
+            <span class="h2" id="subtitle" title="Pytest12-配置文件pytest.ini">
               
             </span>
 
@@ -197,8 +197,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-13 23:45" pubdate>
-        2021年7月13日 晚上
+      <time datetime="2021-07-15 22:45" pubdate>
+        2021年7月15日 晚上
       </time>
     </span>
   
@@ -209,7 +209,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      715 字
+      719 字
     </span>
   
 
@@ -249,100 +249,97 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Pytest11-重复执行用例插件pytest-repeat</h1>
+            <h1 style="display: none">Pytest12-配置文件pytest.ini</h1>
             
             <div class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在平时做测试的时候，经常会遇到一些偶现的bug，通常我们会多次执行来复现此类bug，那么在自动化测试的时候，如何多次运行某个或某些用例呢，我们可以使用pytest-repeat这个插件来帮助我们重复的去执行用例</p>
-<h2 id="pytest-repeat插件"><a href="#pytest-repeat插件" class="headerlink" title="pytest-repeat插件"></a>pytest-repeat插件</h2><h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>pip命令安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> pytest-repeat<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>pytest配置文件可以改变pytest的运行方式，它是一个固定的文件pytest.ini文件，读取配置信息，按指定的方式去运行。</p>
+<h2 id="常用的配置项"><a href="#常用的配置项" class="headerlink" title="常用的配置项"></a>常用的配置项</h2><h3 id="marks"><a href="#marks" class="headerlink" title="marks"></a>marks</h3><p>作用：测试用例中添加了自定义标记（ @pytest.mark.xxx 装饰器），如果不添加marks选项的话，就会报warnings</p>
+<p>格式：list列表类型</p>
+<p>写法：</p>
+<div class="code-wrapper"><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[pytest]</span>
+<span class="token comment"># 自定义标记说明</span>
+<span class="token constant">markers</span> <span class="token attr-value"><span class="token punctuation">=</span></span>
+    tencent: tencent
+    toutiao: toutiao
+    alibaba: alibaba<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
-<h3 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h3><p>上代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_demo1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"执行测试用例1"</span><span class="token punctuation">)</span>
+<h3 id="xfail-strict"><a href="#xfail-strict" class="headerlink" title="xfail_strict"></a>xfail_strict</h3><p>作用：设置xfail_strict = True可以让那些标记为@pytest.mark.xfail但实际通过显示XPASS的测试用例被报告为失败</p>
+<p>格式：True 、False（默认），1、0</p>
+<p>写法：</p>
+<div class="code-wrapper"><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[pytest]</span>
 
+<span class="token comment"># 自定义标记说明</span>
+<span class="token constant">markers</span> <span class="token attr-value"><span class="token punctuation">=</span></span>
+    tencent: tencent
+    toutiao: toutiao
+    alibaba: alibaba
 
-<span class="token keyword">def</span> <span class="token function">test_demo2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"执行测试用例2"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token constant">xfail_strict</span> <span class="token attr-value"><span class="token punctuation">=</span> True</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
-<p>使用命令  <code>pytest -s --count 5  test_demo.py</code>执行</p>
-<p>运行结果如下</p>
-<p><img src="https://img.rockche.cn//image-20210708175609335.png" srcset="/img/loading.gif" lazyload alt="image-20210708175609335"></p>
-<p>可以看到，用例被重复执行了5次</p>
-<h3 id="重复测试直到失败"><a href="#重复测试直到失败" class="headerlink" title="重复测试直到失败"></a>重复测试直到失败</h3><blockquote>
-<p>当我们验证偶现的问题时，需要不停的重复执行用例，直到用例失败</p>
-<p>可以将pytest的 -x 选项与pytest-repeat结合使用，以强制测试运行程序在第一次失败时停</p>
-</blockquote>
 <p>上代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_example</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">import</span> random
-    flag <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
-    <span class="token keyword">assert</span> flag <span class="token operator">!=</span> <span class="token number">8</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-<p>使用命令  <code>pytest --count 5 -x  test_demo.py</code>执行</p>
-<p>运行结果如下</p>
-<p><img src="https://img.rockche.cn//image-20210714173546412.png" srcset="/img/loading.gif" lazyload alt="image-20210714173546412"></p>
-<p>可以看到，在运行了55次后，用例执行失败</p>
-<h3 id="标记要重复多次的测试"><a href="#标记要重复多次的测试" class="headerlink" title="标记要重复多次的测试"></a>标记要重复多次的测试</h3><p>如果要在代码中将某些测试用例标记为执行重复多次，可以使用 <code>@pytest.mark.repeat(count)</code> </p>
-<p>上代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>xfail</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">test_case1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a <span class="token operator">=</span> <span class="token string">"a"</span>
+    b <span class="token operator">=</span> <span class="token string">"b"</span>
+    <span class="token keyword">assert</span> a <span class="token operator">!=</span> b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
 
-<span class="token keyword">def</span> <span class="token function">test_repeat1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例1执行"</span><span class="token punctuation">)</span>
 
-
-<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>repeat</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token keyword">def</span> <span class="token function">test_repeat2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例2执行"</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">def</span> <span class="token function">test_repeat3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例3执行"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-<p>使用命令  <code>pytest -s test_demo.py</code>执行</p>
-<p>运行结果如下</p>
-<p><img src="https://img.rockche.cn//image-20210714174143630.png" srcset="/img/loading.gif" lazyload alt="image-20210714174143630"></p>
-<p>可以看到，用例2被执行了5次</p>
-<h3 id="–repeat-scope"><a href="#–repeat-scope" class="headerlink" title="–repeat-scope"></a>–repeat-scope</h3><p>作用：类似于pytest fixture的scope参数，–repeat-scope也可以设置参数： <code>session</code> ， <code>module</code>，<code>class</code>或者<code>function</code>（默认值）</p>
-<blockquote>
 <ul>
-<li>function：默认，范围针对每个用例重复执行，再执行下一个用例</li>
-<li>class：以class为用例集合单位，重复执行class里面的用例，再执行下一个</li>
-<li>module：以模块为单位，重复执行模块里面的用例，再执行下一个</li>
-<li>session：重复整个测试会话，即所有测试用例的执行一次，然后再执行第二次</li>
+<li>未设置 xfail_strict = True 时，测试结果显示xpassed</li>
 </ul>
+<p><img src="https://img.rockche.cn//image-20210715165036370.png" srcset="/img/loading.gif" lazyload alt="image-20210715165036370"></p>
+<ul>
+<li>已设置 xfail_strict = True 时，测试结果显示failed</li>
+</ul>
+<p><img src="https://img.rockche.cn//image-20210715165109107.png" srcset="/img/loading.gif" lazyload alt="image-20210715165109107"></p>
+<h3 id="addopts"><a href="#addopts" class="headerlink" title="addopts"></a>addopts</h3><p>作用：addopts参数可以更改默认命令行选项，这个当我们在cmd输入一堆指令去执行用例的时候，就可以用该参数代替了，省去重复性的敲命令工作</p>
+<p>比如：想测试完生成报告，失败重跑两次，一共运行两次，如果在cmd中写的话，命令会很长</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pytest -v --rerun<span class="token operator">=</span><span class="token number">2</span> --count<span class="token operator">=</span><span class="token number">2</span> --html<span class="token operator">=</span>report.html --self-contained-html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>每次都这样敲不太现实，addopts就可以完美解决这个问题</p>
+<div class="code-wrapper"><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[pytest]</span>
+
+<span class="token comment"># 自定义标记说明</span>
+<span class="token constant">markers</span> <span class="token attr-value"><span class="token punctuation">=</span></span>
+    tencent: tencent
+    toutiao: toutiao
+    alibaba: alibaba
+
+<span class="token constant">xfail_strict</span> <span class="token attr-value"><span class="token punctuation">=</span> True</span>
+
+<span class="token comment"># 命令行参数</span>
+<span class="token constant">addopts</span> <span class="token attr-value"><span class="token punctuation">=</span> -v --reruns=1 --count=2 --html=reports.html --self-contained-html</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="log-cli"><a href="#log-cli" class="headerlink" title="log_cli"></a>log_cli</h3><p>作用：控制台实时输出日志</p>
+<p>格式：log_cli=True 或False（默认），或者log_cli=1 或 0</p>
+<h4 id="log-cli-0运行结果"><a href="#log-cli-0运行结果" class="headerlink" title="log_cli=0运行结果"></a>log_cli=0运行结果</h4><p><img src="https://img.rockche.cn//image-20210715165838558.png" srcset="/img/loading.gif" lazyload alt="image-20210715165838558"></p>
+<h4 id="log-cli-1运行结果"><a href="#log-cli-1运行结果" class="headerlink" title="log_cli=1运行结果"></a>log_cli=1运行结果</h4><p><img src="https://img.rockche.cn//image-20210715165852877.png" srcset="/img/loading.gif" lazyload alt="image-20210715165852877"></p>
+<p>加了log_cli=1之后，可以清晰看到哪个package下的哪个module下的哪个测试用例是否passed还是failed</p>
+<h3 id="norecursedirs"><a href="#norecursedirs" class="headerlink" title="norecursedirs"></a>norecursedirs</h3><p>作用：pytest 收集测试用例时，会递归遍历所有子目录，包括某些你明知道没必要遍历的目录，遇到这种情况，可以使用 norecursedirs 参数简化 pytest 的搜索工作</p>
+<p>默认设置： norecursedirs = .* build dist CVS _darcs {arch} *.egg </p>
+<p>正确写法：多个路径用空格隔开</p>
+<p>举个🌰，想要不遍历 venv、src、resources、log、report、util文件夹，可以进行如下设置</p>
+<div class="code-wrapper"><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[pytest]</span>
+
+<span class="token constant">norecursedirs</span> <span class="token attr-value"><span class="token punctuation">=</span> .* build dist CVS _darcs &#123;arch&#125; *.egg venv src resources log report util</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<h3 id="更改测试用例收集规则"><a href="#更改测试用例收集规则" class="headerlink" title="更改测试用例收集规则"></a>更改测试用例收集规则</h3><p>pytest默认的测试用例收集规则</p>
+<blockquote>
+<p>文件名以 test_*.py 文件和 *_test.py</p>
+<p>以 test_ 开头的函数</p>
+<p>以 Test 开头的类，不能包含 <strong>init</strong> 方法</p>
+<p>以 test_ 开头的类里面的方法</p>
 </blockquote>
-<h4 id="重复执行class中的用例"><a href="#重复执行class中的用例" class="headerlink" title="重复执行class中的用例"></a>重复执行class中的用例</h4><p>上代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test1</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_repeat1</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行1"</span><span class="token punctuation">)</span>
+<p> 我们是可以修改或者添加这个用例收集规则的（建议在原有的规则上添加），如下配置</p>
+<div class="code-wrapper"><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[pytest]</span>
 
-<span class="token keyword">class</span> <span class="token class-name">Test2</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_repeat2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行2"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<span class="token constant">python_files</span> <span class="token attr-value"><span class="token punctuation">=</span>     test_*  *_test  test*</span>
+<span class="token constant">python_classes</span> <span class="token attr-value"><span class="token punctuation">=</span>   Test*   test*</span>
+<span class="token constant">python_functions</span> <span class="token attr-value"><span class="token punctuation">=</span> test_*  test*</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 
-<p>使用命令  <code> pytest -s --count=2 --repeat-scope=class test_demo.py</code>执行</p>
-<p>运行结果如下</p>
-<p><img src="https://img.rockche.cn//image-20210714174917068.png" srcset="/img/loading.gif" lazyload alt="image-20210714174917068"></p>
-<p>可以看到，两个测试类都执行了2次</p>
-<h4 id="重复执行module中的用例"><a href="#重复执行module中的用例" class="headerlink" title="重复执行module中的用例"></a>重复执行module中的用例</h4><p>上代码</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Test1</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_repeat1</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行1"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Test2</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">test_repeat2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行2"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">test_repeat3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行3"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-<p>使用命令  <code> pytest -s --count=2 --repeat-scope=module test_demo.py</code>执行</p>
-<p>运行结果如下</p>
-<p><img src="https://img.rockche.cn//image-20210714175321251.png" srcset="/img/loading.gif" lazyload alt="image-20210714175321251"></p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>pytest-repeat不能与unittest.TestCase测试类一起使用。无论–count设置多少，这些测试始终仅运行一次，并显示警告</p>
-<h3 id="整理参考"><a href="#整理参考" class="headerlink" title="整理参考"></a>整理参考</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/poloyy/p/12691240.html">小菠萝测试笔记</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>pytest.ini文件应该放在项目根目录下，不要修改名字，否则无法被识别</p>
+<h2 id="整理参考"><a href="#整理参考" class="headerlink" title="整理参考"></a>整理参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/poloyy/p/12702294.html">小菠萝测试笔记</a></p>
 
             </div>
             <hr>
@@ -377,18 +374,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/15/Pytest12-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6pytest.ini/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Pytest12-配置文件pytest.ini</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/05/Linux1-Linux%E4%B8%8EShell%E4%BB%8B%E7%BB%8D/">
-                        <span class="hidden-mobile">Linux1-Linux与Shell介绍</span>
+                      <a href="/2021/07/13/Pytest11-%E9%87%8D%E5%A4%8D%E6%89%A7%E8%A1%8C%E7%94%A8%E4%BE%8B%E6%8F%92%E4%BB%B6pytest-repeat/">
+                        <span class="hidden-mobile">Pytest11-重复执行用例插件pytest-repeat</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
