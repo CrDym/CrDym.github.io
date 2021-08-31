@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="下拉选择框
+为什么单独使用下拉框？
+如果option选项没有value值的化，css定位或其他定位就不太方便。
+
+
+如何使用Select类
+操作：
+导包：from  selenium.webdriver.support.select improt Select
+ 实例化：s = Select(element)
+调用方法：s.select_by_index()
+
+
+
+
+提供哪些方法
+select_b">
+  <meta name="author" content="RockChe">
+  <meta name="keywords" content="">
+  
+  <title>UI自动化学习笔记（三） - RockChe&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rock's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="UI自动化学习笔记（三）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-12 16:12" pubdate>
+        2021年5月12日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">UI自动化学习笔记（三）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="下拉选择框"><a href="#下拉选择框" class="headerlink" title="下拉选择框"></a>下拉选择框</h1><ul>
+<li>为什么单独使用下拉框？<ul>
+<li>如果option选项没有value值的化，css定位或其他定位就不太方便。</li>
+</ul>
+</li>
+<li>如何使用Select类<ul>
+<li>操作：<ul>
+<li>导包：from  selenium.webdriver.support.select improt Select</li>
+<li> 实例化：s = Select(element)</li>
+<li>调用方法：s.select_by_index()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>提供哪些方法<ul>
+<li>select_by_index() # 通过下标定位</li>
+<li>select_by_value() # 通过value值</li>
+<li>select_by_visible_text() #显示文本</li>
+</ul>
+</li>
+<li>注意事项<ul>
+<li>实例化select时，需要的参数为 select标签元素</li>
+<li>调用Select类下面的方法，是通过索引、value属性值、显示文本去控制，而不需要click事件<span id="more"></span></li>
+</ul>
+</li>
+</ul>
+<h1 id="对话框处理"><a href="#对话框处理" class="headerlink" title="对话框处理"></a>对话框处理</h1><h2 id="为什么要处理对话框"><a href="#为什么要处理对话框" class="headerlink" title="为什么要处理对话框"></a>为什么要处理对话框</h2><p>如果页面有弹出框，不做处理，接下来的元素获取将不生效。</p>
+<h2 id="对话框类型"><a href="#对话框类型" class="headerlink" title="对话框类型"></a>对话框类型</h2><ul>
+<li>alert # 警告框</li>
+<li>confirm # 确认框</li>
+<li>prompt # 提示框</li>
+</ul>
+<h2 id="如何处理"><a href="#如何处理" class="headerlink" title="如何处理"></a>如何处理</h2><p>以上三种对话框，处理方法都一样。<br>步骤：</p>
+<ul>
+<li>切换到对话框<ul>
+<li>方法：driver.switch_to.alert</li>
+</ul>
+</li>
+<li>处理对话框<ul>
+<li>alert.text # 获取文本</li>
+<li>alert.accept() # 同意</li>
+<li>alert.dismiss() # 取消</li>
+</ul>
+</li>
+<li>提示<ul>
+<li>无论以上哪个对话框，都可以使用取消、同意，因为调用的是后台的事件，根页面显示的按钮数量无关</li>
+</ul>
+</li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>driver.switch_to.alert 方法适合以上三种类型对话框，调用时没有括号</li>
+<li>获取文本的方法，调用时没有括号 如：alert.text</li>
+<li>在项目中不是所有的小窗口都是以上三种对话框。</li>
+</ul>
+<h1 id="滚动条处理"><a href="#滚动条处理" class="headerlink" title="滚动条处理"></a>滚动条处理</h1><h2 id="为什么要操作滚动条"><a href="#为什么要操作滚动条" class="headerlink" title="为什么要操作滚动条"></a>为什么要操作滚动条</h2><p>在web自动化中有些特殊场景，如：滚动条拉倒最底层，指定按钮才可用。</p>
+<ul>
+<li><p>如何操作 </p>
+<ul>
+<li><p>设置操作滚动条操作语句</p>
+<p>如：js = “window.scrollTo(0,10000)”</p>
+<ul>
+<li>0: 左边距 –&gt;水平滚动条</li>
+<li>10000：上边距 –&gt;垂直滚动条</li>
+</ul>
+</li>
+<li><p>调用执行js方法，将设置js语句传入方法中</p>
+<ul>
+<li>方法：driver.execute_script(js)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>说明</p>
+<ul>
+<li>在selenium中没有直接提供定位滚动条组件方法，但是它提供了执行js语句方法，可以通过js语句来控制滚动条操作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="切换frame表单"><a href="#切换frame表单" class="headerlink" title="切换frame表单"></a>切换frame表单</h1><p>常用的frame表单有两种：frame、iframe</p>
+<h2 id="为什么要切换"><a href="#为什么要切换" class="headerlink" title="为什么要切换"></a>为什么要切换</h2><p>当前目录内没有iframe表单页面元素信息，不切换的话无法找到元素</p>
+<h2 id="如何切换"><a href="#如何切换" class="headerlink" title="如何切换"></a>如何切换</h2><p>方法：driver.switch_to.frame(“id\name\element”)</p>
+<h2 id="为什么切换完之后要回到主目录"><a href="#为什么切换完之后要回到主目录" class="headerlink" title="为什么切换完之后要回到主目录"></a>为什么切换完之后要回到主目录</h2><p>ifame或frame只有在主目录才有相关元素信息，不会到主目录，切换语句会报错</p>
+<h2 id="如何回到主目录"><a href="#如何回到主目录" class="headerlink" title="如何回到主目录"></a>如何回到主目录</h2><p>方法：driver.switch_to.default_content()</p>
+<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><p>切换frame时，可以使用name、id、iframe元素</p>
+<h1 id="多窗口切换"><a href="#多窗口切换" class="headerlink" title="多窗口切换"></a>多窗口切换</h1><h2 id="为什么要切换多窗口"><a href="#为什么要切换多窗口" class="headerlink" title="为什么要切换多窗口"></a>为什么要切换多窗口</h2><p>页面存在多个窗口时，selenium默认焦点只会在主窗口上的所有元素，不切换窗口，无法操作主窗口以外的窗口内元素</p>
+<h2 id="如何切换-1"><a href="#如何切换-1" class="headerlink" title="如何切换"></a>如何切换</h2><ul>
+<li><p>思路</p>
+<ul>
+<li>获取要切换的窗口句柄，调用切换方法进行切换。</li>
+</ul>
+</li>
+<li><p>方法 </p>
+<ul>
+<li>driver.current_window_handle # 获取当前主窗口句柄</li>
+<li> driver.window_handles # 获取当前由driver启动所有窗口句柄</li>
+<li>driver.switch_to.window(handle) # 切换窗口</li>
+</ul>
+</li>
+<li><p>步骤： </p>
+<ul>
+<li>获取当前窗口句柄 </li>
+<li>点击链接 启动另一个窗口</li>
+<li>获取当前所有窗口句柄</li>
+<li>遍历所有窗口句柄</li>
+<li>判断当前遍历的窗口句柄不等于当前窗口句柄</li>
+<li>切换窗口操作</li>
+</ul>
+</li>
+</ul>
+<h1 id="截屏"><a href="#截屏" class="headerlink" title="截屏"></a>截屏</h1><ul>
+<li><p>应用场景</p>
+<ul>
+<li>失败截图，让错误看的更直观</li>
+</ul>
+</li>
+<li><p>方法</p>
+<ul>
+<li>driver.get_screenshot_as_file(imgepath)</li>
+</ul>
+</li>
+<li><p>参数</p>
+<ul>
+<li>imagepath：为图片要保存的目录地址及文件名称<br>当前目录 ./test.png<br>上一级目录 ../test.png</li>
+</ul>
+</li>
+<li><p>扩展</p>
+<ul>
+<li>多条用例执行失败，会产生多张图片，可以采用时间戳的形式，进去区分。</li>
+<li>操作<ul>
+<li>driver.get_screenshot_as_file(“../image/%s.png”%(time.strftime(“%Y_%m_%d %H_%M_%S”)))<br>strftime:将时间转为字符串函数</li>
+</ul>
+</li>
+<li>注意<ul>
+<li>%Y_%m_%d %H_%M_%S：代表，年 月 日 时 分 秒</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="验证码处理"><a href="#验证码处理" class="headerlink" title="验证码处理"></a>验证码处理</h1><p>验证码处理方式</p>
+<ul>
+<li>去掉验证码(项目在测试环境、公司自己的项目)</li>
+<li>设置万能验证码(测试环境或线上环境，公司自己项目)</li>
+<li>使用验证码识别技术 (由于现在的验证码千奇百怪，导致识别率太低)</li>
+<li> 使用cookie解决(推荐)</li>
+</ul>
+<h1 id="Cookie处理"><a href="#Cookie处理" class="headerlink" title="Cookie处理"></a>Cookie处理</h1><ul>
+<li>方法 <ul>
+<li>driver.get_cookies() # 获取所有的cookie</li>
+<li>driver.add_cookies({字典}) # 设置cookie</li>
+</ul>
+</li>
+<li>步骤<ul>
+<li>打开百度url driver.get(“<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;/">http://www.baidu.com&quot;</a>)</li>
+<li>设置cookie信息： driver.add_cookie({“name”:”BDUSS”,”value”:”根据实际情况编写”})</li>
+<li>暂停2秒以上</li>
+<li>刷新操作 </li>
+</ul>
+</li>
+<li>注意 <ul>
+<li>以上百度BDUSS所需格式为百度网站特有，别的网站请自行测试</li>
+<li>必须进行刷新操作</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/UI%E8%87%AA%E5%8A%A8%E5%8C%96/">UI自动化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/12/Pipenv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pipenv虚拟环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/01/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B02/">
+                        <span class="hidden-mobile">UI自动化学习笔记（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="padding-top: 10px;font-size: 90%; color: #8d8d8d; font-weight: bolder;"> Copyright &copy; 2021 <a href="https://github.com/CrDym" target="_blank">Rock</a> All Right Reserved. </div> <div style="padding-top: 10px;"> 由 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"> <b>Hexo</b> </a> 强力驱动｜主题 - <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b> </a> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020037001号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0701f0aef134b057f3efbc04d4d57756";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="什么是PipenvPipenv是python官方推荐的虚拟环境管理工具，可以把它当作是virtualenv，pip，pyenv三者的集合工具，类似于npm和composer。它能够自动为项目创建和管理虚拟环境，从 Pipfile 文件中添加或者删除包，同时生成 Pipfile.lock 文件来锁定安装包的版本和依赖信息，避免构建错误。
+pipenv 主要解决了以下问题：
+
+不用再单独使用 virt">
+  <meta name="author" content="RockChe">
+  <meta name="keywords" content="">
+  
+  <title>Pipenv虚拟环境 - RockChe&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rock's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Pipenv虚拟环境">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-12 16:12" pubdate>
+        2021年5月12日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Pipenv虚拟环境</h1>
+            
+            <div class="markdown-body">
+              <h1 id="什么是Pipenv"><a href="#什么是Pipenv" class="headerlink" title="什么是Pipenv"></a>什么是Pipenv</h1><p>Pipenv是python官方推荐的虚拟环境管理工具，可以把它当作是virtualenv，pip，pyenv三者的集合工具，类似于npm和composer。<br>它能够自动为项目创建和管理虚拟环境，从 Pipfile 文件中添加或者删除包，同时生成 Pipfile.lock 文件来锁定安装包的版本和依赖信息，避免构建错误。</p>
+<p>pipenv 主要解决了以下问题：</p>
+<ul>
+<li>不用再单独使用 virtualenv、pyenv 和 pip 了，现在它们结合到了一起。</li>
+<li>不用再维护 requirement.txt 了，使用 Pipfile 和 Pipfile.lock 来代替。</li>
+<li>可以在开发环境使用多个 python 版本。</li>
+<li>在安装的 pyenv 条件下，可以自动安装需要的 python 版本。</li>
+<li>安全，广泛地使用 Hash 校验，能够自动曝露安全漏洞。</li>
+<li>随时查看图形化的依赖关系。</li>
+<li>可通过自动加载 .env 读取环境变量，简化开发流程。<span id="more"></span></li>
+</ul>
+<h1 id="安装-pipenv"><a href="#安装-pipenv" class="headerlink" title="安装 pipenv"></a>安装 pipenv</h1><h2 id="MacOS下使用pip安装"><a href="#MacOS下使用pip安装" class="headerlink" title="MacOS下使用pip安装"></a>MacOS下使用pip安装</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ pip install --user pipenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>这个命令在用户级别（非系统全局）下安装 pipenv。如果安装后 shell 提示找不到 pipenv 命令，你需要添加当前 Python 用户主目录的 bin 目录到 PATH 环境变量。如果你不知道 Python 用户主目录在哪里，用下面的命令来查看：</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ python -m site --user-base<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>输出如下<br><img src="https://img.rockche.cn/mweb/16216670258674.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="MacOS下使用brew安装"><a href="#MacOS下使用brew安装" class="headerlink" title="MacOS下使用brew安装"></a>MacOS下使用brew安装</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ brew install pipenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h1 id="Pipenv常用命令"><a href="#Pipenv常用命令" class="headerlink" title="Pipenv常用命令"></a>Pipenv常用命令</h1><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">$ pipenv
+Usage: pipenv [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --where          显示项目文件所在路径
+  --venv           显示虚拟环境实际文件所在路径
+  --py             显示虚拟环境Python解释器所在路径
+  --envs           显示虚拟环境的选项变量
+  --rm             删除虚拟环境
+  --bare           最小化输出
+  --completion     完整输出
+  --man            显示帮助页面
+  --three &#x2F; --two  使用Python 3&#x2F;2创建虚拟环境（注意本机已安装的Python版本）
+  --python TEXT    指定某个Python版本作为虚拟环境的安装源
+  --site-packages  附带安装原Python解释器中的第三方库
+  --jumbotron      An easter egg, effectively.
+  --version        版本信息
+  -h, --help       帮助信息
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Commands:
+  check      检查安全漏洞
+  graph      显示当前依赖关系图信息
+  install    安装虚拟环境或者第三方库
+  lock       锁定并生成Pipfile.lock文件
+  open       在编辑器中查看一个库
+  run        在虚拟环境中运行命令
+  shell      进入虚拟环境
+  uninstall  卸载一个库
+  update     卸载当前所有的包，并安装它们的最新版本<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h1 id="pipenv-使用"><a href="#pipenv-使用" class="headerlink" title="pipenv 使用"></a>pipenv 使用</h1><h2 id="创建环境，安装指定版本的python"><a href="#创建环境，安装指定版本的python" class="headerlink" title="创建环境，安装指定版本的python"></a>创建环境，安装指定版本的python</h2><p>首先需要看一下当前目录是否已经创建了虚拟环境，使用如下命令</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">$ pipenv -venv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>结果如下<br><img src="https://img.rockche.cn/mweb/16216685349589.jpg" srcset="/img/loading.gif" lazyload><br>这说明当前的项目没有创建虚拟环境，可以使用Pipenv 来创建一个虚拟环境：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">$ pipenv –three<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>如果指定了 –two 或者 –three 选项参数，则会使用 python2 或者 python3 的版本安装，否则将使用默认的 python 版本来安装。当然也可以指定准确的版本信息：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">$ pipenv install --python 3
+$ pipenv install --python 3.8
+$ pipenv install --python 2.7.14<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p>pipenv 会自动扫描系统寻找合适的版本信息，如果找不到的话，同时又安装了 pyenv 的话，则会自动调用 pyenv 下载对应版本的 python， 否则会报错。</p>
+<p>这时候在当前项目根目录下会生成 Pipfile 和 Pipfile.lock 两个环境初始化文件</p>
+<h2 id="进入-退出环境"><a href="#进入-退出环境" class="headerlink" title="进入|退出环境"></a>进入|退出环境</h2><p> 进入环境<br><code>pipenv shell</code><br> 退出环境<br><code>exit</code></p>
+<h2 id="安装第三方包"><a href="#安装第三方包" class="headerlink" title="安装第三方包"></a>安装第三方包</h2><p>测试安装 selenium 包</p>
+<p><code>pipenv install selenium</code></p>
+<p>此时，Pipfile 里有最新安装的包文件的信息，如名称、版本等。用来在重新安装项目依赖或与他人共享项目时，你可以用 Pipfile 来跟踪项目依赖。</p>
+<p>Pipfile 是用来替代原来的 requirements.txt 的，内容类似下面这样。source 部分用来设置仓库地址，packages 部分用来指定项目依赖的包，dev-packages 部分用来指定开发环境需要的包，这样分开便于管理。</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ cat Pipfile
+
+[[source]]
+name &#x3D; &quot;pypi&quot;
+url &#x3D; &quot;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;&quot;
+verify_ssl &#x3D; true
+
+
+[packages]
+urllib3 &#x3D; &quot;*&quot;
+selenium &#x3D; &quot;*&quot;
+
+[dev-packages]
+
+[requires]
+python_version &#x3D; &quot;3.8&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>Pipfile.lock 则包含你的系统信息，所有已安装包的依赖包及其版本信息，以及所有安装包及其依赖包的 Hash 校验信息。</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ Pipfile.lock
+&#123;
+    &quot;_meta&quot;: &#123;
+        &quot;hash&quot;: &#123;
+            &quot;sha256&quot;: &quot;b02856f549692af24a14f79bfe022df973a9ea09ddfb4cbf7c7ecab5248ac322&quot;
+        &#125;,
+        &quot;pipfile-spec&quot;: 6,
+        &quot;requires&quot;: &#123;
+            &quot;python_version&quot;: &quot;3.8&quot;
+        &#125;,
+        &quot;sources&quot;: [
+            &#123;
+                &quot;name&quot;: &quot;pypi&quot;,
+                &quot;url&quot;: &quot;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;&quot;,
+                &quot;verify_ssl&quot;: true
+            &#125;
+        ]
+    &#125;,
+    &quot;default&quot;: &#123;
+        &quot;selenium&quot;: &#123;
+            &quot;hashes&quot;: [
+                &quot;sha256:2d7131d7bc5a5b99a2d9b04aaf2612c411b03b8ca1b1ee8d3de5845a9be2cb3c&quot;,
+                &quot;sha256:deaf32b60ad91a4611b98d8002757f29e6f2c2d5fcaf202e1c9ad06d6772300d&quot;
+            ],
+            &quot;index&quot;: &quot;pypi&quot;,
+            &quot;version&quot;: &quot;&#x3D;&#x3D;3.141.0&quot;
+        &#125;,
+        &quot;urllib3&quot;: &#123;
+            &quot;hashes&quot;: [
+                &quot;sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df&quot;,
+                &quot;sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937&quot;
+            ],
+            &quot;index&quot;: &quot;pypi&quot;,
+            &quot;version&quot;: &quot;&#x3D;&#x3D;1.26.4&quot;
+        &#125;
+    &#125;,
+    &quot;develop&quot;: &#123;&#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>那么Pipfile 和 Pipfile.lock 有什么用呢？<br>Pipfile 其实一个 TOML 格式的文件，标识了该项目依赖包的基本信息，还区分了生产环境和开发环境的包标识，作用上类似 requirements.txt 文件，但是功能更为强大。<br>Pipfile.lock 详细标识了该项目的安装的包的精确版本信息、最新可用版本信息和当前库文件的 hash 值，顾明思义，它起了版本锁的作用。<br>可以注意到当前 Pipfile.lock 文件中的 Selenium 版本标识为 ==3.141.0，意思是当前我们开发时使用的就是 3.141.0版本，它可以起到版本锁定的功能。</p>
+<p>举个例子，刚才我们安装了 Selenium 3.141.0 的版本，即目前（2021.5.22）的最新版本。但可能 Selenium 以后还会有更新，比如某一天 Selenium 更新到了 3.2 版本，这时如果我们想要重新部署本项目到另一台机器上，假如此时不存在 Pipfile.lock 文件，只存在 Pipfile文件，由于 Pipfile 文件中标识的 Selenium 依赖为 selenium= “*”，即没有版本限制，它会默认安装最新版本的 Selenium，即 3.2，但由于 Pipfile.lock 文件的存在，它会根据 Pipfile.lock 来安装，还是会安装 Selenium 3.141.0，这样就会避免一些库版本更新导致不兼容的问题。</p>
+<h2 id="安装指定版本包"><a href="#安装指定版本包" class="headerlink" title="安装指定版本包"></a>安装指定版本包</h2><p><code>pipenv install selenium==3.141.0 </code></p>
+<h2 id="安装开发环境下的包"><a href="#安装开发环境下的包" class="headerlink" title="安装开发环境下的包"></a>安装开发环境下的包</h2><p>通常有一些Python包只在你的开发环境中需要，而不是在生产环境中，例如单元测试包。 加 –dev 表示包括 Pipfile 的 dev-packages 中的依赖。</p>
+<p><code>pipenv install unittest --dev</code></p>
+<p>django库现在将只在开发虚拟环境中使用。如果你要在你的生产环境中安装你的项目：</p>
+<p><code>pipenv install</code></p>
+<p>这不会安装unittest包。<br>但是，如果有一个开发人员将你的项目克隆到自己的开发环境中，他们可以使用–dev标志，将django也安装：</p>
+<p><code>pipenv install –dev</code></p>
+<p>也就是说一个–dev参数，帮你在同一个虚拟环境中又区分出了开发和非开发环境</p>
+<h2 id="卸载第三方包"><a href="#卸载第三方包" class="headerlink" title="卸载第三方包"></a>卸载第三方包</h2><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pipenv uninstall selenium &#x2F;&#x2F;或者 pipenv uninstall --all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h2 id="更新安装包"><a href="#更新安装包" class="headerlink" title="更新安装包"></a>更新安装包</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">pipenv update selenium 
+pipenv update # 更新所有安装包<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h2 id="查看虚拟环境目录"><a href="#查看虚拟环境目录" class="headerlink" title="查看虚拟环境目录"></a>查看虚拟环境目录</h2><p><code>$ pipenv --venv</code></p>
+<h2 id="查看项目根目录"><a href="#查看项目根目录" class="headerlink" title="查看项目根目录"></a>查看项目根目录</h2><p><code>$ pipenv --where</code></p>
+<h2 id="检查软件包的完整性"><a href="#检查软件包的完整性" class="headerlink" title="检查软件包的完整性"></a>检查软件包的完整性</h2><p><code>$  pipenv check</code></p>
+<h2 id="生成Pipfile-lock"><a href="#生成Pipfile-lock" class="headerlink" title="生成Pipfile.lock"></a>生成Pipfile.lock</h2><p>有时候可能 Pipfile.lock 文件不存在或被删除了，可以使用如下命令生成：<br><code>$ pipenv lock</code></p>
+<h2 id="修改Pipenv下载源"><a href="#修改Pipenv下载源" class="headerlink" title="修改Pipenv下载源"></a>修改Pipenv下载源</h2><p>在使用pipenv install安装的过程中如果下载比较慢可以在pipfile文件中指定下载源：</p>
+<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[[source]]
+name &#x3D; &quot;pypi&quot;
+url &#x3D; &quot;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;&quot;
+verify_ssl &#x3D; true
+
+
+[packages]
+urllib3 &#x3D; &quot;*&quot;
+selenium &#x3D; &quot;*&quot;
+
+[dev-packages]
+
+[requires]
+python_version &#x3D; &quot;3.8&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p>Pip下载源</p>
+<ul>
+<li>阿里: <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a></li>
+<li>豆瓣: <a target="_blank" rel="noopener" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a></li>
+<li>清华: <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></li>
+</ul>
+<h2 id="查看依赖树"><a href="#查看依赖树" class="headerlink" title="查看依赖树"></a>查看依赖树</h2><p><code>$ pipenv graph</code><br><img src="https://img.rockche.cn/mweb/16216706361891.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="锁定版本"><a href="#锁定版本" class="headerlink" title="锁定版本"></a>锁定版本</h2><p>更新 lock 文件锁定当前环境的依赖版本</p>
+<p><code>$ pipenv lock</code></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015389565">Pipenv – 超好用的 Python 包管理工具</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1739844">PyCharm+Pipenv虚拟环境开发和依赖管理的教程详解</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python%E5%AD%A6%E4%B9%A0/">Python学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/16/Pytest1-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pytest1-快速入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/">
+                        <span class="hidden-mobile">UI自动化学习笔记（三）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="padding-top: 10px;font-size: 90%; color: #8d8d8d; font-weight: bolder;"> Copyright &copy; 2021 <a href="https://github.com/CrDym" target="_blank">Rock</a> All Right Reserved. </div> <div style="padding-top: 10px;"> 由 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"> <b>Hexo</b> </a> 强力驱动｜主题 - <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b> </a> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020037001号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0701f0aef134b057f3efbc04d4d57756";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

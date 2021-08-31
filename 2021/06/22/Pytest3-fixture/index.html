@@ -1,0 +1,880 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="前言个人认为，fixture是pytest最精髓的地方，也是学习pytest必会的知识点。
+fixture用途
+用于执行测试前后的初始化操作，比如打开浏览器、准备测试数据、清除之前的测试数据等等
+用于测试用例的前置条件，比如UI自动化的登录操作，读取config参数等
+用于测试用例之间的参数和数据传递
+
+fixture优势firture相对于unittest中的setup和teardown来说应该">
+  <meta name="author" content="RockChe">
+  <meta name="keywords" content="">
+  
+  <title>Pytest3-fixture - RockChe&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rock's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Pytest3-fixture">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-22 23:45" pubdate>
+        2021年6月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Pytest3-fixture</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>个人认为，fixture是pytest最精髓的地方，也是学习pytest必会的知识点。</p>
+<h1 id="fixture用途"><a href="#fixture用途" class="headerlink" title="fixture用途"></a>fixture用途</h1><ul>
+<li>用于执行测试前后的初始化操作，比如打开浏览器、准备测试数据、清除之前的测试数据等等</li>
+<li>用于测试用例的前置条件，比如UI自动化的登录操作，读取config参数等</li>
+<li>用于测试用例之间的参数和数据传递</li>
+</ul>
+<h1 id="fixture优势"><a href="#fixture优势" class="headerlink" title="fixture优势"></a>fixture优势</h1><p>firture相对于<code>unittest</code>中的setup和teardown来说应该有以下几点优势</p>
+<ul>
+<li>命名方式更加的灵活，不局限于setup和teardown</li>
+<li>conftest.py 配置里可以实现数据共享，不需要import就能自动找到一些配置</li>
+<li>scope=”module” 可以实现多个.py跨文件共享前置, 每一个.py文件调用一次</li>
+<li>scope=”session” 以实现多个.py跨文件使用一个session来完成多个用例</li>
+</ul>
+<h1 id="fixture语法"><a href="#fixture语法" class="headerlink" title="fixture语法"></a>fixture语法</h1><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">fixture<span class="token punctuation">(</span>callable_or_scope<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> scope<span class="token operator">=</span><span class="token string">"function"</span><span class="token punctuation">,</span> params<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> autouse<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> ids<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<ul>
+<li><p>scope：fixture的作用域，默认为function</p>
+</li>
+<li><p>autouse：默认为False，表示需要用例手动调用该fixture；当为True时，表示所有作用域内的测试用例都会自动调用该fixture</p>
+</li>
+<li><p>name：装饰器的名称，同一模块的fixture相互调用建议使用不同的name</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="fixture定义"><a href="#fixture定义" class="headerlink" title="fixture定义"></a>fixture定义</h1><p>fixture通过<code>@pytest.fixture()</code>装饰器装饰一个函数，这个函数就是一个fixture，实例如下：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># test_fixture.py</span>
+
+<span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"一个fixture"</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_fixture</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例执行时调用了&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    pytest<span class="token punctuation">.</span>main<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'-v'</span><span class="token punctuation">,</span> <span class="token string">'test_fixture.py'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>执行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210622175407924.png" srcset="/img/loading.gif" lazyload alt="image-20210622175407924"></p>
+<h1 id="fixture调用"><a href="#fixture调用" class="headerlink" title="fixture调用"></a>fixture调用</h1><p>调用fixture有三种方式</p>
+<ul>
+<li>fixture名字作为用例函数的参数</li>
+<li>使用@pytest.mark.usefixtures(‘fixture名称’)装饰器</li>
+<li>使用autouse参数</li>
+</ul>
+<h2 id="fixture名字作为用例函数的参数"><a href="#fixture名字作为用例函数的参数" class="headerlink" title="fixture名字作为用例函数的参数"></a>fixture名字作为用例函数的参数</h2><p>将fixture名称作为参数传入测试用例，如果fixture有返回值，那么测试用例将会接收返回值</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">'打开浏览器'</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_fixture</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例的时候，先&#123;&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">TestFixture</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_fixture_class</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例的时候，先 "&#123;&#125;"'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>执行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210622180857595.png" srcset="/img/loading.gif" lazyload alt="image-20210622180857595"></p>
+<h2 id="使用-pytest-mark-usefixtures-‘fixture名称’-装饰器"><a href="#使用-pytest-mark-usefixtures-‘fixture名称’-装饰器" class="headerlink" title="使用@pytest.mark.usefixtures(‘fixture名称’)装饰器"></a>使用@pytest.mark.usefixtures(‘fixture名称’)装饰器</h2><p>每个函数或者类前使用@pytest.mark.usefixtures(‘fixture名称’)装饰器装饰</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行fixture'</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fixtureDemo'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">test_fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例'</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fixtureDemo'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">TestFixture</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_fixture_class</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例'</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>执行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210622220259171.png" srcset="/img/loading.gif" lazyload alt="image-20210622220259171"></p>
+<h2 id="使用autouse参数"><a href="#使用autouse参数" class="headerlink" title="使用autouse参数"></a>使用autouse参数</h2><p>指定fixture的参数autouse=True，这样同一作用域的每个测试用例会自动调用fixture，autouse为False时，需要手动调用fixture</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>autouse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行fixture'</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">def</span> <span class="token function">test_fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">TestFixture</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_fixture_class</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>执行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210622220821598.png" srcset="/img/loading.gif" lazyload alt="image-20210622220821598"></p>
+<h2 id="三种方式的区别"><a href="#三种方式的区别" class="headerlink" title="三种方式的区别"></a>三种方式的区别</h2><p>以上便是fixture的三种调用方式，那么这三种方式有何不同呢，观察🌰，可以看出：</p>
+<p>如果在测试用例中需要使用到fixture中返回的参数，就只能使用第一种调用方式了，因为fixture中返回的数据是默认在fixture名字中存储的。</p>
+<h1 id="fixture作用范围"><a href="#fixture作用范围" class="headerlink" title="fixture作用范围"></a>fixture作用范围</h1><p>fixture参数中的<code>scope</code>参数可以控制fixture的作用范围，scope参数可以是session， module，class，function， 默认为function</p>
+<ul>
+<li>session 会话级别：是多个文件调用一次，可以跨.py文件调用，每个.py文件就是module（通常配合conftest.py文件使用）；</li>
+<li>module 模块级别：模块里所有的用例执行前执行一次module级别的fixture；</li>
+<li>class 类级别 ：每个类执行前都会执行一次class级别的fixture；</li>
+<li>function  函数级别：每个测试用例执行前都会执行一次function级别的fixture（前面的🌰）</li>
+</ul>
+<p><strong>说明：当 fixture 有返回值时，pytest 会把返回值缓存起来，如果 fixture 在指定的作用域内被多次调用，只有第一次调用会真正的被执行，后续调用会使用被缓存起来的返回值，而不是再执行一遍；</strong></p>
+<p>下面我们通过实例来对fixture的作用范围进行了解</p>
+<h2 id="function级别"><a href="#function级别" class="headerlink" title="function级别"></a>function级别</h2><p>每个测试用例之前运行一次</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"fixture"</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_01</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例1执行时调用了&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">test_02</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试用例2执行时调用了&#123;&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>运行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623000220362.png" srcset="/img/loading.gif" lazyload alt="image-20210623000220362"></p>
+<h2 id="class级别"><a href="#class级别" class="headerlink" title="class级别"></a>class级别</h2><p>如果一个class里面有多个用例，都调用了此fixture，那么fixture只在此class里所有用例开始前执行一次</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">"class"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行fixture'</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fixtureDemo'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">TestFixture</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_01</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例1'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">test_02</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例2'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>运行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623001002710.png" srcset="/img/loading.gif" lazyload alt="image-20210623001002710"></p>
+<h2 id="module级别"><a href="#module级别" class="headerlink" title="module级别"></a>module级别</h2><p>在当前.py脚本里面所有用例开始前只执行一次</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">"module"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行fixture'</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fixtureDemo'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">test_01</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"执行测试用例1"</span><span class="token punctuation">)</span>
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fixtureDemo'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">TestFixture</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">test_02</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例2'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">test_03</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'在类中执行测试用例3'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>运行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623003645546.png" srcset="/img/loading.gif" lazyload alt="image-20210623003645546"></p>
+<h2 id="session级别"><a href="#session级别" class="headerlink" title="session级别"></a>session级别</h2><p>session级别是可以跨模块调用的，如果多个模块下的用例只需调用一次fixture，可以设置scope=”session”，并且写到conftest.py文件里。</p>
+<p>conftest.py作用域：放到项目的根目录下就可以全局调用了，如果放到某个package下，那就在该package内有效。</p>
+<p>conftest.py的fixture调用方式，无需导入，直接使用</p>
+<p>举个🌰：</p>
+<p>先新建一个conftest.py文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixturedemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"执行fixture"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p>test_01.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_01</span><span class="token punctuation">(</span>fixturedemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>test_02.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test_02</span><span class="token punctuation">(</span>fixturedemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例2'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>在当前目录中使用命令 <code>pytest -v -s</code> 执行，结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623143540941.png" srcset="/img/loading.gif" lazyload alt="image-20210623143540941"></p>
+<p>可以看到，在执行不同模块中的测试用例前，都调用了fixture</p>
+<h2 id="案例说明"><a href="#案例说明" class="headerlink" title="案例说明"></a>案例说明</h2><p>看完有点懵？我们再用一个🌰来看看</p>
+<p>在3个测试方法中同时调用4个级别的fixture来看看效果</p>
+<p>先新建一个conftest.py文件</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token comment"># 作用域 function</span>
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">'function'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fix_func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'方法级：fix_func'</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 作用域 class</span>
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">'class'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fix_class</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'类级：fix_class'</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 作用域 module</span>
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">'module'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fix_module</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'模块级：fix_module'</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 作用域 session</span>
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">'session'</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fix_session</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'会话级：fix_session'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>test_demo.py</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token keyword">class</span> <span class="token class-name">TestClass_1</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""测试类1"""</span>
+
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_func'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_class'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_module'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_session'</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">test_func_1</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""测试方法1"""</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试方法1"</span><span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_func'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_class'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_module'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_session'</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">test_func_2</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""测试方法2"""</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试方法2"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">TestClass_2</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""测试类2"""</span>
+
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_func'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_class'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_module'</span><span class="token punctuation">)</span>
+    <span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>mark<span class="token punctuation">.</span>usefixtures</span><span class="token punctuation">(</span><span class="token string">'fix_session'</span><span class="token punctuation">)</span>
+    <span class="token keyword">def</span> <span class="token function">test_func_3</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""测试方法3"""</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"测试方法3"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>执行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623153946395.png" srcset="/img/loading.gif" lazyload alt="image-20210623153946395"></p>
+<p>观察运行结果，我们可以发现：</p>
+<blockquote>
+<ul>
+<li><p>test_func_1 的调用全部被执行了；</p>
+</li>
+<li><p>test_func_2 的调用只有 function 级的被执行，因为 test_func_2 和 test_func_1 同属于同一个 session、module、class，所以这三个都不执行，只有 function 执行；</p>
+</li>
+<li><p>test_func_3 的调用执行了类级和方法级，因为 test_func_3 属于 另外一个类，所以 class 级会被再次调用</p>
+</li>
+</ul>
+</blockquote>
+<h1 id="fixture关键字yield"><a href="#fixture关键字yield" class="headerlink" title="fixture关键字yield"></a>fixture关键字yield</h1><p>前面讲的是在用例前加前置条件，相当于setup,那么类似teardown的功能如何使用fixture实现呢，我们可以使用yield关键字</p>
+<p>yield关键字的作用其实和函数中的return关键字差不多，可以返回数据给调用者，唯一的不同是当函数执行遇到yield时，会停止执行，然后执行调用处的函数，调用的函数执行完后会继续执行yield关键后面的代码</p>
+<h2 id="yield实现teardown"><a href="#yield实现teardown" class="headerlink" title="yield实现teardown"></a>yield实现teardown</h2><p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">"module"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行fixture'</span><span class="token punctuation">)</span>
+    <span class="token keyword">yield</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行teardown操作'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_01</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例1'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_02</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例2'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>运行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623151242016.png" srcset="/img/loading.gif" lazyload alt="image-20210623151242016"></p>
+<h2 id="yield遇到异常"><a href="#yield遇到异常" class="headerlink" title="yield遇到异常"></a>yield遇到异常</h2><p>如果多个用例运行时，有一个用例出现异常，不会影响yield后面的代码执行 , 运行结果互不影响，当全部用例执行完之后，yield后面的代码会正常执行</p>
+<p>举个🌰：</p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pytest
+
+
+<span class="token decorator annotation punctuation">@pytest<span class="token punctuation">.</span>fixture</span><span class="token punctuation">(</span>scope<span class="token operator">=</span><span class="token string">"module"</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">fixtureDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行fixture'</span><span class="token punctuation">)</span>
+    <span class="token keyword">yield</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行teardown操作'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_01</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例1'</span><span class="token punctuation">)</span>
+    <span class="token keyword">raise</span> NameError <span class="token comment"># 模拟异常</span>
+
+
+<span class="token keyword">def</span> <span class="token function">test_02</span><span class="token punctuation">(</span>fixtureDemo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'执行测试用例2'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p>运行结果如下：</p>
+<p><img src="https://img.rockche.cn//image-20210623151912711.png" srcset="/img/loading.gif" lazyload alt="image-20210623151912711"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python%E5%AD%A6%E4%B9%A0/">Python学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Pytest/">Pytest</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/24/Pytest4-assert%E6%96%AD%E8%A8%80/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Pytest4-assert断言</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/21/Pytest2-setup%E5%92%8Cteardown/">
+                        <span class="hidden-mobile">Pytest2-setup和teardown</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="padding-top: 10px;font-size: 90%; color: #8d8d8d; font-weight: bolder;"> Copyright &copy; 2021 <a href="https://github.com/CrDym" target="_blank">Rock</a> All Right Reserved. </div> <div style="padding-top: 10px;"> 由 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"> <b>Hexo</b> </a> 强力驱动｜主题 - <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b> </a> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020037001号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0701f0aef134b057f3efbc04d4d57756";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

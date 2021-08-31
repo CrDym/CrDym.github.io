@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="主流的自动化测试工具
+QTP
+QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试
+
+
+Selenium
+Selenium是一个开源的web自动化测试工具，免费
+
+
+Robot framework
+Robot framework是一个基于Python可扩展的关键字驱动的测试自动化框架（基本上已被淘汰）
+
+
+Airtest
+Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
+  <meta name="author" content="RockChe">
+  <meta name="keywords" content="">
+  
+  <title>UI自动化学习笔记（一） - RockChe&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rock's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="UI自动化学习笔记（一）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-31 22:28" pubdate>
+        2021年3月31日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">UI自动化学习笔记（一）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="主流的自动化测试工具"><a href="#主流的自动化测试工具" class="headerlink" title="主流的自动化测试工具"></a>主流的自动化测试工具</h1><ul>
+<li>QTP<ul>
+<li>QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试</li>
+</ul>
+</li>
+<li>Selenium<ul>
+<li>Selenium是一个开源的web自动化测试工具，免费</li>
+</ul>
+</li>
+<li>Robot framework<ul>
+<li>Robot framework是一个基于Python可扩展的关键字驱动的测试自动化框架（基本上已被淘汰）</li>
+</ul>
+</li>
+<li>Airtest<ul>
+<li>Airtest是网易公司的基于图像识别的UI自动化测试工具，多用于测试手机游戏，也可以用于APP、小程序测试</li>
+</ul>
+</li>
+</ul>
+<h1 id="Selenium特点"><a href="#Selenium特点" class="headerlink" title="Selenium特点"></a>Selenium特点</h1><ul>
+<li>开源</li>
+<li>跨平台：Linux、windows、Mac</li>
+<li>支持多种浏览器：Firefox、Chrome、IE、Edge、Opera、Safari等</li>
+<li>支持多种语言：java、python、C#、Javascript、Ruby、Php等</li>
+<li>成熟稳定</li>
+<li>功能强大<span id="more"></span></li>
+</ul>
+<h1 id="Selenium的发展"><a href="#Selenium的发展" class="headerlink" title="Selenium的发展"></a>Selenium的发展</h1><ul>
+<li>Selenium1.0<ul>
+<li>seleniumIDE      </li>
+<li>seleniumGrid       </li>
+<li>seleniumRC</li>
+</ul>
+</li>
+<li>Selenium2.0    <ul>
+<li>Selenium1.0+WebDriver</li>
+</ul>
+</li>
+<li>Selenium3.0<ul>
+<li>弃掉了seleniumRC</li>
+<li>全面拥抱java8</li>
+<li>支持MacOS</li>
+<li>通过Mozilla官方的geckodriver来支持firefox</li>
+</ul>
+</li>
+</ul>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装selenium"><a href="#安装selenium" class="headerlink" title="安装selenium"></a>安装selenium</h2><ul>
+<li>安装 pip install selenium</li>
+<li>查看 pip show selenium</li>
+<li>卸载 pip uninstall selenium</li>
+<li>指定版本安装 pip install selenium==版本号</li>
+<li>推荐使用python3.5以上版本</li>
+</ul>
+<h2 id="安装浏览器驱动"><a href="#安装浏览器驱动" class="headerlink" title="安装浏览器驱动"></a>安装浏览器驱动</h2><ul>
+<li>火狐<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mozilla/geckodriver/releases/">https://github.com/mozilla/geckodriver/releases/</a></li>
+</ul>
+</li>
+<li>Chrome<ul>
+<li><a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/index.html">http://chromedriver.storage.googleapis.com/index.html</a></li>
+</ul>
+</li>
+<li>IE<ul>
+<li><a target="_blank" rel="noopener" href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="第一个案例"><a href="#第一个案例" class="headerlink" title="第一个案例"></a>第一个案例</h1><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token comment"># 获取浏览器驱动</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chorme<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 打开url</span>
+dirver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"harp://www.baidu.com"</span><span class="token punctuation">)</span>
+<span class="token comment"># 暂停3秒</span>
+sleep（<span class="token number">3</span>）
+<span class="token comment"># 关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h1 id="8种元素定位方式"><a href="#8种元素定位方式" class="headerlink" title="8种元素定位方式"></a>8种元素定位方式</h1><ul>
+<li>id</li>
+<li>name</li>
+<li>class_name（使用元素的class属性定位）</li>
+<li>tag_name（标签名称&lt;标签名…/&gt;）</li>
+<li>link_text(定位超链接a标签)</li>
+<li>partial_link_text(定位超链接 a标签 模糊)</li>
+<li>Xpath（基于元素定位）</li>
+<li>CSS（元素选择器）</li>
+</ul>
+<p>汇总</p>
+<ol>
+<li>基于元素属性特有定位方式(id\name\class_name)</li>
+<li>基于元素标签名称定位：tag_name</li>
+<li>定位超链接文本(link_text、partial_link_text)</li>
+<li>基于元素路径定位(xpath)</li>
+<li>基于选择器(css)</li>
+</ol>
+<h2 id="id定位"><a href="#id定位" class="headerlink" title="id定位"></a>id定位</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>通过元素的id属性定位，id一般情况下在当前页面中是唯一。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_id<span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>元素必须要有id属性</p>
+<h2 id="name定位"><a href="#name定位" class="headerlink" title="name定位"></a>name定位</h2><h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><p>通过元素的name属性来定位， name一般名称为重复。</p>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">drivr<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span>name）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h3><p>元素须要有name属性 </p>
+<h2 id="class-name定位"><a href="#class-name定位" class="headerlink" title="class_name定位"></a>class_name定位</h2><h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p>通过元素的class属性来定位，class属性一般为多个值。</p>
+<h3 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="提示-2"><a href="#提示-2" class="headerlink" title="提示"></a>提示</h3><p>元素必须要有class属性 </p>
+<h2 id="tag-name定位"><a href="#tag-name定位" class="headerlink" title="tag_name定位"></a>tag_name定位</h2><h3 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h3><p>是通过元素的标签名称来定位，标签名(查看元素时尖括号(&lt;)紧挨着的单词或字母就是标签名)(标签名也就是元素名)</p>
+<h3 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_tag_name<span class="token punctuation">(</span><span class="token string">"标签名"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>如果页面中存在多个相同标签，默认返回第一个标签元素。</p>
+<h2 id="link-text定位"><a href="#link-text定位" class="headerlink" title="link_text定位"></a>link_text定位</h2><h3 id="说明-4"><a href="#说明-4" class="headerlink" title="说明"></a>说明</h3><p>定位超链接标签</p>
+<h3 id="方法-4"><a href="#方法-4" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_link_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>link_text:只能使用精准匹配(a标签的全部文本内容)</p>
+<h2 id="partial-link-text【推荐】"><a href="#partial-link-text【推荐】" class="headerlink" title="partial_link_text【推荐】"></a>partial_link_text【推荐】</h2><h3 id="说明-5"><a href="#说明-5" class="headerlink" title="说明"></a>说明</h3><p>定位超链接标签</p>
+<h3 id="方法-5"><a href="#方法-5" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_partial_link_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ol>
+<li>可以使用精准或模糊匹配，如果使用模糊匹配最好使用能代表唯一的关键词</li>
+<li>如果有多个值，默认返回第一个值</li>
+</ol>
+<h2 id="Xpath定位"><a href="#Xpath定位" class="headerlink" title="Xpath定位"></a>Xpath定位</h2><h3 id="Xpath常用的定位策略"><a href="#Xpath常用的定位策略" class="headerlink" title="Xpath常用的定位策略"></a>Xpath常用的定位策略</h3><ol>
+<li>路径</li>
+</ol>
+<p>1). 绝对路径：<br>语法：以单斜杠开头逐级开始编写，不能跳级。如：/html/body/div/p[1]/input<br>2). 相对路径<br>语法：以双斜杠开头，双斜杠后边跟元素名称，不知元素名称可以使用<em>代替。 如： //input //</em><br>2. 路径结合属性<br>语法：在Xpath中，所有的属性必须使用@符号修饰 如：//<em>[@id=’id值’]<br>3. 路径结合逻辑(多个属性)<br>语法：//</em>[@id=”id值” and @属性=’属性值’]<br>4. 路径结合层级<br>语法：//*[@id=’父级id属性值’]/input</p>
+<div class="code-wrapper"><pre><code>    提示：
+        1. 一般见识使用指定标签名称，不使用*代替，效率比较慢。
+        2. 无论是绝对路径和相对路径，/后面必须为元素的名称或者*
+        3. 扩展：在工作中，如果能使用相对路径绝对不使用绝对路径。
+</code></pre></div>
+<h3 id="Xpath扩展"><a href="#Xpath扩展" class="headerlink" title="Xpath扩展"></a>Xpath扩展</h3><div class="code-wrapper"><pre><code>    1. //*[text()=&#39;XXX&#39;] # 定位文本值等于XXX的元素  
+        提示：一般适合 p标签，a标签 
+    2. //*[contains(@属性,&#39;xxx&#39;)] # 定位属性包含xxx的元素 【重点】
+        提示：contains为关键字，不可更改。 
+    3. //*[starts-with(@属性,&#39;xxx&#39;)] # 定位属性以xxx开头的元素
+        提示：starts-with为关键字不可更改    
+</code></pre></div>
+<h2 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h2><h3 id="说明-6"><a href="#说明-6" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>CSS一种标记语言，焦点：数据的样式。控制元素的显示样式，就必须先找到元素，在css标记语言中找元素使用css选择器；</li>
+<li>css定位就是通过css选择器工具进行定位。</li>
+<li>极力推荐使用，查找元素的效率比xpath高，语法比xpath更简单。<h3 id="方法-6"><a href="#方法-6" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="常用测试略："><a href="#常用测试略：" class="headerlink" title="常用测试略："></a>常用测试略：</h3></li>
+<li>id 选择器<br>前提：元素是必须有id属性<br>语法：#id  如：#passwordA</li>
+<li>class 选择器<br>前提：元素是必须有class属性<br>语法：.class  如：.telA</li>
+<li>元素选择器<br>语法：element  如：input</li>
+<li>属性选择器<br>语法：[属性名=属性值]</li>
+<li>层级选择器<br>语法： </li>
+<li>p&gt;input </li>
+<li>p input<br>提示：&gt;与空格的区别，大于号必须为子元素，空格则不用。</li>
+</ol>
+<h3 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h3><ol>
+<li>[属性^=’开头的字母’] # 获取指定属性以指定字母开头的元素</li>
+<li>[属性$=’结束的字母’] # 获取指定属性以指定字母结束的元素</li>
+<li>[属性*=’包含的字母’] # 获取指定属性包含指定字母的元素</li>
+</ol>
+<p>复制xpath:/html/body/form/div/fieldset/p[1]/input<br>复制最简：//*[@id=”userA”]<br>复制CSS路径：html body form div#zc fieldset p#p1 input#userA</p>
+<p>提示： </p>
+<ol>
+<li>虽然借助工具可以快速生成xpath路径和css语法，但是前期不建议使用。</li>
+<li>工具再智能，没有人智能。</li>
+</ol>
+<h2 id="定位一组元素"><a href="#定位一组元素" class="headerlink" title="定位一组元素"></a>定位一组元素</h2><h3 id="方法-7"><a href="#方法-7" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_elements_by_xxx<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p>返回结果：类型为列表，要对列表进行访问和操作必须指定下标或进行遍历，[下标从0开始]</p>
+<h2 id="扩展8种元素定位的底层实现"><a href="#扩展8种元素定位的底层实现" class="headerlink" title="扩展8种元素定位的底层实现"></a>扩展8种元素定位的底层实现</h2><h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>xxx<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>By.xxx :为By类的类型 如：By.ID<br>value: 元素的定位值 如： “userA”<br>By类：需要导包 位置： from selenium.webdriver.common.by import By</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/UI%E8%87%AA%E5%8A%A8%E5%8C%96/">UI自动化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/19/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%AC%94%E8%AE%B01/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">性能测试笔记（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/25/%E7%BB%99%E5%B0%8F%E5%86%89%E5%86%89%E7%9A%84%E4%BF%A11/">
+                        <span class="hidden-mobile">冉冉你好，欢迎来到这个世界</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="padding-top: 10px;font-size: 90%; color: #8d8d8d; font-weight: bolder;"> Copyright &copy; 2021 <a href="https://github.com/CrDym" target="_blank">Rock</a> All Right Reserved. </div> <div style="padding-top: 10px;"> 由 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"> <b>Hexo</b> </a> 强力驱动｜主题 - <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b> </a> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020037001号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0701f0aef134b057f3efbc04d4d57756";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

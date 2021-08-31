@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="RockChe 的个人博客，记录生活、学习">
+  <meta name="author" content="RockChe">
+  <meta name="keywords" content="">
+  
+  <title>Linux2-测试常用命令 - RockChe&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rock's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux2-测试常用命令">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-19 22:12" pubdate>
+        2021年7月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux2-测试常用命令</h1>
+            
+            <div class="markdown-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们知道 Linux 下有非常多的命令，我们可以通过这些命令在 Shell 环境下与机器进行交互，那么 Linux 下有多少资源可以供我们调度呢？其实是非常多的，但所有资源都可以分为三大类型。</p>
+<blockquote>
+<p>文件：Everything is file；</p>
+<p>进程：文件的运行形态</p>
+<p>网络：特殊的文件</p>
+</blockquote>
+<p>下面我们就来看看有哪些测试常用的命令吧</p>
+<h2 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a>cd命令</h2><h3 id="进入上级目录"><a href="#进入上级目录" class="headerlink" title="进入上级目录"></a>进入上级目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token punctuation">..</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="进入当前用户主目录"><a href="#进入当前用户主目录" class="headerlink" title="进入当前用户主目录"></a>进入当前用户主目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ～<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="进入根目录"><a href="#进入根目录" class="headerlink" title="进入根目录"></a>进入根目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="进入上两级目录"><a href="#进入上两级目录" class="headerlink" title="进入上两级目录"></a>进入上两级目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="进入当前目录"><a href="#进入当前目录" class="headerlink" title="进入当前目录"></a>进入当前目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="进入指定目录，如-usr-local"><a href="#进入指定目录，如-usr-local" class="headerlink" title="进入指定目录，如/usr/local"></a>进入指定目录，如/usr/local</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="mkdir命令"><a href="#mkdir命令" class="headerlink" title="mkdir命令"></a>mkdir命令</h2><h3 id="新建一个文件夹"><a href="#新建一个文件夹" class="headerlink" title="新建一个文件夹"></a>新建一个文件夹</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="新建多个文件夹"><a href="#新建多个文件夹" class="headerlink" title="新建多个文件夹"></a>新建多个文件夹</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> test1 test2 test3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="新建一个多层级文件夹"><a href="#新建一个多层级文件夹" class="headerlink" title="新建一个多层级文件夹"></a>新建一个多层级文件夹</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p test/rock/good<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="新建一个文件夹并设置权限"><a href="#新建一个文件夹并设置权限" class="headerlink" title="新建一个文件夹并设置权限"></a>新建一个文件夹并设置权限</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -m <span class="token number">777</span> <span class="token builtin class-name">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="mv命令"><a href="#mv命令" class="headerlink" title="mv命令"></a>mv命令</h2><h3 id="移动文件test-py到-usr-local"><a href="#移动文件test-py到-usr-local" class="headerlink" title="移动文件test,py到/usr/local"></a>移动文件test,py到/usr/local</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> test.py  /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="移动文件test-py到-usr-local并重命名为test1-py"><a href="#移动文件test-py到-usr-local并重命名为test1-py" class="headerlink" title="移动文件test,py到/usr/local并重命名为test1.py"></a>移动文件test,py到/usr/local并重命名为test1.py</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> test.py  /usr/local/test1.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="移动文件到上级目录"><a href="#移动文件到上级目录" class="headerlink" title="移动文件到上级目录"></a>移动文件到上级目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> test.py <span class="token punctuation">..</span>/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="移动文件test-py和test2-py到-usr-local"><a href="#移动文件test-py和test2-py到-usr-local" class="headerlink" title="移动文件test.py和test2.py到/usr/local"></a>移动文件test.py和test2.py到/usr/local</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> test.py test2.py -t  /usr/localbash<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="移动文件test-py到-usr-local下，但-usr-local已存在test-py，强制覆盖"><a href="#移动文件test-py到-usr-local下，但-usr-local已存在test-py，强制覆盖" class="headerlink" title="移动文件test.py到/usr/local下，但/usr/local已存在test.py，强制覆盖"></a>移动文件test.py到/usr/local下，但/usr/local已存在test.py，强制覆盖</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> test.py  -f  /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="移动文件test-py到-usr-local下，但-usr-local已存在test-py，询问是否覆盖"><a href="#移动文件test-py到-usr-local下，但-usr-local已存在test-py，询问是否覆盖" class="headerlink" title="移动文件test.py到/usr/local下，但/usr/local已存在test.py，询问是否覆盖"></a>移动文件test.py到/usr/local下，但/usr/local已存在test.py，询问是否覆盖</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mv</span> test.py  -i  /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a>cp命令</h2><h3 id="复制文件test-txt到-usr-local目录"><a href="#复制文件test-txt到-usr-local目录" class="headerlink" title="复制文件test.txt到/usr/local目录"></a>复制文件test.txt到/usr/local目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> test.txt /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="复制文件夹-Test到-usr-local目录"><a href="#复制文件夹-Test到-usr-local目录" class="headerlink" title="复制文件夹 Test到/usr/local目录"></a>复制文件夹 Test到/usr/local目录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> -r Test/ /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="再次复制文件test-txt到-usr-local目录，强制覆盖"><a href="#再次复制文件test-txt到-usr-local目录，强制覆盖" class="headerlink" title="再次复制文件test.txt到/usr/local目录，强制覆盖"></a>再次复制文件test.txt到/usr/local目录，强制覆盖</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> -f test.txt /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="再次复制文件test-txt到-usr-local目录，询问是否强制覆盖"><a href="#再次复制文件test-txt到-usr-local目录，询问是否强制覆盖" class="headerlink" title="再次复制文件test.txt到/usr/local目录，询问是否强制覆盖"></a>再次复制文件test.txt到/usr/local目录，询问是否强制覆盖</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> -i test.txt /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="复制文件tests-txt到-usr-local目录，并把修改时间和访问权限也复制"><a href="#复制文件tests-txt到-usr-local目录，并把修改时间和访问权限也复制" class="headerlink" title="复制文件tests.txt到/usr/local目录，并把修改时间和访问权限也复制"></a>复制文件tests.txt到/usr/local目录，并把修改时间和访问权限也复制</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> -p test.txt /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="history命令"><a href="#history命令" class="headerlink" title="history命令"></a>history命令</h2><h3 id="查看历史命令执行记录"><a href="#查看历史命令执行记录" class="headerlink" title="查看历史命令执行记录"></a>查看历史命令执行记录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">history</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="查看命令mkdir-的历史执行记录"><a href="#查看命令mkdir-的历史执行记录" class="headerlink" title="查看命令mkdir 的历史执行记录"></a>查看命令mkdir 的历史执行记录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">history</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">mkdir</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210720163725599.png" srcset="/img/loading.gif" lazyload alt="image-20210720163725599"></p>
+<h3 id="执行历史记录中，序号为1280的命令"><a href="#执行历史记录中，序号为1280的命令" class="headerlink" title="执行历史记录中，序号为1280的命令"></a>执行历史记录中，序号为1280的命令</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">!</span><span class="token number">1280</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="执行上一条命令"><a href="#执行上一条命令" class="headerlink" title="执行上一条命令"></a>执行上一条命令</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">！！<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="查找最后10条历史记录"><a href="#查找最后10条历史记录" class="headerlink" title="查找最后10条历史记录"></a>查找最后10条历史记录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">history</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>或</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">history</span> <span class="token operator">|</span> <span class="token function">tail</span> -10<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210720164100633.png" srcset="/img/loading.gif" lazyload alt="image-20210720164100633"></p>
+<h3 id="清除历史记录"><a href="#清除历史记录" class="headerlink" title="清除历史记录"></a>清除历史记录</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">history</span> -c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="把历史记录写入文件中"><a href="#把历史记录写入文件中" class="headerlink" title="把历史记录写入文件中"></a>把历史记录写入文件中</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">history</span> -w
+<span class="token function">cat</span> ~/.bash_history<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="tar命令"><a href="#tar命令" class="headerlink" title="tar命令"></a>tar命令</h2><h3 id="压缩一个文件-Test-ini"><a href="#压缩一个文件-Test-ini" class="headerlink" title="压缩一个文件 Test.ini"></a>压缩一个文件 Test.ini</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zcvf Test.tar.gz Test.ini <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="压缩多个文件-Test-ini、-readme-ini"><a href="#压缩多个文件-Test-ini、-readme-ini" class="headerlink" title="压缩多个文件 Test.ini、 readme.ini"></a>压缩多个文件 Test.ini、 readme.ini</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zcvf all.tar.gz Test.ini readme.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="压缩文件夹-Test"><a href="#压缩文件夹-Test" class="headerlink" title="压缩文件夹 Test/"></a>压缩文件夹 Test/</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zcvf Test.tar.gz Test/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="将当前目录，所有jpg文件打包成Testjpg-tar"><a href="#将当前目录，所有jpg文件打包成Testjpg-tar" class="headerlink" title="将当前目录，所有jpg文件打包成Testjpg.tar"></a>将当前目录，所有jpg文件打包成Testjpg.tar</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -cvf Testjpg.tar.gz *.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="将当前目录，所有jpg文件打包成Testjpg-tar-gz"><a href="#将当前目录，所有jpg文件打包成Testjpg-tar-gz" class="headerlink" title="将当前目录，所有jpg文件打包成Testjpg.tar.gz"></a>将当前目录，所有jpg文件打包成Testjpg.tar.gz</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zcvf Testjpg.tar.gz *.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="解压-Testjpg-tar"><a href="#解压-Testjpg-tar" class="headerlink" title="解压 Testjpg.tar"></a>解压 Testjpg.tar</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -xvf Testjpg.tar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="解压-Testjpg-tar-gz"><a href="#解压-Testjpg-tar-gz" class="headerlink" title="解压 Testjpg.tar.gz"></a>解压 Testjpg.tar.gz</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zxvf Testjpg.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a>tail命令</h2><h4 id="实时刷新log"><a href="#实时刷新log" class="headerlink" title="实时刷新log"></a>实时刷新log</h4><div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">tail</span> -f test.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h4 id="实时刷新最新50条log"><a href="#实时刷新最新50条log" class="headerlink" title="实时刷新最新50条log"></a>实时刷新最新50条log</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tail</span> -50f test.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h4 id="显示最后5条log"><a href="#显示最后5条log" class="headerlink" title="显示最后5条log"></a>显示最后5条log</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tail</span> -n <span class="token number">5</span> test.log
+<span class="token function">tail</span> -5 test.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h4 id="显示第5条后面的所有log"><a href="#显示第5条后面的所有log" class="headerlink" title="显示第5条后面的所有log"></a>显示第5条后面的所有log</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tail</span> -n +5 test.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h2><h3 id="列出当前目录中所有的子目录和文件-不包含隐藏文件-开头的"><a href="#列出当前目录中所有的子目录和文件-不包含隐藏文件-开头的" class="headerlink" title="列出当前目录中所有的子目录和文件(不包含隐藏文件 .开头的)"></a>列出当前目录中所有的子目录和文件(不包含隐藏文件 .开头的)</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="列出目录下的所有的子目录和文件（包含隐藏文件-开头的）"><a href="#列出目录下的所有的子目录和文件（包含隐藏文件-开头的）" class="headerlink" title="列出目录下的所有的子目录和文件（包含隐藏文件 .开头的）"></a>列出目录下的所有的子目录和文件（包含隐藏文件 .开头的）</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="列出文件的详细信息（包括权限、所有者、文件大小等）-两种方式"><a href="#列出文件的详细信息（包括权限、所有者、文件大小等）-两种方式" class="headerlink" title="列出文件的详细信息（包括权限、所有者、文件大小等） 两种方式"></a>列出文件的详细信息（包括权限、所有者、文件大小等） 两种方式</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -l
+ll<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h3 id="列出当前目录中所有以“test”开头的详细内容"><a href="#列出当前目录中所有以“test”开头的详细内容" class="headerlink" title="列出当前目录中所有以“test”开头的详细内容"></a>列出当前目录中所有以“test”开头的详细内容</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -l test*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="按文件最后修改时间降序排列显示"><a href="#按文件最后修改时间降序排列显示" class="headerlink" title="按文件最后修改时间降序排列显示"></a>按文件最后修改时间降序排列显示</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -t<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="按文件大小从大到小排序显示"><a href="#按文件大小从大到小排序显示" class="headerlink" title="按文件大小从大到小排序显示"></a>按文件大小从大到小排序显示</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="查看文件时显示文件大小"><a href="#查看文件时显示文件大小" class="headerlink" title="查看文件时显示文件大小"></a>查看文件时显示文件大小</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -l -h
+ll -h<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h2 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h2><h3 id="查看所有进程"><a href="#查看所有进程" class="headerlink" title="查看所有进程"></a>查看所有进程</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -A<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="显示所有进程的详细信息"><a href="#显示所有进程的详细信息" class="headerlink" title="显示所有进程的详细信息"></a>显示所有进程的详细信息</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210721171505481.png" srcset="/img/loading.gif" lazyload alt="image-20210721171505481"></p>
+<p><strong>ps -ef 各个字段含义</strong></p>
+<blockquote>
+<p>UID：表示用户ID</p>
+<p>PID：表示进程ID</p>
+<p>PPID：表示父进程号</p>
+<p>C：表示CPU的占用率</p>
+<p>STIME：进程的启动时间</p>
+<p>TTY：登入者的终端机位置</p>
+<p>TIME：表示进程执行起到现在总的CPU占用时间</p>
+<p>CMD：表示启动这个进程的命令</p>
+</blockquote>
+<h3 id="查找特定进程"><a href="#查找特定进程" class="headerlink" title="查找特定进程"></a>查找特定进程</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="显示所有进程更详细的信息，包括进程占用CPU、内存使用率"><a href="#显示所有进程更详细的信息，包括进程占用CPU、内存使用率" class="headerlink" title="显示所有进程更详细的信息，包括进程占用CPU、内存使用率"></a>显示所有进程更详细的信息，包括进程占用CPU、内存使用率</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -aux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210721172209531.png" srcset="/img/loading.gif" lazyload alt="image-20210721172209531"></p>
+<p><strong>ps -aux 各个字段含义</strong></p>
+<blockquote>
+<p>USER：表示哪个用户启动了这个进程</p>
+<p>PID ：进程ID</p>
+<p>%CPU：进程CPU的占用率</p>
+<p>%MEM：进程物理内存的占用率</p>
+<p>VSZ ：进程占用的虚拟内存量 (Kbytes)</p>
+<p>RSS ：进程当前实际上占用了多少内存</p>
+<p>TTY ：进程是在哪个终端机上面运作，若与终端机无关，则显示 ?</p>
+<p>STAT：该程序目前的状态，主要的状态有</p>
+<ul>
+<li>　　R ：运行；该程序目前正在运作，或者是可被运作</li>
+<li>　　D：不可中断：一般是IO进程</li>
+<li>　　S ：中断；该程序目前正在睡眠当中 (可说是 idle 状态)，但可被某些讯号 (signal) 唤醒。</li>
+<li>　　T ：停止：该程序目前正在侦测或者是停止了</li>
+<li>　　Z ：僵尸：该程序应该已经终止，但是其父程序却无法正常的终止他，造成 zombie (僵尸) 程序的状态</li>
+</ul>
+<p>START：该进程启动的时间点</p>
+<p>TIME ：进程从启动后到现在，实际占用CPU的总时间</p>
+<p>COMMAND：启动该进程的命令</p>
+</blockquote>
+<h3 id="根据CPU、内存使用率降序排列"><a href="#根据CPU、内存使用率降序排列" class="headerlink" title="根据CPU、内存使用率降序排列"></a>根据CPU、内存使用率降序排列</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -aux --sort -pcpu
+<span class="token function">ps</span> -aux --sort -pmem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h2 id="top命令"><a href="#top命令" class="headerlink" title="top命令"></a>top命令</h2><h3 id="查看所有进程的资源占用情况"><a href="#查看所有进程的资源占用情况" class="headerlink" title="查看所有进程的资源占用情况"></a>查看所有进程的资源占用情况</h3><p>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="监控每个逻辑CPU的状况"><a href="#监控每个逻辑CPU的状况" class="headerlink" title="监控每个逻辑CPU的状况"></a>监控每个逻辑CPU的状况</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span>  ，按 <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="高亮显示当前运行进程"><a href="#高亮显示当前运行进程" class="headerlink" title="高亮显示当前运行进程"></a>高亮显示当前运行进程</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span> ，按 b <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="显示-完整命令"><a href="#显示-完整命令" class="headerlink" title="显示 完整命令"></a>显示 完整命令</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span> ，按 c<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="切换显示CPU"><a href="#切换显示CPU" class="headerlink" title="切换显示CPU"></a>切换显示CPU</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按t<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="按CPU使用率从大到小排序"><a href="#按CPU使用率从大到小排序" class="headerlink" title="按CPU使用率从大到小排序"></a>按CPU使用率从大到小排序</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按P<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="切换显示Memory"><a href="#切换显示Memory" class="headerlink" title="切换显示Memory"></a>切换显示Memory</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按m<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="按Memory占用率从大到小排序"><a href="#按Memory占用率从大到小排序" class="headerlink" title="按Memory占用率从大到小排序"></a>按Memory占用率从大到小排序</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按M<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="按累计运行时间Time从大到小排序"><a href="#按累计运行时间Time从大到小排序" class="headerlink" title="按累计运行时间Time从大到小排序"></a>按累计运行时间Time从大到小排序</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按T<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="高亮CPU列"><a href="#高亮CPU列" class="headerlink" title="高亮CPU列"></a>高亮CPU列</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按x<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="彩色高亮显示"><a href="#彩色高亮显示" class="headerlink" title="彩色高亮显示"></a>彩色高亮显示</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按z
+top，按shift+z 可以调配色方案<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h3 id="通过”shift-gt-”或”shift-lt-”可以向右或左改变排序列"><a href="#通过”shift-gt-”或”shift-lt-”可以向右或左改变排序列" class="headerlink" title="通过”shift + &gt;”或”shift + &lt;”可以向右或左改变排序列"></a><strong>通过”shift + &gt;”或”shift + &lt;”可以向右或左改变排序列</strong></h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span> <span class="token builtin class-name">shift</span> + <span class="token operator">></span>或shift + <span class="token operator">&lt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="忽略闲置和僵死进程"><a href="#忽略闲置和僵死进程" class="headerlink" title="忽略闲置和僵死进程"></a>忽略闲置和僵死进程</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按i<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="杀掉进程"><a href="#杀掉进程" class="headerlink" title="杀掉进程"></a>杀掉进程</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按k，输入PID<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="改变内存的显示单位，默认为KB"><a href="#改变内存的显示单位，默认为KB" class="headerlink" title="改变内存的显示单位，默认为KB"></a>改变内存的显示单位，默认为KB</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">top，按e （针对列表）
+top，按E （针对头部统计信息）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h3 id="退出top程序"><a href="#退出top程序" class="headerlink" title="退出top程序"></a>退出top程序</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">按 q<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="wget命令"><a href="#wget命令" class="headerlink" title="wget命令"></a>wget命令</h2><h3 id="下载test-jpg文件"><a href="#下载test-jpg文件" class="headerlink" title="下载test.jpg文件"></a>下载test.jpg文件</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://xxx（文件地址）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="下载test-jpg文件，并存储名为test-demo-jpg"><a href="#下载test-jpg文件，并存储名为test-demo-jpg" class="headerlink" title="下载test.jpg文件，并存储名为test_demo.jpg"></a>下载test.jpg文件，并存储名为test_demo.jpg</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> -o test_demo.jpg http://xxx（文件地址）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="下载test-jpg文件，后台形式下载"><a href="#下载test-jpg文件，后台形式下载" class="headerlink" title="下载test.jpg文件，后台形式下载"></a>下载test.jpg文件，后台形式下载</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> -b http://xxx（文件地址）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h2><h3 id="删除-root-Test-目录下的文件Test-ini-（系统会询问是否删除）"><a href="#删除-root-Test-目录下的文件Test-ini-（系统会询问是否删除）" class="headerlink" title="删除/root/Test/目录下的文件Test.ini （系统会询问是否删除）"></a>删除/root/Test/目录下的文件Test.ini （系统会询问是否删除）</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /root/Test/Test.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="强制删除-root-Test-目录下的文件Test-ini（直接删除，系统不会提示）"><a href="#强制删除-root-Test-目录下的文件Test-ini（直接删除，系统不会提示）" class="headerlink" title="强制删除/root/Test/目录下的文件Test.ini（直接删除，系统不会提示）"></a>强制删除/root/Test/目录下的文件Test.ini（直接删除，系统不会提示）</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -f /root/Test/Test.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="删除-root-Test-目录下的所有-log文件"><a href="#删除-root-Test-目录下的所有-log文件" class="headerlink" title="删除/root/Test/目录下的所有.log文件"></a>删除/root/Test/目录下的所有.log文件</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -f /root/Test/*.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="删除-root-Test-目录下的-demo-文件夹"><a href="#删除-root-Test-目录下的-demo-文件夹" class="headerlink" title="删除/root/Test/目录下的 demo/文件夹"></a>删除/root/Test/目录下的 demo/文件夹</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -r /root/Test/demo/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="强制删除-root-Test-目录下的-demo-文件夹"><a href="#强制删除-root-Test-目录下的-demo-文件夹" class="headerlink" title="强制删除/root/Test/目录下的 demo/文件夹"></a>强制删除/root/Test/目录下的 demo/文件夹</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf /root/Test/demo/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="删除-root-Test-目录下的所有内容"><a href="#删除-root-Test-目录下的所有内容" class="headerlink" title="删除/root/Test/目录下的所有内容"></a>删除/root/Test/目录下的所有内容</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf /root/Test/*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="创建文件命令"><a href="#创建文件命令" class="headerlink" title="创建文件命令"></a>创建文件命令</h2><h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><h4 id="创建一个文件"><a href="#创建一个文件" class="headerlink" title="创建一个文件"></a>创建一个文件</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> Test.ini  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h4 id="同时创建两个文件"><a href="#同时创建两个文件" class="headerlink" title="同时创建两个文件"></a>同时创建两个文件</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> test1.txt test2.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h4 id="批量创建文件（如创建2000个文件）"><a href="#批量创建文件（如创建2000个文件）" class="headerlink" title="批量创建文件（如创建2000个文件）"></a>批量创建文件（如创建2000个文件）</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> test<span class="token punctuation">&#123;</span>0001<span class="token punctuation">..</span><span class="token number">2000</span><span class="token punctuation">&#125;</span>.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<h3 id="vi和vim"><a href="#vi和vim" class="headerlink" title="vi和vim"></a>vi和vim</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><blockquote>
+<dl><dt>进入文档后，点击 i 进入insert模式，在文档中输入文字，在当前光标处编辑，文档下面会有insert的标识<br>进入文档后，点击 a 可以编辑光标下一位<br>退出编辑状态后，输入 Shift + g 即可立刻跳转到本文档最后<br>点击 esc 按钮可以退出编辑状态</dt><dd>输入冒号可以输入文档相关的指令<br>wq 表示保存并退出<br>q 表示退出<br>q! 强制退出，不保存修改的内容<br>退出编辑状态，点击 x 键可以删除1个字符，一次有效<br>退出编辑状态，点击 dd 可以删除一行字符<br>退出编辑状态，点击 r + 要替换的内容，即可将当前内容替换</dd></dl></blockquote>
+<h3 id="使用-gt-、-gt-gt"><a href="#使用-gt-、-gt-gt" class="headerlink" title="使用&gt;、&gt;&gt;"></a>使用&gt;、&gt;&gt;</h3><h4 id="gt"><a href="#gt" class="headerlink" title="&gt;"></a>&gt;</h4><p>直接覆盖原文件，不会有任何提示</p>
+<h4 id="gt-gt"><a href="#gt-gt" class="headerlink" title="&gt;&gt;"></a>&gt;&gt;</h4><p>追加在原文件末尾，不会覆盖原文件的内容</p>
+<h4 id="直接用-gt-创建空文件"><a href="#直接用-gt-创建空文件" class="headerlink" title="直接用&gt;创建空文件"></a>直接用&gt;创建空文件</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span> test.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h4 id="ls-创建文件（将结果写入文件）"><a href="#ls-创建文件（将结果写入文件）" class="headerlink" title="ls 创建文件（将结果写入文件）"></a>ls 创建文件（将结果写入文件）</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> <span class="token operator">></span> test.ini
+<span class="token function">ls</span> <span class="token operator">>></span> test.ini<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h4 id="grep-创建文件（将结果写入文件）"><a href="#grep-创建文件（将结果写入文件）" class="headerlink" title="grep 创建文件（将结果写入文件）"></a>grep 创建文件（将结果写入文件）</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> java <span class="token operator">></span>test.ini
+<span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> java <span class="token operator">>></span>test.ini<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h4 id="echo-创建文件（将结果写入文件）"><a href="#echo-创建文件（将结果写入文件）" class="headerlink" title="echo 创建文件（将结果写入文件）"></a>echo 创建文件（将结果写入文件）</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span> <span class="token operator">></span> test.ini
+<span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span> <span class="token operator">>></span> test.ini<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h4 id="cat-创建文件"><a href="#cat-创建文件" class="headerlink" title="cat 创建文件"></a>cat 创建文件</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token number">1</span>.txt <span class="token operator">></span> <span class="token number">2</span>.txt	<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>cat命令可以一次显示整个文件，如果文件比较大，使用不是很方便；适用于文件内容少的情况。</p>
+<h4 id="cd-创建文件"><a href="#cd-创建文件" class="headerlink" title="cd 创建文件"></a>cd 创建文件</h4><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token operator">></span> test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>cd最主要的作用是切换目录，在cd后面跟&gt;或&gt;&gt;再加上文件名就可以创建一个内容为空的文件。它和echo的区别之处在于echo可写文件内容，而cd并不能</p>
+<h2 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a>head命令</h2><h3 id="显示文件的前5行（两种方式）"><a href="#显示文件的前5行（两种方式）" class="headerlink" title="显示文件的前5行（两种方式）"></a>显示文件的前5行（两种方式）</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">head</span> -n <span class="token number">5</span> test.txt
+<span class="token function">head</span> -5 test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h3 id="显示文件的前100个字符"><a href="#显示文件的前100个字符" class="headerlink" title="显示文件的前100个字符"></a>显示文件的前100个字符</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">head</span> -c <span class="token number">100</span> test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="显示文件的第10-20行"><a href="#显示文件的第10-20行" class="headerlink" title="显示文件的第10-20行"></a>显示文件的第10-20行</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">head</span> -20 test.txt <span class="token operator">|</span> <span class="token function">tail</span> -10<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h2><h3 id="获取test-txt文件所有内容"><a href="#获取test-txt文件所有内容" class="headerlink" title="获取test.txt文件所有内容"></a>获取test.txt文件所有内容</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="无论是否为空行，都显示行号"><a href="#无论是否为空行，都显示行号" class="headerlink" title="无论是否为空行，都显示行号"></a>无论是否为空行，都显示行号</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> -n test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="显示行号，除了空行"><a href="#显示行号，除了空行" class="headerlink" title="显示行号，除了空行"></a>显示行号，除了空行</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> -b test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="连续读取两个文件，按顺序输出"><a href="#连续读取两个文件，按顺序输出" class="headerlink" title="连续读取两个文件，按顺序输出"></a>连续读取两个文件，按顺序输出</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> test1.txt test2.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="倒序输出"><a href="#倒序输出" class="headerlink" title="倒序输出"></a>倒序输出</h3><p>cat倒过来写即可</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tac</span> test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+
+
+<h2 id="nl命令"><a href="#nl命令" class="headerlink" title="nl命令"></a>nl命令</h2><h3 id="显示行号，除了空行-1"><a href="#显示行号，除了空行-1" class="headerlink" title="显示行号，除了空行"></a>显示行号，除了空行</h3><p>默认就是这个</p>
+<div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nl</span> test.txt
+<span class="token function">nl</span> -b t test.txt <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<h3 id="无论是否为空行，都显示行号-1"><a href="#无论是否为空行，都显示行号-1" class="headerlink" title="无论是否为空行，都显示行号"></a>无论是否为空行，都显示行号</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nl</span> -b a test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="行号靠最左显示"><a href="#行号靠最左显示" class="headerlink" title="行号靠最左显示"></a>行号靠最左显示</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nl</span> -n <span class="token function">ln</span> test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210722164919771.png" srcset="/img/loading.gif" lazyload alt="image-20210722164919771"></p>
+<h3 id="行号靠最右显示"><a href="#行号靠最右显示" class="headerlink" title="行号靠最右显示"></a>行号靠最右显示</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nl</span> -n rn test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210722164946206.png" srcset="/img/loading.gif" lazyload alt="image-20210722164946206"> </p>
+<h3 id="行号靠最右显示，不足位数左边补0"><a href="#行号靠最右显示，不足位数左边补0" class="headerlink" title="行号靠最右显示，不足位数左边补0"></a>行号靠最右显示，不足位数左边补0</h3><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nl</span> -n rz test.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p><img src="https://img.rockche.cn//image-20210722165017324.png" srcset="/img/loading.gif" lazyload alt="image-20210722165017324"></p>
+<p>Linux 查看端口占用情况可以使用 <strong>lsof</strong> 和 <strong>netstat</strong> 命令。</p>
+<hr>
+<h2 id="lsof命令"><a href="#lsof命令" class="headerlink" title="lsof命令"></a>lsof命令</h2><p>lsof(list open files)是一个列出当前系统打开文件的工具。</p>
+<p>lsof 查看端口占用语法格式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">lsof -i:端口号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>查看服务器 8000 端口的占用情况：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># lsof -i:8000
+COMMAND   PID USER   FD   TYPE   DEVICE SIZE&#x2F;OFF NODE NAME
+nodejs  26993 root   10u  IPv4 37999514      0t0  TCP *:8000 (LISTEN)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<p>可以看到 8000 端口已经被轻 nodejs 服务占用。</p>
+<p>lsof -i 需要 root 用户的权限来执行，如下图：</p>
+<p><img src="https://img.rockche.cn//image-20210827172125586.png" srcset="/img/loading.gif" lazyload alt="image-20210827172125586"></p>
+<p>更多 lsof 的命令如下：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">lsof -i:8080：查看8080端口占用
+lsof abc.txt：显示开启文件abc.txt的进程
+lsof -c abc：显示abc进程现在打开的文件
+lsof -c -p 1234：列出进程号为1234的进程所打开的文件
+lsof -g gid：显示归属gid的进程情况
+lsof +d &#x2F;usr&#x2F;local&#x2F;：显示目录下被进程开启的文件
+lsof +D &#x2F;usr&#x2F;local&#x2F;：同上，但是会搜索目录下的目录，时间较长
+lsof -d 4：显示使用fd为4的进程
+lsof -i -U：显示所有打开的端口和UNIX domain文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<hr>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p><strong>netstat -tunlp</strong> 用于显示 tcp，udp 的端口和进程等相关情况。</p>
+<p>netstat 查看端口占用语法格式：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">netstat -tunlp | grep 端口号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<ul>
+<li>-t (tcp) 仅显示tcp相关选项</li>
+<li>-u (udp)仅显示udp相关选项</li>
+<li>-n 拒绝显示别名，能显示数字的全部转化为数字</li>
+<li>-l 仅列出在Listen(监听)的服务状态</li>
+<li>-p 显示建立相关链接的程序名</li>
+</ul>
+<p>例如查看 8000 端口的情况，使用以下命令：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># netstat -tunlp | grep 8000
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      26993&#x2F;nodejs   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+
+<p>更多命令：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">netstat -ntlp   &#x2F;&#x2F;查看当前所有tcp端口
+netstat -ntulp | grep 80   &#x2F;&#x2F;查看所有80端口使用情况
+netstat -ntulp | grep 3306   &#x2F;&#x2F;查看所有3306端口使用情况<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+
+<hr>
+<h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><p>在查到端口占用的进程后，如果你要杀掉对应的进程可以使用 kill 命令：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">kill -9 PID<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>如上实例，我们看到 8000 端口对应的 PID 为 26993，使用以下命令杀死进程：</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">kill -9 26993<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/23/Python%E7%BB%83%E4%B9%A01/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python练习1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/15/Pytest12-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6pytest.ini/">
+                        <span class="hidden-mobile">Pytest12-配置文件pytest.ini</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="padding-top: 10px;font-size: 90%; color: #8d8d8d; font-weight: bolder;"> Copyright &copy; 2021 <a href="https://github.com/CrDym" target="_blank">Rock</a> All Right Reserved. </div> <div style="padding-top: 10px;"> 由 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"> <b>Hexo</b> </a> 强力驱动｜主题 - <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b> </a> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020037001号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0701f0aef134b057f3efbc04d4d57756";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
