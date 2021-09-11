@@ -16,11 +16,25 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="RockChe 的个人博客，记录生活、学习">
+  <meta name="description" content="主流的自动化测试工具
+QTP
+QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试
+
+
+Selenium
+Selenium是一个开源的web自动化测试工具，免费
+
+
+Robot framework
+Robot framework是一个基于Python可扩展的关键字驱动的测试自动化框架（基本上已被淘汰）
+
+
+Airtest
+Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>Homebrew相关 - RockChe&#39;s Blog</title>
+  <title>Selenium系列1-Selenium介绍 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -187,7 +201,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Homebrew相关">
+            <span class="h2" id="subtitle" title="Selenium系列1-Selenium介绍">
               
             </span>
 
@@ -197,8 +211,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-19 22:28" pubdate>
-        2021年8月19日 晚上
+      <time datetime="2021-09-10 22:28" pubdate>
+        2021年9月10日 晚上
       </time>
     </span>
   
@@ -209,7 +223,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      590 字
+      1.5k 字
     </span>
   
 
@@ -219,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      16
        分钟
     </span>
   
@@ -249,83 +263,124 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Homebrew相关</h1>
+            <h1 style="display: none">Selenium系列1-Selenium介绍</h1>
             
             <div class="markdown-body">
-              <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>Mac的软件包管理工具，类似于linux的<code>apt-get</code>，能在mac中方便地安装软件或者卸载软件。</li>
+              <h2 id="主流的自动化测试工具"><a href="#主流的自动化测试工具" class="headerlink" title="主流的自动化测试工具"></a>主流的自动化测试工具</h2><ul>
+<li>QTP<ul>
+<li>QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试</li>
 </ul>
-<h1 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p>Homebrew依赖xcode和其Command Line Tools。</p>
-<ol>
-<li>在App Store中安装最新版本的xcode；</li>
-<li>执行<code>xcode-select --install</code>安装Command Line Tools。</li>
-</ol>
 </li>
-<li><p>把Homebrew安装到<code>/usr/local</code>。</p>
-<div class="code-wrapper"><pre class="line-numbers language-linux" data-language="linux"><code class="language-linux">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
+<li>Selenium<ul>
+<li>Selenium是一个开源的web自动化测试工具，免费</li>
 </ul>
-<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><div class="code-wrapper"><pre class="line-numbers language-linux" data-language="linux"><code class="language-linux">ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;uninstall)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-
-<h2 id="重装"><a href="#重装" class="headerlink" title="重装"></a>重装</h2><ol>
-<li><p>备份<code>/usr/local/Cellar</code>。</p>
 </li>
-<li><p>删除Homebrew相关文件。</p>
-<div class="code-wrapper"><pre class="line-numbers language-linux" data-language="linux"><code class="language-linux">cd &#x2F;usr&#x2F;local
-sudo rm -rf Library .git .gitignore bin&#x2F;brew README.md share&#x2F;man&#x2F;man1&#x2F;brew
-sudo rm -rf Homebrew
-sudo rm -rf ~&#x2F;Library&#x2F;Caches&#x2F;Homebrew<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-<li><p>卸载Homebrew。</p>
-<div class="code-wrapper"><pre class="line-numbers language-linux" data-language="linux"><code class="language-linux">ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;uninstall)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
-<li><p>安装Homebrew。</p>
-<div class="code-wrapper"><pre class="line-numbers language-linux" data-language="linux"><code class="language-linux">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
-<li><p>将第1步中的备份拷贝回<code>/usr/local/Cellar</code>。</p>
-</li>
-<li><p>更新Homebrew及其管理的各软件。</p>
-<div class="code-wrapper"><pre class="line-numbers language-linux" data-language="linux"><code class="language-linux">brew update
-brew upgrade
-brew cleanup<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li>
-<li><p><code>brew doctor</code>检测Homebrew潜在问题，并自行排错。如使用<code>brew link 软件名</code>将备份的软件重新symlink到Homebrew上。</p>
-</li>
-</ol>
-<h1 id="使用Homebrew"><a href="#使用Homebrew" class="headerlink" title="使用Homebrew"></a>使用Homebrew</h1><h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p><code>brew install 软件名</code>，如<code>brew install git</code>。</p>
-<h2 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h2><p><code>brew uninstall 软件名</code>，如<code>brew uninstall git</code>。</p>
-<h2 id="查找软件"><a href="#查找软件" class="headerlink" title="查找软件"></a>查找软件</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">brew search 查询内容<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-
-<ol>
-<li>普通查询，<code>brew search git</code></li>
-<li>正则查询，<code>brew search /gi*/</code></li>
-</ol>
-<h2 id="查看哪些安装包需要更新"><a href="#查看哪些安装包需要更新" class="headerlink" title="查看哪些安装包需要更新"></a>查看哪些安装包需要更新</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">brew outdated<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-
-<h2 id="升级软件"><a href="#升级软件" class="headerlink" title="升级软件"></a>升级软件</h2><ul>
-<li><code>brew upgrade 软件名</code>：更新指定软件，如<code>brew update git</code>。</li>
-<li><code>brew upgrade</code>：更新所有软件。</li>
+<li>Robot framework<ul>
+<li>Robot framework是一个基于Python可扩展的关键字驱动的测试自动化框架（基本上已被淘汰）</li>
 </ul>
-<h2 id="清理软件"><a href="#清理软件" class="headerlink" title="清理软件"></a>清理软件</h2><ul>
-<li><code>brew cleanup -n</code>：查看哪些软件包要被清除。</li>
-<li><code>brew cleanup 软件名</code>：清除指定软件包的所有老版本。</li>
-<li><code>brew cleanup</code>：清除所有软件包的所有老版本。</li>
-</ul>
-<h2 id="关联软件"><a href="#关联软件" class="headerlink" title="关联软件"></a>关联软件</h2><ul>
-<li><p><code>brew prune</code>：清理无用的symlink，且清理与之相关的位于<code>/Applications</code>和<code>~/Applications</code>中的无用App链接。</p>
 </li>
-<li><p><code>brew link 软件名</code>：将指定软件的安装文件symlink到Homebrew上。</p>
-<blockquote>
-<p><code>brew install</code>安装的软件会自动执行link操作；<br> DIY安装的需要手动执行link操作；<br> 加上<code>--overwrite</code>选项，会先删除旧的symlink，再进行新的link操作。</p>
-</blockquote>
+<li>Airtest<ul>
+<li>Airtest是网易公司的基于图像识别的UI自动化测试工具，多用于测试手机游戏，也可以用于APP、小程序测试</li>
+</ul>
 </li>
 </ul>
-<h2 id="信息查询"><a href="#信息查询" class="headerlink" title="信息查询"></a>信息查询</h2><ul>
-<li><code>brew -v</code>：查看Homebrew版本号。</li>
-<li><code>brew list</code>：列出已安装的软件。</li>
-<li><code>brew home</code>：用浏览器打开homebrew官网。</li>
-<li><code>brew info</code>：显示软件信息。</li>
+<h2 id="Selenium介绍"><a href="#Selenium介绍" class="headerlink" title="Selenium介绍"></a>Selenium介绍</h2><p>Selenium是最广泛使用的开源Web UI（用户界面）自动化测试套件之一。它最初由杰森·哈金斯（Jason Huggins）于2004年开发，作为Thought Works的内部工具。Selenium支持跨不同浏览器，平台和编程语言的自动化。</p>
+<p>Selenium可以轻松部署在Windows，Linux，Solaris和Macintosh等平台上。此外，它支持IOS（IOS，Windows Mobile和Android）等移动应用程序的OS（操作系统）。</p>
+<p>Selenium通过使用特定于每种语言的驱动程序支持各种编程语言。Selenium支持的语言包括C#，Java，Perl，PHP，Python和Ruby。目前，Selenium Web驱动程序最受Python和C＃欢迎。 Selenium测试脚本可以使用任何支持的编程语言进行编码，并且可以直接在大多数现代Web浏览器中运行。 Selenium支持的浏览器包括Internet Explorer，Mozilla Firefox，Google Chrome和Safari。</p>
+<h2 id="Selenium特点"><a href="#Selenium特点" class="headerlink" title="Selenium特点"></a>Selenium特点</h2><ul>
+<li>开源</li>
+<li>跨平台：Linux、windows、Mac</li>
+<li>支持多种浏览器：Firefox、Chrome、IE、Edge、Opera、Safari等</li>
+<li>支持多种语言：java、python、C#、Javascript、Ruby、Php等</li>
+<li>成熟稳定</li>
+<li>功能强大<span id="more"></span></li>
 </ul>
-<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><ul>
-<li><code>brew update</code>：升级Homebrew自身。</li>
-<li><code>brew doctor</code>：检测系统中与Homebrew有关的潜在问题。</li>
+<h2 id="Selenium的发展"><a href="#Selenium的发展" class="headerlink" title="Selenium的发展"></a>Selenium的发展</h2><p>从2004年至今，Selenium经历了3个版本，即<code>Selenium1.0</code>，<code>Selenium2.0</code>，<code>Selenium3.0</code>。</p>
+<ul>
+<li>Selenium1.0<ul>
+<li>seleniumIDE      <ul>
+<li>是Firefox浏览器中的一个插件，实现简单的浏览器操作的录制与回放功能。生成测试用例，可将测试用例转换为其他语言的自动化脚本。如果没有编程经验，可以通过Selenium IDE来快速熟悉Selenium的命令。（只适用于火狐浏览器）</li>
 </ul>
+</li>
+<li>seleniumGrid <ul>
+<li>分布式测试。用于运行在不同的机器，不同的浏览器并行测试的工具，目的在于加快测试用例运行的速度，从而减少测试运行的总时间。利用Grid可以很方便地实现在多台机器上和异构环境中运行测试用例。</li>
+</ul>
+</li>
+<li>seleniumRC<ul>
+<li>Selenium RC是Selenium1.0核心部分，Selenium RC的功能就是通过代码操作浏览器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Selenium2.0    <ul>
+<li>Selenium1.0+WebDriver<ul>
+<li>WebDriver比Selenium RC功能强大且简单。WebDriver是通过原生浏览器支持或者浏览器扩展来直接控制浏览器。WebDriver针对各个浏览器而开发，使用不同浏览器都需要对应浏览器驱动，与浏览器紧密集成，因此支持创建更高级的测试，避免了JavaScript安全模型导致的限制。除了来自浏览器厂商的支持之外，WebDriver还利用操作系统级的调用，模拟用户输入。我们在使用WebDriver时，可以看到，是先启动了浏览器对应driver，通过浏览器driver启动浏览器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Selenium3.0<ul>
+<li>弃掉了seleniumRC</li>
+<li>全面拥抱java8</li>
+<li>支持MacOS</li>
+<li>通过Mozilla官方的geckodriver来支持firefox</li>
+<li>Selenium 3.0在Selenium 2.0的基础上增加了对Win10系统的Edge浏览器和Mac系统Safari浏览器的支持，并且在启动Firefox浏览器时也必须使用浏览器驱动geckodriver。去掉了Selenium RC，因此Selenium 3.0的学习核心也是WebDriver。</li>
+</ul>
+</li>
+</ul>
+<h2 id="WebDriver与Selenium-RC的区别"><a href="#WebDriver与Selenium-RC的区别" class="headerlink" title="WebDriver与Selenium RC的区别"></a>WebDriver与Selenium RC的区别</h2><p><strong>Selenium RC</strong></p>
+<p>Selenium RC使用的是javascript注入的方式跟浏览器打交道。这样Selenium RC需要启动一个Server，然后将操作页面元素的API 转成javascript脚本，再把这段脚本注入到浏览器中去执行。而通过这种javascript注入的方式一来太依赖翻译成javascript质量的好坏，二来javascript存在同源问题。这使测试变得不那么容易。</p>
+<p>总结：</p>
+<ul>
+<li>Selenium RC需要Selenium Server才能运行测试用例。</li>
+<li>Selenium RC使用JavaScript来驱动浏览器运行测试用例。</li>
+<li>Selenium RC只能支持Web应用的测试。</li>
+<li>Selenium RC能支持所有浏览器但并不能及时支持最新版本。</li>
+</ul>
+<p><strong>WebDriver</strong></p>
+<p>与Selenium RC不同的是Selenium WebDriver针对不同的浏览器进行独立开发Driver，利用浏览器的原生API去直接操作浏览器和页面元素，这样大大提高了测试的稳定性和速度。当然因为不同的浏览器对Web元素操作和呈现多多少少会存在一些差异，这也就造成现在不同的浏览器需要有对应不同的Driver。</p>
+<p>总结：</p>
+<ul>
+<li>WebDriver不需要Selenium Server就可以运行测试用例。</li>
+<li>WebDriver独立使用原生浏览器来运行测试用例。</li>
+<li>WebDriver既可以测试传统桌面Web应用，也可以测试手机上的应用程序，如iPhone或Android上的app程序。</li>
+<li>WebDriver能支持大多数浏览器的最新版本。</li>
+</ul>
+<p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Selenium RC</th>
+<th>Selenium WebDirver</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Selenium RC的架构复杂，运行测试脚本前必须先启动Selenium RC Server</td>
+<td>WebDirver架构简单，通过OS层级来控制浏览器</td>
+</tr>
+<tr>
+<td align="left">Selenium RC通过Selenium RC Server中转才能与浏览器进行交互</td>
+<td>WebDriver直接与浏览器进行交互</td>
+</tr>
+<tr>
+<td align="left">Selenium RC则通过Selenium Core（javascript实现）来间接驱动浏览器</td>
+<td>Webdriver直接调用浏览器原生API进行驱动，速度较快</td>
+</tr>
+<tr>
+<td align="left">Selenium RC的API复杂冗余，不利于学习掌握</td>
+<td>Webdriver的API简洁，只要掌握几个常用的即可进行测试</td>
+</tr>
+<tr>
+<td align="left">Selenium RC只能驱动可视化的浏览器</td>
+<td>Webdriver除了驱动可视化的浏览器，还可以驱动内存模式的浏览器，比如HtmlUnit browser，phantomjs</td>
+</tr>
+<tr>
+<td align="left">不能测试移动应用程序</td>
+<td>可以测试iPhone/Android应用程序</td>
+</tr>
+</tbody></table>
+<h2 id="WebDirver工作原理"><a href="#WebDirver工作原理" class="headerlink" title="WebDirver工作原理"></a>WebDirver工作原理</h2><p><img src="https://img.rockche.cn//image-20210911153057800.png" srcset="/img/loading.gif" lazyload alt="image-20210911153057800"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyuelinfighting/p/14901498.html">https://www.cnblogs.com/liuyuelinfighting/p/14901498.html</a></p>
 
             </div>
             <hr>
@@ -335,7 +390,7 @@ brew cleanup<span aria-hidden="true" class="line-numbers-rows"><span></span><spa
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a>
+                      <a class="hover-with-bg" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
                     
                   </div>
                 
@@ -343,7 +398,7 @@ brew cleanup<span aria-hidden="true" class="line-numbers-rows"><span></span><spa
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Mac%E4%BD%BF%E7%94%A8/">Mac使用</a>
+                      <a class="hover-with-bg" href="/tags/UI%E8%87%AA%E5%8A%A8%E5%8C%96/">UI自动化</a>
                     
                   </div>
                 
@@ -360,18 +415,12 @@ brew cleanup<span aria-hidden="true" class="line-numbers-rows"><span></span><spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/10/Selenium%E7%B3%BB%E5%88%972-%E6%90%AD%E5%BB%BA%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Selenium系列2-搭建测试环境</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/23/Pytest13-%E5%A4%9A%E9%87%8D%E6%A0%A1%E9%AA%8C%E6%8F%92%E4%BB%B6pytest-assume/">
-                        <span class="hidden-mobile">Pytest13-多重校验插件pytest-assume</span>
+                      <a href="/2021/09/10/Selenium%E7%B3%BB%E5%88%972-%E6%90%AD%E5%BB%BA%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
+                        <span class="hidden-mobile">Selenium系列2-搭建测试环境</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

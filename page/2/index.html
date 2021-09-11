@@ -196,6 +196,114 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/07/03/Pytest9-%E5%A4%B1%E8%B4%A5%E9%87%8D%E8%B7%91/">Pytest9-失败重跑</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/03/Pytest9-%E5%A4%B1%E8%B4%A5%E9%87%8D%E8%B7%91/">
+          
+          
+            
+          
+          前言在进行自动化测试的过程中，我们一定会有这样的需求：希望失败的用例可以自动重跑
+在pytest中，提供了pytest-rerunfailures插件可以实现自动重跑的效果
+插件安装pip命令安装
+pip install pytest-rerunfailures
+
+使用实例重新运行所有失败的用例如果需要把所有失败的用例都重新运行，使用 –reruns 命令，并且制定要运行的最大次数
+举个🌰：
+c
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-03 23:45" pubdate>
+              2021-07-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python%E5%AD%A6%E4%B9%A0/">Python学习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytest/">Pytest</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/01/Pytest8-%E5%8F%82%E6%95%B0%E5%8C%96/">Pytest8-参数化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/01/Pytest8-%E5%8F%82%E6%95%B0%E5%8C%96/">
+          
+          
+            
+          
+          前言我们在实际自动化测试中，某些测试用例是无法通过一组测试数据来达到验证效果的，所以需要通过参数化来传递多组数据
+在unittest中，我们可以使用第三方库parameterized来对数据进行参数化，从而实现数据驱动测试
+而在pytest中，也提供了功能强大的@pytest.mark.parametrize装饰器来实现数据参数化
+Pytest参数化的方式pytest有三种传参方式
+
+@pytes
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-01 23:45" pubdate>
+              2021-07-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python%E5%AD%A6%E4%B9%A0/">Python学习</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Pytest/">Pytest</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/06/30/Pytest7-skip%E5%92%8Cskipif%E4%BD%BF%E7%94%A8/">Pytest7-skip和skipif使用</a>
       </h1>
 
@@ -595,129 +703,6 @@ pipenv 主要解决了以下问题：
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Python/">Python</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/">UI自动化学习笔记（三）</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/12/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B03/">
-          
-          
-            
-          
-          下拉选择框
-为什么单独使用下拉框？
-如果option选项没有value值的化，css定位或其他定位就不太方便。
-
-
-如何使用Select类
-操作：
-导包：from  selenium.webdriver.support.select improt Select
- 实例化：s = Select(element)
-调用方法：s.select_by_index()
-
-
-
-
-提供哪些方法
-select_b
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-12 16:12" pubdate>
-              2021-05-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/UI%E8%87%AA%E5%8A%A8%E5%8C%96/">UI自动化</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/01/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B02/">UI自动化学习笔记（二）</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/01/UI%E8%87%AA%E5%8A%A8%E5%8C%96%E7%AC%94%E8%AE%B02/">
-          
-          
-            
-          
-          环境搭建安装selenium
-安装 pip install selenium
-查看 pip show selenium
-卸载 pip uninstall selenium
-指定版本安装 pip install selenium==版本号
-推荐使用python3.5以上版本
-
-安装浏览器驱动
-火狐
-https://github.com/mozilla/geckodriver/releases/
-
-
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-01 23:12" pubdate>
-              2021-05-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/UI%E8%87%AA%E5%8A%A8%E5%8C%96/">UI自动化</a>
             
           </div>
         
