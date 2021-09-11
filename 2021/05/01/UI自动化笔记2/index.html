@@ -16,19 +16,19 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="元素操作方法
-send_keys() # 输入方法
-click() # 点击方法
-clear() # 清空
+  <meta name="description" content="环境搭建安装selenium
+安装 pip install selenium
+查看 pip show selenium
+卸载 pip uninstall selenium
+指定版本安装 pip install selenium==版本号
+推荐使用python3.5以上版本
 
-浏览器常用操作API方法
-driver.maximize_window() # 最大化浏览器
+安装浏览器驱动
+火狐
+https://github.com/mozilla/geckodriver/releases/
 
-driver.set_window_size(w, h) # 设置浏览器大小 单位像素
 
-driver.set_window_position(x, y) # 设置浏览器位置
-
-driver.b">
+">
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
@@ -221,7 +221,7 @@ driver.b">
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      886 字
+      2.2k 字
     </span>
   
 
@@ -231,7 +231,7 @@ driver.b">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      25
        分钟
     </span>
   
@@ -264,12 +264,144 @@ driver.b">
             <h1 style="display: none">UI自动化学习笔记（二）</h1>
             
             <div class="markdown-body">
-              <h1 id="元素操作"><a href="#元素操作" class="headerlink" title="元素操作"></a>元素操作</h1><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
+              <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装selenium"><a href="#安装selenium" class="headerlink" title="安装selenium"></a>安装selenium</h2><ul>
+<li>安装 pip install selenium</li>
+<li>查看 pip show selenium</li>
+<li>卸载 pip uninstall selenium</li>
+<li>指定版本安装 pip install selenium==版本号</li>
+<li>推荐使用python3.5以上版本</li>
+</ul>
+<h2 id="安装浏览器驱动"><a href="#安装浏览器驱动" class="headerlink" title="安装浏览器驱动"></a>安装浏览器驱动</h2><ul>
+<li>火狐<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mozilla/geckodriver/releases/">https://github.com/mozilla/geckodriver/releases/</a></li>
+</ul>
+</li>
+<li>Chrome<ul>
+<li><a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/index.html">http://chromedriver.storage.googleapis.com/index.html</a></li>
+</ul>
+</li>
+<li>IE<ul>
+<li><a target="_blank" rel="noopener" href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="第一个案例"><a href="#第一个案例" class="headerlink" title="第一个案例"></a>第一个案例</h1><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token comment"># 获取浏览器驱动</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chorme<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 打开url</span>
+dirver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"harp://www.baidu.com"</span><span class="token punctuation">)</span>
+<span class="token comment"># 暂停3秒</span>
+sleep（<span class="token number">3</span>）
+<span class="token comment"># 关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h1 id="8种元素定位方式"><a href="#8种元素定位方式" class="headerlink" title="8种元素定位方式"></a>8种元素定位方式</h1><ul>
+<li>id</li>
+<li>name</li>
+<li>class_name（使用元素的class属性定位）</li>
+<li>tag_name（标签名称&lt;标签名…/&gt;）</li>
+<li>link_text(定位超链接a标签)</li>
+<li>partial_link_text(定位超链接 a标签 模糊)</li>
+<li>Xpath（基于元素定位）</li>
+<li>CSS（元素选择器）</li>
+</ul>
+<p>汇总</p>
+<ol>
+<li>基于元素属性特有定位方式(id\name\class_name)</li>
+<li>基于元素标签名称定位：tag_name</li>
+<li>定位超链接文本(link_text、partial_link_text)</li>
+<li>基于元素路径定位(xpath)</li>
+<li>基于选择器(css)</li>
+</ol>
+<h2 id="id定位"><a href="#id定位" class="headerlink" title="id定位"></a>id定位</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>通过元素的id属性定位，id一般情况下在当前页面中是唯一。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_id<span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>元素必须要有id属性</p>
+<h2 id="name定位"><a href="#name定位" class="headerlink" title="name定位"></a>name定位</h2><h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><p>通过元素的name属性来定位， name一般名称为重复。</p>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">drivr<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span>name）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h3><p>元素须要有name属性 </p>
+<h2 id="class-name定位"><a href="#class-name定位" class="headerlink" title="class_name定位"></a>class_name定位</h2><h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p>通过元素的class属性来定位，class属性一般为多个值。</p>
+<h3 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="提示-2"><a href="#提示-2" class="headerlink" title="提示"></a>提示</h3><p>元素必须要有class属性 </p>
+<h2 id="tag-name定位"><a href="#tag-name定位" class="headerlink" title="tag_name定位"></a>tag_name定位</h2><h3 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h3><p>是通过元素的标签名称来定位，标签名(查看元素时尖括号(&lt;)紧挨着的单词或字母就是标签名)(标签名也就是元素名)</p>
+<h3 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_tag_name<span class="token punctuation">(</span><span class="token string">"标签名"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>如果页面中存在多个相同标签，默认返回第一个标签元素。</p>
+<h2 id="link-text定位"><a href="#link-text定位" class="headerlink" title="link_text定位"></a>link_text定位</h2><h3 id="说明-4"><a href="#说明-4" class="headerlink" title="说明"></a>说明</h3><p>定位超链接标签</p>
+<h3 id="方法-4"><a href="#方法-4" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_link_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>link_text:只能使用精准匹配(a标签的全部文本内容)</p>
+<h2 id="partial-link-text【推荐】"><a href="#partial-link-text【推荐】" class="headerlink" title="partial_link_text【推荐】"></a>partial_link_text【推荐】</h2><h3 id="说明-5"><a href="#说明-5" class="headerlink" title="说明"></a>说明</h3><p>定位超链接标签</p>
+<h3 id="方法-5"><a href="#方法-5" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_partial_link_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ol>
+<li>可以使用精准或模糊匹配，如果使用模糊匹配最好使用能代表唯一的关键词</li>
+<li>如果有多个值，默认返回第一个值</li>
+</ol>
+<h2 id="Xpath定位"><a href="#Xpath定位" class="headerlink" title="Xpath定位"></a>Xpath定位</h2><h3 id="Xpath常用的定位策略"><a href="#Xpath常用的定位策略" class="headerlink" title="Xpath常用的定位策略"></a>Xpath常用的定位策略</h3><ol>
+<li><p>路径<br>1). 绝对路径：<br>语法：以单斜杠开头逐级开始编写，不能跳级。如：/html/body/div/p[1]/input<br>2). 相对路径<br>语法：以双斜杠开头，双斜杠后边跟元素名称，不知元素名称可以使用<em>代替。 如： //input //</em></p>
+</li>
+<li><p>路径结合属性<br>语法：在Xpath中，所有的属性必须使用@符号修饰 如：//*[@id=’id值’]</p>
+</li>
+<li><p>路径结合逻辑(多个属性)<br>语法：//*[@id=”id值” and @属性=’属性值’]</p>
+</li>
+<li><p>路径结合层级<br>语法：//*[@id=’父级id属性值’]/input</p>
+<div class="code-wrapper"><pre><code>提示：
+    1. 一般见识使用指定标签名称，不使用*代替，效率比较慢。
+    2. 无论是绝对路径和相对路径，/后面必须为元素的名称或者*
+    3. 扩展：在工作中，如果能使用相对路径绝对不使用绝对路径。
+</code></pre></div>
+</li>
+</ol>
+<h3 id="Xpath扩展"><a href="#Xpath扩展" class="headerlink" title="Xpath扩展"></a>Xpath扩展</h3><div class="code-wrapper"><pre><code>    1. //*[text()=&#39;XXX&#39;] # 定位文本值等于XXX的元素  
+        提示：一般适合 p标签，a标签 
+    2. //*[contains(@属性,&#39;xxx&#39;)] # 定位属性包含xxx的元素 【重点】
+        提示：contains为关键字，不可更改。 
+    3. //*[starts-with(@属性,&#39;xxx&#39;)] # 定位属性以xxx开头的元素
+        提示：starts-with为关键字不可更改    
+</code></pre></div>
+<h2 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h2><h3 id="说明-6"><a href="#说明-6" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>CSS一种标记语言，焦点：数据的样式。控制元素的显示样式，就必须先找到元素，在css标记语言中找元素使用css选择器；</li>
+<li>css定位就是通过css选择器工具进行定位。</li>
+<li>极力推荐使用，查找元素的效率比xpath高，语法比xpath更简单。</li>
+</ol>
+<h3 id="方法-6"><a href="#方法-6" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="常用测试略："><a href="#常用测试略：" class="headerlink" title="常用测试略："></a>常用测试略：</h3><ol>
+<li>id 选择器<br>前提：元素是必须有id属性<br>语法：#id  如：#passwordA</li>
+<li>class 选择器<br>前提：元素是必须有class属性<br>语法：.class  如：.telA</li>
+<li>元素选择器<br>语法：element  如：input</li>
+<li>属性选择器<br>语法：[属性名=属性值]</li>
+<li>层级选择器<br>语法： </li>
+<li>p&gt;input </li>
+<li>p input<br>提示：&gt;与空格的区别，大于号必须为子元素，空格则不用。</li>
+</ol>
+<h3 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h3><ol>
+<li>[属性^=’开头的字母’] # 获取指定属性以指定字母开头的元素</li>
+<li>[属性$=’结束的字母’] # 获取指定属性以指定字母结束的元素</li>
+<li>[属性*=’包含的字母’] # 获取指定属性包含指定字母的元素</li>
+</ol>
+<p>复制xpath:/html/body/form/div/fieldset/p[1]/input<br>复制最简：//*[@id=”userA”]<br>复制CSS路径：html body form div#zc fieldset p#p1 input#userA</p>
+<p>提示： </p>
+<ol>
+<li>虽然借助工具可以快速生成xpath路径和css语法，但是前期不建议使用。</li>
+<li>工具再智能，没有人智能。</li>
+</ol>
+<h2 id="定位一组元素"><a href="#定位一组元素" class="headerlink" title="定位一组元素"></a>定位一组元素</h2><h3 id="方法-7"><a href="#方法-7" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_elements_by_xxx<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<p>返回结果：类型为列表，要对列表进行访问和操作必须指定下标或进行遍历，[下标从0开始]</p>
+<h2 id="扩展8种元素定位的底层实现"><a href="#扩展8种元素定位的底层实现" class="headerlink" title="扩展8种元素定位的底层实现"></a>扩展8种元素定位的底层实现</h2><h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>xxx<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>By.xxx :为By类的类型 如：By.ID<br>value: 元素的定位值 如： “userA”<br>By类：需要导包 位置： from selenium.webdriver.common.by import By</p>
+<h1 id="元素操作"><a href="#元素操作" class="headerlink" title="元素操作"></a>元素操作</h1><h2 id="方法-8"><a href="#方法-8" class="headerlink" title="方法"></a>方法</h2><ul>
 <li>send_keys() # 输入方法</li>
 <li>click() # 点击方法</li>
 <li>clear() # 清空</li>
 </ul>
-<h1 id="浏览器常用操作API"><a href="#浏览器常用操作API" class="headerlink" title="浏览器常用操作API"></a>浏览器常用操作API</h1><h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><ul>
+<h1 id="浏览器常用操作API"><a href="#浏览器常用操作API" class="headerlink" title="浏览器常用操作API"></a>浏览器常用操作API</h1><h2 id="方法-9"><a href="#方法-9" class="headerlink" title="方法"></a>方法</h2><ul>
 <li><p>driver.maximize_window() # 最大化浏览器</p>
 </li>
 <li><p>driver.set_window_size(w, h) # 设置浏览器大小 单位像素</p>
@@ -291,7 +423,7 @@ driver.b">
 <li><p>drive.current_url # 获取当前页面url信息</p>
 </li>
 </ul>
-<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul>
+<h2 id="提示-3"><a href="#提示-3" class="headerlink" title="提示"></a>提示</h2><ul>
 <li><p>driver.title 和 driver.current_url 没有括号，应用场景：一般为判断上步操作是否执行成功。</p>
 <span id="more"></span></li>
 <li><p>driver.maximize_window() # 一般为我的前置代码，在获取driver后，直接编写最大化浏览器</p>
@@ -311,7 +443,7 @@ driver.b">
 <li><p>提示：如果当前只有1个窗口，close与quit没有任何区别。</p>
 </li>
 </ul>
-<h1 id="元素信息操作API"><a href="#元素信息操作API" class="headerlink" title="元素信息操作API"></a>元素信息操作API</h1><h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><ul>
+<h1 id="元素信息操作API"><a href="#元素信息操作API" class="headerlink" title="元素信息操作API"></a>元素信息操作API</h1><h2 id="方法-10"><a href="#方法-10" class="headerlink" title="方法"></a>方法</h2><ul>
 <li>text 获取元素文本  如：driver.text</li>
 <li>size 获取元素大小  如：driver.size </li>
 <li>get_attribute 获取元素属性值 如：driver.get_attribute(“id”)</li>
@@ -319,7 +451,7 @@ driver.b">
 <li>is_enabled 判断元素是否可用 如: element.is_enabled()</li>
 <li>is_selected 判断元素是否被选中 如：element.is_selected()        </li>
 </ul>
-<h2 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h2><ul>
+<h2 id="提示-4"><a href="#提示-4" class="headerlink" title="提示"></a>提示</h2><ul>
 <li>text和size调用时 无括号</li>
 <li>get_attribute一般应用场景：判断一组元素是否为想要的元素或者判断元素属性值是否</li>
 <li>is_displayed、is_enabled、is_selected，在特殊应用场景中使用。</li>

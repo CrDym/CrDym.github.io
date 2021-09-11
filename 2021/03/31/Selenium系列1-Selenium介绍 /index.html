@@ -34,7 +34,7 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>UI自动化学习笔记（一） - RockChe&#39;s Blog</title>
+  <title>Selenium系列1-Selenium介绍 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="UI自动化学习笔记（一）">
+            <span class="h2" id="subtitle" title="Selenium系列1-Selenium介绍">
               
             </span>
 
@@ -233,7 +233,7 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      16
        分钟
     </span>
   
@@ -263,10 +263,10 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">UI自动化学习笔记（一）</h1>
+            <h1 style="display: none">Selenium系列1-Selenium介绍</h1>
             
             <div class="markdown-body">
-              <h1 id="主流的自动化测试工具"><a href="#主流的自动化测试工具" class="headerlink" title="主流的自动化测试工具"></a>主流的自动化测试工具</h1><ul>
+              <h2 id="主流的自动化测试工具"><a href="#主流的自动化测试工具" class="headerlink" title="主流的自动化测试工具"></a>主流的自动化测试工具</h2><ul>
 <li>QTP<ul>
 <li>QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试</li>
 </ul>
@@ -284,7 +284,10 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
 </ul>
 </li>
 </ul>
-<h1 id="Selenium特点"><a href="#Selenium特点" class="headerlink" title="Selenium特点"></a>Selenium特点</h1><ul>
+<h2 id="Selenium介绍"><a href="#Selenium介绍" class="headerlink" title="Selenium介绍"></a>Selenium介绍</h2><p>Selenium是最广泛使用的开源Web UI（用户界面）自动化测试套件之一。它最初由杰森·哈金斯（Jason Huggins）于2004年开发，作为Thought Works的内部工具。Selenium支持跨不同浏览器，平台和编程语言的自动化。</p>
+<p>Selenium可以轻松部署在Windows，Linux，Solaris和Macintosh等平台上。此外，它支持IOS（IOS，Windows Mobile和Android）等移动应用程序的OS（操作系统）。</p>
+<p>Selenium通过使用特定于每种语言的驱动程序支持各种编程语言。Selenium支持的语言包括C#，Java，Perl，PHP，Python和Ruby。目前，Selenium Web驱动程序最受Python和C＃欢迎。 Selenium测试脚本可以使用任何支持的编程语言进行编码，并且可以直接在大多数现代Web浏览器中运行。 Selenium支持的浏览器包括Internet Explorer，Mozilla Firefox，Google Chrome和Safari。</p>
+<h2 id="Selenium特点"><a href="#Selenium特点" class="headerlink" title="Selenium特点"></a>Selenium特点</h2><ul>
 <li>开源</li>
 <li>跨平台：Linux、windows、Mac</li>
 <li>支持多种浏览器：Firefox、Chrome、IE、Edge、Opera、Safari等</li>
@@ -292,15 +295,28 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
 <li>成熟稳定</li>
 <li>功能强大<span id="more"></span></li>
 </ul>
-<h1 id="Selenium的发展"><a href="#Selenium的发展" class="headerlink" title="Selenium的发展"></a>Selenium的发展</h1><ul>
+<h2 id="Selenium的发展"><a href="#Selenium的发展" class="headerlink" title="Selenium的发展"></a>Selenium的发展</h2><p>从2004年至今，Selenium经历了3个版本，即<code>Selenium1.0</code>，<code>Selenium2.0</code>，<code>Selenium3.0</code>。</p>
+<ul>
 <li>Selenium1.0<ul>
-<li>seleniumIDE      </li>
-<li>seleniumGrid       </li>
-<li>seleniumRC</li>
+<li>seleniumIDE      <ul>
+<li>是Firefox浏览器中的一个插件，实现简单的浏览器操作的录制与回放功能。生成测试用例，可将测试用例转换为其他语言的自动化脚本。如果没有编程经验，可以通过Selenium IDE来快速熟悉Selenium的命令。（只适用于火狐浏览器）</li>
+</ul>
+</li>
+<li>seleniumGrid <ul>
+<li>分布式测试。用于运行在不同的机器，不同的浏览器并行测试的工具，目的在于加快测试用例运行的速度，从而减少测试运行的总时间。利用Grid可以很方便地实现在多台机器上和异构环境中运行测试用例。</li>
+</ul>
+</li>
+<li>seleniumRC<ul>
+<li>Selenium RC是Selenium1.0核心部分，Selenium RC的功能就是通过代码操作浏览器。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Selenium2.0    <ul>
-<li>Selenium1.0+WebDriver</li>
+<li>Selenium1.0+WebDriver<ul>
+<li>WebDriver比Selenium RC功能强大且简单。WebDriver是通过原生浏览器支持或者浏览器扩展来直接控制浏览器。WebDriver针对各个浏览器而开发，使用不同浏览器都需要对应浏览器驱动，与浏览器紧密集成，因此支持创建更高级的测试，避免了JavaScript安全模型导致的限制。除了来自浏览器厂商的支持之外，WebDriver还利用操作系统级的调用，模拟用户输入。我们在使用WebDriver时，可以看到，是先启动了浏览器对应driver，通过浏览器driver启动浏览器。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Selenium3.0<ul>
@@ -308,125 +324,63 @@ Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
 <li>全面拥抱java8</li>
 <li>支持MacOS</li>
 <li>通过Mozilla官方的geckodriver来支持firefox</li>
+<li>Selenium 3.0在Selenium 2.0的基础上增加了对Win10系统的Edge浏览器和Mac系统Safari浏览器的支持，并且在启动Firefox浏览器时也必须使用浏览器驱动geckodriver。去掉了Selenium RC，因此Selenium 3.0的学习核心也是WebDriver。</li>
 </ul>
 </li>
 </ul>
-<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="安装selenium"><a href="#安装selenium" class="headerlink" title="安装selenium"></a>安装selenium</h2><ul>
-<li>安装 pip install selenium</li>
-<li>查看 pip show selenium</li>
-<li>卸载 pip uninstall selenium</li>
-<li>指定版本安装 pip install selenium==版本号</li>
-<li>推荐使用python3.5以上版本</li>
+<h2 id="WebDriver与Selenium-RC的区别"><a href="#WebDriver与Selenium-RC的区别" class="headerlink" title="WebDriver与Selenium RC的区别"></a>WebDriver与Selenium RC的区别</h2><p><strong>Selenium RC</strong></p>
+<p>Selenium RC使用的是javascript注入的方式跟浏览器打交道。这样Selenium RC需要启动一个Server，然后将操作页面元素的API 转成javascript脚本，再把这段脚本注入到浏览器中去执行。而通过这种javascript注入的方式一来太依赖翻译成javascript质量的好坏，二来javascript存在同源问题。这使测试变得不那么容易。</p>
+<p>总结：</p>
+<ul>
+<li>Selenium RC需要Selenium Server才能运行测试用例。</li>
+<li>Selenium RC使用JavaScript来驱动浏览器运行测试用例。</li>
+<li>Selenium RC只能支持Web应用的测试。</li>
+<li>Selenium RC能支持所有浏览器但并不能及时支持最新版本。</li>
 </ul>
-<h2 id="安装浏览器驱动"><a href="#安装浏览器驱动" class="headerlink" title="安装浏览器驱动"></a>安装浏览器驱动</h2><ul>
-<li>火狐<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/mozilla/geckodriver/releases/">https://github.com/mozilla/geckodriver/releases/</a></li>
+<p><strong>WebDriver</strong></p>
+<p>与Selenium RC不同的是Selenium WebDriver针对不同的浏览器进行独立开发Driver，利用浏览器的原生API去直接操作浏览器和页面元素，这样大大提高了测试的稳定性和速度。当然因为不同的浏览器对Web元素操作和呈现多多少少会存在一些差异，这也就造成现在不同的浏览器需要有对应不同的Driver。</p>
+<p>总结：</p>
+<ul>
+<li>WebDriver不需要Selenium Server就可以运行测试用例。</li>
+<li>WebDriver独立使用原生浏览器来运行测试用例。</li>
+<li>WebDriver既可以测试传统桌面Web应用，也可以测试手机上的应用程序，如iPhone或Android上的app程序。</li>
+<li>WebDriver能支持大多数浏览器的最新版本。</li>
 </ul>
-</li>
-<li>Chrome<ul>
-<li><a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/index.html">http://chromedriver.storage.googleapis.com/index.html</a></li>
-</ul>
-</li>
-<li>IE<ul>
-<li><a target="_blank" rel="noopener" href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a></li>
-</ul>
-</li>
-</ul>
-<h1 id="第一个案例"><a href="#第一个案例" class="headerlink" title="第一个案例"></a>第一个案例</h1><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
-<span class="token comment"># 获取浏览器驱动</span>
-driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chorme<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment"># 打开url</span>
-dirver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"harp://www.baidu.com"</span><span class="token punctuation">)</span>
-<span class="token comment"># 暂停3秒</span>
-sleep（<span class="token number">3</span>）
-<span class="token comment"># 关闭浏览器</span>
-driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-<h1 id="8种元素定位方式"><a href="#8种元素定位方式" class="headerlink" title="8种元素定位方式"></a>8种元素定位方式</h1><ul>
-<li>id</li>
-<li>name</li>
-<li>class_name（使用元素的class属性定位）</li>
-<li>tag_name（标签名称&lt;标签名…/&gt;）</li>
-<li>link_text(定位超链接a标签)</li>
-<li>partial_link_text(定位超链接 a标签 模糊)</li>
-<li>Xpath（基于元素定位）</li>
-<li>CSS（元素选择器）</li>
-</ul>
-<p>汇总</p>
-<ol>
-<li>基于元素属性特有定位方式(id\name\class_name)</li>
-<li>基于元素标签名称定位：tag_name</li>
-<li>定位超链接文本(link_text、partial_link_text)</li>
-<li>基于元素路径定位(xpath)</li>
-<li>基于选择器(css)</li>
-</ol>
-<h2 id="id定位"><a href="#id定位" class="headerlink" title="id定位"></a>id定位</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>通过元素的id属性定位，id一般情况下在当前页面中是唯一。</p>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_id<span class="token punctuation">(</span><span class="token builtin">id</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>元素必须要有id属性</p>
-<h2 id="name定位"><a href="#name定位" class="headerlink" title="name定位"></a>name定位</h2><h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><p>通过元素的name属性来定位， name一般名称为重复。</p>
-<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">drivr<span class="token punctuation">.</span>find_element_by_name<span class="token punctuation">(</span>name）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-
-<h3 id="提示-1"><a href="#提示-1" class="headerlink" title="提示"></a>提示</h3><p>元素须要有name属性 </p>
-<h2 id="class-name定位"><a href="#class-name定位" class="headerlink" title="class_name定位"></a>class_name定位</h2><h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p>通过元素的class属性来定位，class属性一般为多个值。</p>
-<h3 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_class_name<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="提示-2"><a href="#提示-2" class="headerlink" title="提示"></a>提示</h3><p>元素必须要有class属性 </p>
-<h2 id="tag-name定位"><a href="#tag-name定位" class="headerlink" title="tag_name定位"></a>tag_name定位</h2><h3 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h3><p>是通过元素的标签名称来定位，标签名(查看元素时尖括号(&lt;)紧挨着的单词或字母就是标签名)(标签名也就是元素名)</p>
-<h3 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_tag_name<span class="token punctuation">(</span><span class="token string">"标签名"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>如果页面中存在多个相同标签，默认返回第一个标签元素。</p>
-<h2 id="link-text定位"><a href="#link-text定位" class="headerlink" title="link_text定位"></a>link_text定位</h2><h3 id="说明-4"><a href="#说明-4" class="headerlink" title="说明"></a>说明</h3><p>定位超链接标签</p>
-<h3 id="方法-4"><a href="#方法-4" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_link_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><p>link_text:只能使用精准匹配(a标签的全部文本内容)</p>
-<h2 id="partial-link-text【推荐】"><a href="#partial-link-text【推荐】" class="headerlink" title="partial_link_text【推荐】"></a>partial_link_text【推荐】</h2><h3 id="说明-5"><a href="#说明-5" class="headerlink" title="说明"></a>说明</h3><p>定位超链接标签</p>
-<h3 id="方法-5"><a href="#方法-5" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_partial_link_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><ol>
-<li>可以使用精准或模糊匹配，如果使用模糊匹配最好使用能代表唯一的关键词</li>
-<li>如果有多个值，默认返回第一个值</li>
-</ol>
-<h2 id="Xpath定位"><a href="#Xpath定位" class="headerlink" title="Xpath定位"></a>Xpath定位</h2><h3 id="Xpath常用的定位策略"><a href="#Xpath常用的定位策略" class="headerlink" title="Xpath常用的定位策略"></a>Xpath常用的定位策略</h3><ol>
-<li>路径</li>
-</ol>
-<p>1). 绝对路径：<br>语法：以单斜杠开头逐级开始编写，不能跳级。如：/html/body/div/p[1]/input<br>2). 相对路径<br>语法：以双斜杠开头，双斜杠后边跟元素名称，不知元素名称可以使用<em>代替。 如： //input //</em><br>2. 路径结合属性<br>语法：在Xpath中，所有的属性必须使用@符号修饰 如：//<em>[@id=’id值’]<br>3. 路径结合逻辑(多个属性)<br>语法：//</em>[@id=”id值” and @属性=’属性值’]<br>4. 路径结合层级<br>语法：//*[@id=’父级id属性值’]/input</p>
-<div class="code-wrapper"><pre><code>    提示：
-        1. 一般见识使用指定标签名称，不使用*代替，效率比较慢。
-        2. 无论是绝对路径和相对路径，/后面必须为元素的名称或者*
-        3. 扩展：在工作中，如果能使用相对路径绝对不使用绝对路径。
-</code></pre></div>
-<h3 id="Xpath扩展"><a href="#Xpath扩展" class="headerlink" title="Xpath扩展"></a>Xpath扩展</h3><div class="code-wrapper"><pre><code>    1. //*[text()=&#39;XXX&#39;] # 定位文本值等于XXX的元素  
-        提示：一般适合 p标签，a标签 
-    2. //*[contains(@属性,&#39;xxx&#39;)] # 定位属性包含xxx的元素 【重点】
-        提示：contains为关键字，不可更改。 
-    3. //*[starts-with(@属性,&#39;xxx&#39;)] # 定位属性以xxx开头的元素
-        提示：starts-with为关键字不可更改    
-</code></pre></div>
-<h2 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h2><h3 id="说明-6"><a href="#说明-6" class="headerlink" title="说明"></a>说明</h3><ol>
-<li>CSS一种标记语言，焦点：数据的样式。控制元素的显示样式，就必须先找到元素，在css标记语言中找元素使用css选择器；</li>
-<li>css定位就是通过css选择器工具进行定位。</li>
-<li>极力推荐使用，查找元素的效率比xpath高，语法比xpath更简单。<h3 id="方法-6"><a href="#方法-6" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="常用测试略："><a href="#常用测试略：" class="headerlink" title="常用测试略："></a>常用测试略：</h3></li>
-<li>id 选择器<br>前提：元素是必须有id属性<br>语法：#id  如：#passwordA</li>
-<li>class 选择器<br>前提：元素是必须有class属性<br>语法：.class  如：.telA</li>
-<li>元素选择器<br>语法：element  如：input</li>
-<li>属性选择器<br>语法：[属性名=属性值]</li>
-<li>层级选择器<br>语法： </li>
-<li>p&gt;input </li>
-<li>p input<br>提示：&gt;与空格的区别，大于号必须为子元素，空格则不用。</li>
-</ol>
-<h3 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h3><ol>
-<li>[属性^=’开头的字母’] # 获取指定属性以指定字母开头的元素</li>
-<li>[属性$=’结束的字母’] # 获取指定属性以指定字母结束的元素</li>
-<li>[属性*=’包含的字母’] # 获取指定属性包含指定字母的元素</li>
-</ol>
-<p>复制xpath:/html/body/form/div/fieldset/p[1]/input<br>复制最简：//*[@id=”userA”]<br>复制CSS路径：html body form div#zc fieldset p#p1 input#userA</p>
-<p>提示： </p>
-<ol>
-<li>虽然借助工具可以快速生成xpath路径和css语法，但是前期不建议使用。</li>
-<li>工具再智能，没有人智能。</li>
-</ol>
-<h2 id="定位一组元素"><a href="#定位一组元素" class="headerlink" title="定位一组元素"></a>定位一组元素</h2><h3 id="方法-7"><a href="#方法-7" class="headerlink" title="方法"></a>方法</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_elements_by_xxx<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p>返回结果：类型为列表，要对列表进行访问和操作必须指定下标或进行遍历，[下标从0开始]</p>
-<h2 id="扩展8种元素定位的底层实现"><a href="#扩展8种元素定位的底层实现" class="headerlink" title="扩展8种元素定位的底层实现"></a>扩展8种元素定位的底层实现</h2><h3 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">driver<span class="token punctuation">.</span>find_element<span class="token punctuation">(</span>By<span class="token punctuation">.</span>xxx<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><p>By.xxx :为By类的类型 如：By.ID<br>value: 元素的定位值 如： “userA”<br>By类：需要导包 位置： from selenium.webdriver.common.by import By</p>
+<p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Selenium RC</th>
+<th>Selenium WebDirver</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Selenium RC的架构复杂，运行测试脚本前必须先启动Selenium RC Server</td>
+<td>WebDirver架构简单，通过OS层级来控制浏览器</td>
+</tr>
+<tr>
+<td align="left">Selenium RC通过Selenium RC Server中转才能与浏览器进行交互</td>
+<td>WebDriver直接与浏览器进行交互</td>
+</tr>
+<tr>
+<td align="left">Selenium RC则通过Selenium Core（javascript实现）来间接驱动浏览器</td>
+<td>Webdriver直接调用浏览器原生API进行驱动，速度较快</td>
+</tr>
+<tr>
+<td align="left">Selenium RC的API复杂冗余，不利于学习掌握</td>
+<td>Webdriver的API简洁，只要掌握几个常用的即可进行测试</td>
+</tr>
+<tr>
+<td align="left">Selenium RC只能驱动可视化的浏览器</td>
+<td>Webdriver除了驱动可视化的浏览器，还可以驱动内存模式的浏览器，比如HtmlUnit browser，phantomjs</td>
+</tr>
+<tr>
+<td align="left">不能测试移动应用程序</td>
+<td>可以测试iPhone/Android应用程序</td>
+</tr>
+</tbody></table>
+<h2 id="WebDirver工作原理"><a href="#WebDirver工作原理" class="headerlink" title="WebDirver工作原理"></a>WebDirver工作原理</h2><p><img src="https://img.rockche.cn//image-20210911153057800.png" srcset="/img/loading.gif" lazyload alt="image-20210911153057800"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyuelinfighting/p/14901498.html">https://www.cnblogs.com/liuyuelinfighting/p/14901498.html</a></p>
 
             </div>
             <hr>
