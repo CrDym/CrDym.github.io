@@ -16,17 +16,25 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="浏览器驱动下载ChromeDriver for Chrome首先查看Chrome版本号
+  <meta name="description" content="主流的自动化测试工具
+QTP
+QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试
 
-下载对应版本的驱动
 
-官方下载地址：http://chromedriver.storage.googleapis.com/index.html
-国内镜像地址：https://npm.taobao.org/mirrors/chromedriver
-版本对应查看地址：http://chromedriver.sto">
+Selenium
+Selenium是一个开源的web自动化测试工具，免费
+
+
+Robot framework
+Robot framework是一个基于Python可扩展的关键字驱动的测试自动化框架（基本上已被淘汰）
+
+
+Airtest
+Airtest是网易公司的基于图像识别的UI自动化测试工具，多">
   <meta name="author" content="RockChe">
   <meta name="keywords" content="">
   
-  <title>Selenium系列2-搭建测试环境 - RockChe&#39;s Blog</title>
+  <title>Selenium系列1-Selenium介绍 - RockChe&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -193,7 +201,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Selenium系列2-搭建测试环境">
+            <span class="h2" id="subtitle" title="Selenium系列1-Selenium介绍">
               
             </span>
 
@@ -203,8 +211,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-10 22:28" pubdate>
-        2021年9月10日 晚上
+      <time datetime="2021-09-07 22:28" pubdate>
+        2021年9月7日 晚上
       </time>
     </span>
   
@@ -215,7 +223,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      649 字
+      1.5k 字
     </span>
   
 
@@ -225,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      16
        分钟
     </span>
   
@@ -255,98 +263,124 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Selenium系列2-搭建测试环境</h1>
+            <h1 style="display: none">Selenium系列1-Selenium介绍</h1>
             
             <div class="markdown-body">
-              <h2 id="浏览器驱动下载"><a href="#浏览器驱动下载" class="headerlink" title="浏览器驱动下载"></a>浏览器驱动下载</h2><h3 id="ChromeDriver-for-Chrome"><a href="#ChromeDriver-for-Chrome" class="headerlink" title="ChromeDriver for Chrome"></a>ChromeDriver for Chrome</h3><p>首先查看Chrome版本号</p>
-<p><img src="https://img.rockche.cn//image-20210911160205395.png" srcset="/img/loading.gif" lazyload alt="image-20210911160205395"></p>
-<p>下载对应版本的驱动</p>
-<ul>
-<li>官方下载地址：<a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/index.html">http://chromedriver.storage.googleapis.com/index.html</a></li>
-<li>国内镜像地址：<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/chromedriver">https://npm.taobao.org/mirrors/chromedriver</a></li>
-<li>版本对应查看地址：<a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/2.43/notes.txt">http://chromedriver.storage.googleapis.com/2.43/notes.txt</a></li>
+              <h2 id="主流的自动化测试工具"><a href="#主流的自动化测试工具" class="headerlink" title="主流的自动化测试工具"></a>主流的自动化测试工具</h2><ul>
+<li>QTP<ul>
+<li>QTP是一个商业的自动化测试工具，收费，支持web、桌面自动化测试</li>
 </ul>
-<p>选择指定的ChromeDriver版本，可根据不同的平台（Win、Mac、Linux）下载指定的ChromeDriver</p>
-<p><img src="https://img.rockche.cn//image-20210911160338218.png" srcset="/img/loading.gif" lazyload alt="image-20210911160338218"></p>
-<h3 id="Geckodriver-for-Firefox"><a href="#Geckodriver-for-Firefox" class="headerlink" title="Geckodriver for Firefox"></a>Geckodriver for Firefox</h3><p>使用Firefox进行自动化测试时，Selenium1.0或Selenium2.0是可以直接驱动Firefox的，如果使用Selenium3.0，则需要下载Geckodriver驱动</p>
-<ul>
-<li>驱动下载地址：<a target="_blank" rel="noopener" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a></li>
-<li>国内镜像地址：<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/geckodriver/">https://npm.taobao.org/mirrors/geckodriver/</a></li>
-</ul>
-<p>根据不同的平台（Win、Mac、Linux等）下载指定的geckodriver驱动</p>
-<span id="more"></span>
-
-<p><img src="https://img.rockche.cn//image-20210911161011883.png" srcset="/img/loading.gif" lazyload alt="image-20210911161011883"></p>
-<blockquote>
-<ul>
-<li><code>Firefox 47</code> 及以前版本，不需要<code>geckodriver</code>驱动。</li>
-<li><code>geckodriver v0.19.0</code>：<code>Firefox 55</code>（及更高版本），<code>Selenium3.5</code>（及更高）</li>
-<li><code>geckodriver v0.21.0</code>：<code>Firefox 57</code>（及更高版本），<code>Selenium3.11</code>（及更高）</li>
-</ul>
-</blockquote>
-<h3 id="IEDriverServer-for-IE"><a href="#IEDriverServer-for-IE" class="headerlink" title="IEDriverServer for IE"></a>IEDriverServer for IE</h3><p>IEDriverServer下载地址：<a target="_blank" rel="noopener" href="http://selenium-release.storage.googleapis.com/index.html">http://selenium-release.storage.googleapis.com/index.html</a></p>
-<p>根据Win平台是32位还是64位，下载指定的IEDriverServer驱动</p>
-<p><img src="https://img.rockche.cn//image-20210911161338542.png" srcset="/img/loading.gif" lazyload alt="image-20210911161338542"></p>
-<h3 id="Webdriver-for-Edge"><a href="#Webdriver-for-Edge" class="headerlink" title="Webdriver for Edge"></a>Webdriver for Edge</h3><ul>
-<li>驱动下载地址：<a target="_blank" rel="noopener" href="https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/">https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/</a></li>
-</ul>
-<p>选择指定的WebDriver版本，可根据不同的平台（Win、Mac、Linux）下载指定的WebDriver</p>
-<p><img src="https://img.rockche.cn//image-20210911162124182.png" srcset="/img/loading.gif" lazyload alt="image-20210911162124182"></p>
-<h3 id="OperaDriver-for-Opera"><a href="#OperaDriver-for-Opera" class="headerlink" title="OperaDriver for Opera"></a>OperaDriver for Opera</h3><ul>
-<li>驱动下载地址：<a target="_blank" rel="noopener" href="https://github.com/operasoftware/operachromiumdriver/releases">https://github.com/operasoftware/operachromiumdriver/releases</a></li>
-<li>国内镜像地址：<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/operadriver/">https://npm.taobao.org/mirrors/operadriver/</a></li>
-</ul>
-<p><img src="https://img.rockche.cn//image-20210911162340870.png" srcset="/img/loading.gif" lazyload alt="image-20210911162340870"></p>
-<h2 id="浏览器驱动与Python整合"><a href="#浏览器驱动与Python整合" class="headerlink" title="浏览器驱动与Python整合"></a>浏览器驱动与Python整合</h2><ul>
-<li><p>Windows环境</p>
-<p>将下载好的浏览器驱动解压后，如：<code>chromedriver.exe</code>放置在Python安装路径的根目录下即可</p>
 </li>
-<li><p>Mac环境</p>
-<p>mac下需要将驱动解压后放在<code>/usr/local/bin/</code>目录中</p>
+<li>Selenium<ul>
+<li>Selenium是一个开源的web自动化测试工具，免费</li>
+</ul>
+</li>
+<li>Robot framework<ul>
+<li>Robot framework是一个基于Python可扩展的关键字驱动的测试自动化框架（基本上已被淘汰）</li>
+</ul>
+</li>
+<li>Airtest<ul>
+<li>Airtest是网易公司的基于图像识别的UI自动化测试工具，多用于测试手机游戏，也可以用于APP、小程序测试</li>
+</ul>
 </li>
 </ul>
-<h2 id="安装Selenium"><a href="#安装Selenium" class="headerlink" title="安装Selenium"></a>安装Selenium</h2><p>通过pip命令可以直接安装</p>
-<div class="code-wrapper"><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> selenium<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-
-<h2 id="第一个测试脚本"><a href="#第一个测试脚本" class="headerlink" title="第一个测试脚本"></a>第一个测试脚本</h2><p>完成了以上的准备工作，我们的Selenium+Python自动化测试环境就搭建好了，下面就可以编写自动化脚本了</p>
-<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.导入selenium包</span>
-<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
-
-<span class="token comment"># 2.选择并打开浏览器（谷歌）</span>
-driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 3. 输入百度网址</span>
-driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span>
-sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 4.对网址的操作</span>
-<span class="token comment"># 5.关闭浏览器</span>
-driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="Chrome模拟移动端"><a href="#Chrome模拟移动端" class="headerlink" title="Chrome模拟移动端"></a>Chrome模拟移动端</h3><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.导入selenium包</span>
-<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
-<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
-
-<span class="token comment"># 2.添加谷歌浏览器加载项</span>
-mobileEmulation <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"deviceName"</span><span class="token punctuation">:</span> <span class="token string">"iPhone X"</span><span class="token punctuation">&#125;</span>
-options <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>ChromeOptions<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment"># 因为传入的是字典类型的数据，所以使用的add方法也不一样</span>
-options<span class="token punctuation">.</span>add_experimental_option<span class="token punctuation">(</span><span class="token string">"mobileEmulation"</span><span class="token punctuation">,</span> mobileEmulation<span class="token punctuation">)</span>
-
-<span class="token comment"># 3.打开谷歌浏览器——将模拟移动端的参数，传入打开的浏览器中</span>
-<span class="token comment"># options和chrome_options一样，chrome_options将弃用。</span>
-driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span>options<span class="token operator">=</span>options<span class="token punctuation">)</span>
-
-<span class="token comment"># 4.打开地址</span>
-url <span class="token operator">=</span> <span class="token string">"http://www.baidu.com"</span>
-driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
-sleep<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 5.关闭浏览器</span>
-driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyuelinfighting/p/14921476.html">https://www.cnblogs.com/liuyuelinfighting/p/14921476.html</a></p>
+<h2 id="Selenium介绍"><a href="#Selenium介绍" class="headerlink" title="Selenium介绍"></a>Selenium介绍</h2><p>Selenium是最广泛使用的开源Web UI（用户界面）自动化测试套件之一。它最初由杰森·哈金斯（Jason Huggins）于2004年开发，作为Thought Works的内部工具。Selenium支持跨不同浏览器，平台和编程语言的自动化。</p>
+<p>Selenium可以轻松部署在Windows，Linux，Solaris和Macintosh等平台上。此外，它支持IOS（IOS，Windows Mobile和Android）等移动应用程序的OS（操作系统）。</p>
+<p>Selenium通过使用特定于每种语言的驱动程序支持各种编程语言。Selenium支持的语言包括C#，Java，Perl，PHP，Python和Ruby。目前，Selenium Web驱动程序最受Python和C＃欢迎。 Selenium测试脚本可以使用任何支持的编程语言进行编码，并且可以直接在大多数现代Web浏览器中运行。 Selenium支持的浏览器包括Internet Explorer，Mozilla Firefox，Google Chrome和Safari。</p>
+<h2 id="Selenium特点"><a href="#Selenium特点" class="headerlink" title="Selenium特点"></a>Selenium特点</h2><ul>
+<li>开源</li>
+<li>跨平台：Linux、windows、Mac</li>
+<li>支持多种浏览器：Firefox、Chrome、IE、Edge、Opera、Safari等</li>
+<li>支持多种语言：java、python、C#、Javascript、Ruby、Php等</li>
+<li>成熟稳定</li>
+<li>功能强大<span id="more"></span></li>
+</ul>
+<h2 id="Selenium的发展"><a href="#Selenium的发展" class="headerlink" title="Selenium的发展"></a>Selenium的发展</h2><p>从2004年至今，Selenium经历了3个版本，即<code>Selenium1.0</code>，<code>Selenium2.0</code>，<code>Selenium3.0</code>。</p>
+<ul>
+<li>Selenium1.0<ul>
+<li>seleniumIDE      <ul>
+<li>是Firefox浏览器中的一个插件，实现简单的浏览器操作的录制与回放功能。生成测试用例，可将测试用例转换为其他语言的自动化脚本。如果没有编程经验，可以通过Selenium IDE来快速熟悉Selenium的命令。（只适用于火狐浏览器）</li>
+</ul>
+</li>
+<li>seleniumGrid <ul>
+<li>分布式测试。用于运行在不同的机器，不同的浏览器并行测试的工具，目的在于加快测试用例运行的速度，从而减少测试运行的总时间。利用Grid可以很方便地实现在多台机器上和异构环境中运行测试用例。</li>
+</ul>
+</li>
+<li>seleniumRC<ul>
+<li>Selenium RC是Selenium1.0核心部分，Selenium RC的功能就是通过代码操作浏览器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Selenium2.0    <ul>
+<li>Selenium1.0+WebDriver<ul>
+<li>WebDriver比Selenium RC功能强大且简单。WebDriver是通过原生浏览器支持或者浏览器扩展来直接控制浏览器。WebDriver针对各个浏览器而开发，使用不同浏览器都需要对应浏览器驱动，与浏览器紧密集成，因此支持创建更高级的测试，避免了JavaScript安全模型导致的限制。除了来自浏览器厂商的支持之外，WebDriver还利用操作系统级的调用，模拟用户输入。我们在使用WebDriver时，可以看到，是先启动了浏览器对应driver，通过浏览器driver启动浏览器。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Selenium3.0<ul>
+<li>弃掉了seleniumRC</li>
+<li>全面拥抱java8</li>
+<li>支持MacOS</li>
+<li>通过Mozilla官方的geckodriver来支持firefox</li>
+<li>Selenium 3.0在Selenium 2.0的基础上增加了对Win10系统的Edge浏览器和Mac系统Safari浏览器的支持，并且在启动Firefox浏览器时也必须使用浏览器驱动geckodriver。去掉了Selenium RC，因此Selenium 3.0的学习核心也是WebDriver。</li>
+</ul>
+</li>
+</ul>
+<h2 id="WebDriver与Selenium-RC的区别"><a href="#WebDriver与Selenium-RC的区别" class="headerlink" title="WebDriver与Selenium RC的区别"></a>WebDriver与Selenium RC的区别</h2><p><strong>Selenium RC</strong></p>
+<p>Selenium RC使用的是javascript注入的方式跟浏览器打交道。这样Selenium RC需要启动一个Server，然后将操作页面元素的API 转成javascript脚本，再把这段脚本注入到浏览器中去执行。而通过这种javascript注入的方式一来太依赖翻译成javascript质量的好坏，二来javascript存在同源问题。这使测试变得不那么容易。</p>
+<p>总结：</p>
+<ul>
+<li>Selenium RC需要Selenium Server才能运行测试用例。</li>
+<li>Selenium RC使用JavaScript来驱动浏览器运行测试用例。</li>
+<li>Selenium RC只能支持Web应用的测试。</li>
+<li>Selenium RC能支持所有浏览器但并不能及时支持最新版本。</li>
+</ul>
+<p><strong>WebDriver</strong></p>
+<p>与Selenium RC不同的是Selenium WebDriver针对不同的浏览器进行独立开发Driver，利用浏览器的原生API去直接操作浏览器和页面元素，这样大大提高了测试的稳定性和速度。当然因为不同的浏览器对Web元素操作和呈现多多少少会存在一些差异，这也就造成现在不同的浏览器需要有对应不同的Driver。</p>
+<p>总结：</p>
+<ul>
+<li>WebDriver不需要Selenium Server就可以运行测试用例。</li>
+<li>WebDriver独立使用原生浏览器来运行测试用例。</li>
+<li>WebDriver既可以测试传统桌面Web应用，也可以测试手机上的应用程序，如iPhone或Android上的app程序。</li>
+<li>WebDriver能支持大多数浏览器的最新版本。</li>
+</ul>
+<p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Selenium RC</th>
+<th>Selenium WebDirver</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Selenium RC的架构复杂，运行测试脚本前必须先启动Selenium RC Server</td>
+<td>WebDirver架构简单，通过OS层级来控制浏览器</td>
+</tr>
+<tr>
+<td align="left">Selenium RC通过Selenium RC Server中转才能与浏览器进行交互</td>
+<td>WebDriver直接与浏览器进行交互</td>
+</tr>
+<tr>
+<td align="left">Selenium RC则通过Selenium Core（javascript实现）来间接驱动浏览器</td>
+<td>Webdriver直接调用浏览器原生API进行驱动，速度较快</td>
+</tr>
+<tr>
+<td align="left">Selenium RC的API复杂冗余，不利于学习掌握</td>
+<td>Webdriver的API简洁，只要掌握几个常用的即可进行测试</td>
+</tr>
+<tr>
+<td align="left">Selenium RC只能驱动可视化的浏览器</td>
+<td>Webdriver除了驱动可视化的浏览器，还可以驱动内存模式的浏览器，比如HtmlUnit browser，phantomjs</td>
+</tr>
+<tr>
+<td align="left">不能测试移动应用程序</td>
+<td>可以测试iPhone/Android应用程序</td>
+</tr>
+</tbody></table>
+<h2 id="WebDirver工作原理"><a href="#WebDirver工作原理" class="headerlink" title="WebDirver工作原理"></a>WebDirver工作原理</h2><p><img src="https://img.rockche.cn//image-20210911153057800.png" srcset="/img/loading.gif" lazyload alt="image-20210911153057800"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyuelinfighting/p/14901498.html">https://www.cnblogs.com/liuyuelinfighting/p/14901498.html</a></p>
 
             </div>
             <hr>
@@ -381,9 +415,9 @@ driver<span class="token punctuation">.</span>quit<span class="token punctuation
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/10/Selenium%E7%B3%BB%E5%88%971-Selenium%E4%BB%8B%E7%BB%8D%20/">
+                      <a href="/2021/09/09/Selenium%E7%B3%BB%E5%88%972-%E6%90%AD%E5%BB%BA%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Selenium系列1-Selenium介绍</span>
+                        <span class="hidden-mobile">Selenium系列2-搭建测试环境</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
