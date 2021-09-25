@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://img.rockche.cn/favicon.png">
+  <link rel="icon" href="https://img.rockche.cn/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="RockChe 的个人博客，记录生活、学习">
+  <meta name="author" content="RockChe">
+  <meta name="keywords" content="">
+  
+  <title>Selenium系列6-使用XPath定位元素 - RockChe&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"0701f0aef134b057f3efbc04d4d57756","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Rock's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://img.rockche.cn/postpage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Selenium系列6-使用XPath定位元素">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-22 22:28" pubdate>
+        2021年9月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Selenium系列6-使用XPath定位元素</h1>
+            
+            <div class="markdown-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在进行自动化测试时，常会遇到素没有<code>id</code>，<code>name</code>，<code>class</code>属性，或者<code>id</code>，<code>name</code>，<code>class</code>属性是动态的，这时该如何定位呢？</p>
+<p>通常会使用<code>XPath</code>和<code>css_selector</code>，这两种方式可以解决90%的元素定位</p>
+<h2 id="使用Xpath定位"><a href="#使用Xpath定位" class="headerlink" title="使用Xpath定位"></a>使用Xpath定位</h2><p>XPath定位和Selenium基础元素定位方式一样，既可以获取单个元素，也可以获取多个元素集</p>
+<p>获取一个元素对象：<br><code>driver.find_element_by_xpath(&quot;XPath路径表达式&quot;)</code></p>
+<p>获取多个元素集：<br><code>driver.find_elements_by_xpath(&quot;XPath路径表达式&quot;)</code></p>
+<h3 id="Xpath通过id，name，class属性定位"><a href="#Xpath通过id，name，class属性定位" class="headerlink" title="Xpath通过id，name，class属性定位"></a>Xpath通过id，name，class属性定位</h3><p>Xpath表达式：//标签名[@属性名=’属性值’]</p>
+<p><strong>示例</strong></p>
+<p>在百度首页中，使用Xpath定位搜索框</p>
+<p><strong>代码</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+
+<span class="token comment"># 打开浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打开被测地址</span>
+url <span class="token operator">=</span> <span class="token string">"https://wwww.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过id属性定位</span>
+el1 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[@id='kw']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el1<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过name属性定位</span>
+el2 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[@name='wd']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el2<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过class属性定位</span>
+el3 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//*[@class='s_ipt']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el3<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><strong>输出结果</strong></p>
+<p><img src="https://img.rockche.cn//image-20210923144812099.png" srcset="/img/loading.gif" lazyload alt="image-20210923144812099"></p>
+<blockquote>
+<ul>
+<li>不指定标签名称时，使用*号表示任意标签</li>
+<li>指定标签名称时，使用对应标签名称</li>
+</ul>
+</blockquote>
+<h3 id="Xpath通过标签中的其他属性定位"><a href="#Xpath通过标签中的其他属性定位" class="headerlink" title="Xpath通过标签中的其他属性定位"></a>Xpath通过标签中的其他属性定位</h3><p>如果元素没有id、name、class属性，可以通过其他属性进行定位</p>
+<p><strong>示例</strong></p>
+<p>使用Xpath通过其他属性对百度搜索框进行定位</p>
+<p><strong>代码</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+
+<span class="token comment"># 打开浏览器（获得浏览器对象）</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"http://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过maxlength属性定位  </span>
+el1 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[@maxlength='255']"</span><span class="token punctuation">)</span>
+<span class="token comment"># 打印定位元素所在行的源码</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el1<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 5.用XPath通过autocomplete属性定位  </span>
+el2 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[@autocomplete='off']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el2<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 6.关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><strong>输出结果</strong></p>
+<p><img src="https://img.rockche.cn//image-20210924114737921.png" srcset="/img/loading.gif" lazyload alt="image-20210924114737921"></p>
+<h3 id="Xpath层级定位"><a href="#Xpath层级定位" class="headerlink" title="Xpath层级定位"></a>Xpath层级定位</h3><p>如果元素的属性无法直接定位到，我们可以通过它的父元素然后通过层级关系定位</p>
+<p><strong>示例</strong></p>
+<p>使用Xpath通过层级定位对百度首页搜索框</p>
+<p><img src="https://img.rockche.cn//image-20210924144310196.png" srcset="/img/loading.gif" lazyload alt="image-20210924144310196"></p>
+<p><strong>代码</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+
+<span class="token comment"># 打开浏览器（获得浏览器对象）</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过层级定位</span>
+el <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//form[@id='form']/span/input"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 6.关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><strong>输出结果</strong></p>
+<p><img src="https://img.rockche.cn//image-20210924144342148.png" srcset="/img/loading.gif" lazyload alt="image-20210924144342148"></p>
+<h3 id="Xpath索引定位"><a href="#Xpath索引定位" class="headerlink" title="Xpath索引定位"></a>Xpath索引定位</h3><p>如果一个元素的标签和他兄弟元素的标签一样，这时候无法通过层级定位的。因为都是一个父亲生的，多胞胎兄弟。</p>
+<p>虽然双胞胎兄弟很难识别，但是出生是有先后的，于是可以通过它在家里的排行老几定位到（这里索引是从1开始算起的，跟Python的索引不一样）</p>
+<p><strong>示例</strong></p>
+<p>使用xpath索引定位百度首页左上角的按钮</p>
+<p><img src="https://img.rockche.cn//image-20210924150500970.png" srcset="/img/loading.gif" lazyload alt="image-20210924150500970"></p>
+<p><strong>代码</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+
+<span class="token comment"># 打开浏览器（获得浏览器对象）</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过索引定位 新闻按钮</span>
+el1 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//div[@id='s-top-left']/a[@target='_blank'][1]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el1<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过索引定位 地图按钮</span>
+el2 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//div[@id='s-top-left']/a[@target='_blank'][3]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el2<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过索引定位 直播按钮</span>
+el3 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//div[@id='s-top-left']/a[@target='_blank'][4]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el3<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 6.关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><strong>输出结果</strong></p>
+<p><img src="https://img.rockche.cn//image-20210924150440204.png" srcset="/img/loading.gif" lazyload alt="image-20210924150440204"></p>
+<h3 id="Xpath逻辑定位"><a href="#Xpath逻辑定位" class="headerlink" title="Xpath逻辑定位"></a>Xpath逻辑定位</h3><p>当几个元素具有相同的属性和属性值时，就没办法用一个属性来通过Xpath进行定位了，需要使用多个属性进行定位</p>
+<p>XPath逻辑定位说明：</p>
+<ul>
+<li><p>支持与（<code>and</code>）、或（<code>or</code>）、非（<code>not</code>）</p>
+</li>
+<li><p>一般用的比较多的是<code>and</code>运算，同时满足两个属性</p>
+</li>
+</ul>
+<p><strong>示例</strong></p>
+<p>使用Xpath运算符定位账号输入框</p>
+<p><img src="https://img.rockche.cn//image-20210924151804220.png" srcset="/img/loading.gif" lazyload alt="image-20210924151804220"></p>
+<p><strong>代码</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+
+<span class="token comment"># 打开浏览器（获得浏览器对象）</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://xiaojing0.com/admin/login"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 用XPath通过运算符定位</span>
+el1 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[@type='text' and @placeholder='账号']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el1<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<p><strong>输出结果</strong></p>
+<p><img src="https://img.rockche.cn//image-20210924152520372.png" srcset="/img/loading.gif" lazyload alt="image-20210924152520372"></p>
+<h3 id="Xpath模糊匹配定位"><a href="#Xpath模糊匹配定位" class="headerlink" title="Xpath模糊匹配定位"></a>Xpath模糊匹配定位</h3><p>有些时候，标签元素的属性值太长，我们可以使用模糊匹配的定位方式来定位元素</p>
+<p><strong>示例</strong></p>
+<p>定位下面代码片段中的指定元素</p>
+<div class="code-wrapper"><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bookstore</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>zc<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>b1<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eng<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Harry Potter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>29.99<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>b2<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eng<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>t2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Learning XML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>39.95<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>b3<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>eng<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>t3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Learning HTML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>99.95<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bookstore</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<blockquote>
+<p>相对路径：模糊查询</p>
+<ul>
+<li>*：匹配任何元素节点</li>
+<li>@*：匹配任何属性元素节点</li>
+<li>node()：匹配任何类型的节点</li>
+</ul>
+</blockquote>
+<p><strong>代码</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 打开浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 打开注册A页面</span>
+url <span class="token operator">=</span> <span class="token string">"file:///"</span> <span class="token operator">+</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span><span class="token string">"./demo1.html"</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment"># XPath模糊定位</span>
+<span class="token comment"># 1 选取 bookstore 元素的所有子元素。</span>
+element_1 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_elements_by_xpath<span class="token punctuation">(</span><span class="token string">"//bookstore/*"</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> element <span class="token keyword">in</span> element_1<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>element<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 2 匹配绝对路径最外层元素</span>
+element_2 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>element_2<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 3 选取页面中的所有元素。</span>
+element_3 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//*"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>element_3<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 4 选取所有带有属性的 title 元素。</span>
+element_4 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//title[@*]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>element_4<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 5 匹配所有有属性的节点（属性模糊查询使用很少）。</span>
+element_5 <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//*[@*]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>element_5<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 6 匹配bookstore节点所有孙子辈的id属性值为t2的title节点</span>
+textA <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//bookstore/node()/title[@id='t2']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>textA<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 关闭浏览器</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h3 id="Xpath其他定位方式"><a href="#Xpath其他定位方式" class="headerlink" title="Xpath其他定位方式"></a>Xpath其他定位方式</h3><p><code>contains</code>关键字，是用于模糊查询定位，意思是属性中含有xxx的元素。</p>
+<p>内容匹配可以是部分内容，也可以是全部内容。</p>
+<p><strong>contains（text()，”xx”)</strong></p>
+<p>模糊匹配text</p>
+<p><strong>示例</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 2.打开浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 3.打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+
+<span class="token comment"># 4.使用xpath模糊匹配，使用contains</span>
+el<span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//a[contains(text(), '新闻')]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 5.关闭浏览器</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p><strong>contains（@属性名，”属性值”)</strong></p>
+<p>模糊匹配某个属性</p>
+<p><strong>示例</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 2.打开浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 3.打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+
+<span class="token comment"># 4.使用xpath模糊匹配，使用contains</span>
+el<span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[contains(@class,'s_ip')]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 5.关闭浏览器</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p><strong>starts-with</strong></p>
+<p>模糊匹配以xx开头</p>
+<p><strong>示例</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 2.打开浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 3.打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+
+<span class="token comment"># 4.使用xpath模糊匹配，使用starts-with</span>
+el <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//input[starts-with(@class,'s_ip')]"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 5.关闭浏览器</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<p><strong>text()</strong></p>
+<p>用于纯文字的查找</p>
+<p><strong>示例</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 1.导入selenium</span>
+<span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> os
+
+<span class="token comment"># 2.打开浏览器</span>
+driver <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Chrome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 3.打开页面</span>
+url <span class="token operator">=</span> <span class="token string">"https://www.baidu.com"</span>
+driver<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+
+<span class="token comment"># 4.使用xpath模糊匹配，使用starts-with</span>
+el <span class="token operator">=</span> driver<span class="token punctuation">.</span>find_element_by_xpath<span class="token punctuation">(</span><span class="token string">"//*[text()='hao123']"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>get_attribute<span class="token punctuation">(</span><span class="token string">"outerHTML"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 5.关闭浏览器</span>
+sleep<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+driver<span class="token punctuation">.</span>quit<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuyuelinfighting/p/14943233.html">https://www.cnblogs.com/liuyuelinfighting/p/14943233.html</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/UI%E8%87%AA%E5%8A%A8%E5%8C%96/">UI自动化</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/16/Selenium%E7%B3%BB%E5%88%975-XPath%E8%B7%AF%E5%BE%84%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <span class="hidden-mobile">Selenium系列5-XPath路径表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="padding-top: 10px;font-size: 90%; color: #8d8d8d; font-weight: bolder;"> Copyright &copy; 2021 <a href="https://github.com/CrDym" target="_blank">Rock</a> All Right Reserved. </div> <div style="padding-top: 10px;"> 由 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"> <b>Hexo</b> </a> 强力驱动｜主题 - <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b> </a> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        蜀ICP备2020037001号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?0701f0aef134b057f3efbc04d4d57756";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
